@@ -1,0 +1,25 @@
+.addmission-sidebar {
+    background: #eee;
+}
+.addmission-sidebar .nav-link{
+    border-bottom: 1px solid #fff;
+    color: #000;
+    font-weight: 500;
+    /* padding: .5rem 7rem; */
+    text-align: center;
+}
+.addmission-sidebar .active{
+    color: #4dbf1c;
+}
+.addmission-sidebar .nav-link:hover{
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+}
+.admission-home .card h3 { margin-bottom: 1.8rem;}
+.admission-home .card {
+    padding: 3rem 0;
+    margin-bottom: 1.5rem;
+    background: #eee;
+    color: #000;
+}
+.admission-home .btn { min-width: 200px;}

@@ -10,4 +10,20 @@ class AdmissionController extends Controller
     {
         return view('admission.home');
     }
+    public function apply()
+    {
+        return view('admission.login');
+    }
+    public function login()
+    {
+        return view('admission.login');
+    }
+    public function guideline()
+    {
+        return view('admission.login');
+    }
+    public function complain()
+    {
+        return view('admission.login');
+    }
 }

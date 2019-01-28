@@ -21,7 +21,10 @@ Auth::routes();
 //Admission Routes
 Route::get('admission','AdmissionController@index')->name('admission.home');
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
-    //Route::get('home','AdmissionController@index')->name('home');
+    Route::get('apply','AdmissionController@apply')->name('apply');
+    Route::get('login','AdmissionController@login')->name('login');
+    Route::get('guidelines','AdmissionController@guideline')->name('guidelines');
+    Route::get('complain','AdmissionController@complain')->name('complain');
 });
 //Admin Routes
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
