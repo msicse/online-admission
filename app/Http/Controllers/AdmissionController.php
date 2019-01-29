@@ -12,7 +12,7 @@ class AdmissionController extends Controller
     }
     public function apply()
     {
-        return view('admission.login');
+        return view('admission.from.verify');
     }
     public function login()
     {

@@ -23,3 +23,9 @@
     color: #000;
 }
 .admission-home .btn { min-width: 200px;}
+.addmission-form .form-group  { margin-bottom: 0 !important;}
+.nice-select {
+    width: 100% ;
+    height: 35px;
+    line-height: 23px;
+}
