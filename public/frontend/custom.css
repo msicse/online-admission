@@ -1,10 +1,13 @@
 /* Common */
 .padding-tb-50 { padding: 30px 0 !important;}
+.mt-10 { margin-top: 10px !important;}
 .mr-20 { margin-right: 20px;}
 
 .home_banner_area .banner_inner .overlay {
     background-image: url('img/banner/home-banner2.jpg') !important;
 }
+
+
 
 .addmission {
     margin: 20px 0;

@@ -10,9 +10,13 @@ class AdmissionController extends Controller
     {
         return view('admission.home');
     }
-    public function apply()
+    public function verify()
     {
         return view('admission.from.verify');
+    }
+    public function apply()
+    {
+        return view('admission.from.app-form');
     }
     public function login()
     {

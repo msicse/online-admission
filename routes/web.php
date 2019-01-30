@@ -21,6 +21,7 @@ Auth::routes();
 //Admission Routes
 Route::get('admission','AdmissionController@index')->name('admission.home');
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
+    Route::get('verify','AdmissionController@verify')->name('verify');
     Route::get('apply','AdmissionController@apply')->name('apply');
     Route::get('login','AdmissionController@login')->name('login');
     Route::get('guidelines','AdmissionController@guideline')->name('guidelines');

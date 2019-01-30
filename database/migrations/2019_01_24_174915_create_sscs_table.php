@@ -27,6 +27,7 @@ class CreateSscsTable extends Migration
             $table->string('group');
             $table->tinyInteger('type');
             $table->integer('passing_year');
+            $table->string('institute');
             $table->float('result');
             $table->timestamps();
         });

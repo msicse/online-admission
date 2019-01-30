@@ -13,9 +13,9 @@
             @include('admission._sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header">Application Form</h5>
+                    <h5 class="card-header">Application Form (Step-1)</h5>
 
-                    <div class="card-body addmission-form">
+                    <div class="card-body addmission-form bg-info">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
@@ -51,29 +51,36 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('passing Year') }}</label>
+                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Passing Year') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
+                                            <select class="custom-select custom-select-sm" size="5">
+                                                  <option selected>Select One</option>
+                                                  @for( $i = date('Y'); $i > 2010 ; $i -- )
+                                                  <option value="{{ $i }}">{{ $i }}</option>
+                                                  @endfor
 
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Board') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
-
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
+                                            <select class="custom-select custom-select-sm">
+                                                  <option selected>Select One</option>
+                                                  <option value="barisal">Barisal</option>
+                        						  <option value="chittagong">Chittagong</option>
+                        						  <option value="comilla">Comilla</option>
+                                                  <option value="dhaka">Dhaka</option>
+                        						  <option value="dinajpur">Dinajpur</option>
+                        						  <option value="jessore">Jessore</option>
+                                                  <option value="rajshahi">Rajshahi</option>
+                                                  <option value="sylhet">Sylhet</option>
+                                                  <option value="madrasah">Madrasah</option>
+                        						  <option value="tec">Technical</option>
+                        						  <option value="dibs">DIBS(Dhaka)</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -115,8 +122,8 @@
 
                                         <div class="col-md-8">
                                             <select class="custom-select custom-select-sm" size="5">
-                                                  <option selected>Open this select menu</option>
-                                                  @for( $i = 2010; $i <= date('Y') ; $i ++ )
+                                                  <option selected>Select One</option>
+                                                  @for( $i = date('Y'); $i > 2010 ; $i -- )
                                                   <option value="{{ $i }}">{{ $i }}</option>
                                                   @endfor
 
@@ -127,10 +134,18 @@
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Board') }}</label>
                                         <div class="col-md-8">
                                             <select class="custom-select custom-select-sm">
-                                                  <option selected>Open this select menu</option>
-                                                  <option value="1">One</option>
-                                                  <option value="2">Two</option>
-                                                  <option value="3">Three</option>
+                                                  <option selected>Select One</option>
+                                                  <option value="barisal">Barisal</option>
+                        						  <option value="chittagong">Chittagong</option>
+                        						  <option value="comilla">Comilla</option>
+                                                  <option value="dhaka">Dhaka</option>
+                        						  <option value="dinajpur">Dinajpur</option>
+                        						  <option value="jessore">Jessore</option>
+                                                  <option value="rajshahi">Rajshahi</option>
+                                                  <option value="sylhet">Sylhet</option>
+                                                  <option value="madrasah">Madrasah</option>
+                        						  <option value="tec">Technical</option>
+                        						  <option value="dibs">DIBS(Dhaka)</option>
                                             </select>
                                         </div>
 
@@ -138,7 +153,7 @@
                                     </div>
                                     <div class="form-group row mb-0">
                                         <div class="col-md-8 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-success mt-10 btn-width">
                                                 {{ __('Next') }}
                                             </button>
 
