@@ -15,18 +15,23 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ssc_id');
-            $table->integer('hsc_id');
+            $table->string('name');
+            $table->string('fname');
+            $table->string('mname');
+            $table->string('dob');
+            $table->string('dob');
+            $table->tinyInteger('gender');
             $table->string('semester');
             $table->string('phone');
             $table->string('email');
             $table->string('nationality');
             $table->string('guardian');
-            $table->string('guard_relation');
-            $table->string('merit');
+            $table->string('guardian_relation');
+            $table->string('merit')->nullable();
+            $table->boolean('approved')->nullable();
             $table->text('present_address');
             $table->text('parmanent_address');
-            $table->string('image');
+            $table->string('image')->default('no-image.png');
             $table->timestamps();
         });
     }
