@@ -102,17 +102,18 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group row text-light">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Fathers Name') }}</label>
+                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ __('Fname') }}" required autofocus readonly>
+                                            <select class="custom-select custom-select-sm" size="5">
+                                                  <option selected>Select One</option>
+                                                  <option value="1">Spring</option>
+                                                  <option value="2">Summar</option>
+                                                  <option value="3">Fall</option>
 
-                                            @if ($errors->has('roll'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('roll') }}</strong>
-                                                </span>
-                                            @endif
+                                            </select>
                                         </div>
+
                                     </div>
                                 </div>
                              </div>
@@ -120,16 +121,18 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row text-light">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
+                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Applying Year') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
+                                            <select class="custom-select custom-select-sm" size="5">
+                                                  <option selected>Select One</option>
 
-                                            @if ($errors->has('roll'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('roll') }}</strong>
-                                                </span>
-                                            @endif
+                                                  <option value="{{ date('Y') }}">{{ date('Y') }}</option>
+                                                  <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}</option>
+                                                  <option value="{{ date('Y') + 2 }}">{{ date('Y') + 2 }}</option>
+
+
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -138,13 +141,13 @@
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Program') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
+                                            <select class="custom-select custom-select-sm" size="5">
+                                                  <option selected>Select One</option>
 
-                                            @if ($errors->has('roll'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('roll') }}</strong>
-                                                </span>
-                                            @endif
+                                                  <option value="">{{ date('Y') }}</option>
+                                                  <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}</option>
+                                                  <option value="{{ date('Y') + 2 }}">{{ date('Y') + 2 }}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
