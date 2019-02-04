@@ -19,9 +19,9 @@ class CreateApplicationsTable extends Migration
             $table->string('fname');
             $table->string('mname');
             $table->string('dob');
-            $table->string('dob');
             $table->tinyInteger('gender');
             $table->string('semester');
+            $table->string('program');
             $table->string('phone');
             $table->string('email');
             $table->string('nationality');
