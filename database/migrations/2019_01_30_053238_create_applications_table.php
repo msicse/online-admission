@@ -20,13 +20,16 @@ class CreateApplicationsTable extends Migration
             $table->string('mname');
             $table->string('dob');
             $table->tinyInteger('gender');
-            $table->string('semester');
-            $table->string('program');
+            $table->integer('semester');
+            $table->integer('year');
+            $table->integer('program');
             $table->string('phone');
             $table->string('email');
             $table->string('nationality');
             $table->string('guardian');
             $table->string('guardian_relation');
+            $table->string('ssc_result');
+            $table->string('hsc_result');
             $table->string('merit')->nullable();
             $table->boolean('approved')->nullable();
             $table->text('present_address');

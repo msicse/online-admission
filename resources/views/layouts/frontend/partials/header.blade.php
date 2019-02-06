@@ -11,8 +11,8 @@
                 </ul>
             </div>
             <div class="float-right">
-                <a class="dn_btn" href="tel:+4400123654896">+440 012 3654 896</a>
-                <a class="dn_btn" href="mailto:support@colorlib.com">support@colorlib.com</a>
+                <a class="dn_btn" href="tel:+4400123654896">+880 012 3654 896</a>
+                <a class="dn_btn" href="mailto:support@eubbd.com">support@eubbd.com</a>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        <li class="nav-item addmission"><a class="btn btn-success" href="{{ route('admission.verify')}}">Online Addmission</a></li>
+                        <li class="nav-item addmission"><a class="btn btn-success" href="{{ route('admission.application.verify')}}">Online Addmission</a></li>
                     </ul>
                 </div>
             </div>

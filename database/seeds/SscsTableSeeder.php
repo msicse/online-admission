@@ -11,52 +11,24 @@ class SscsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('sscs')->insert([
             [
-                'name' => 'Mr. Admin',
-                'fname' => 'Mr. Admin',
-                'mname' => 'Mr. Admin',
-                'dob' => '',//26-06-2018
+                'name' => 'Student ',
+                'fname' => 'Father',
+                'mname' => 'Mother',
+                'dob' => '26-06-1994',//26-06-2018
                 'gender' => 1,//1,2,3
-                'roll' => 121234,
-                'reg' => 56789065,
+                'roll' => 121212,
+                'reg' => 212121,
                 'board' => 'Rajshahi',
-                'session' => 2010-11,
+                'institute' => 'School name',
+                'session' => '2010-11',
                 'group' => 'Science',
                 'type' => 1,//1=regular 2=irr
-                'passing_year' => 2018,
-                'result' => 4.6
+                'passing_year' => 2010,
+                'result' => 5
             ],
-            [
-                'name' => 'Mr. Admin',
-                'fname' => 'Mr. Admin',
-                'mname' => 'Mr. Admin',
-                'dob' => '',//26-06-2018
-                'gender' => 1,//1,2,3
-                'roll' => 121234,
-                'reg' => 56789065,
-                'board' => 'Rajshahi',
-                'session' => 2010-11,
-                'group' => 'Science',
-                'type' => 1,//1=regular 2=irr
-                'passing_year' => 2018,
-                'result' => 4.6
-            ],
-            [
-                'name' => 'Mr.bhbhvhn',
-                'fname' => 'Mr. Admin',
-                'mname' => 'Mr. Admin',
-                'dob' => '',//26-06-2018
-                'gender' => 1,//1,2,3
-                'roll' => 121234,
-                'reg' => 56789065,
-                'board' => 'Rajshahi',
-                'session' => 2010-11,
-                'group' => 'Science',
-                'type' => 1,//1=regular 2=irr
-                'passing_year' => 2018,
-                'result' => 4.6
-            ],
+
         ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Admission | Login' )
+@section('title', 'Admission | Application | Verify' )
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
 @endpush
@@ -16,46 +16,50 @@
                     <h5 class="card-header">Application Form (Step-1)</h5>
 
                     <div class="card-body addmission-form bg-info">
-                        <form method="POST" action="{{ route('login') }}">
+                        <div class="alert alert-danger text-center alert-custom">
+                            All fields aren't be empty
+                        </div>
+                        <form method="POST" action="{{ route('admission.application.verify.submit') }}">
                             @csrf
 
                             <div class="row bg-info text-light">
                                 <div class="col-md-3 offset-md-2 text-center v-align-middle">
                                     <strong>SSC / Equivalent Degree</strong>
                                 </div>
+
                                 <div class="col-md-5">
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Roll') }}</label>
+                                        <label for="ssc_roll" class="col-md-4 col-form-label text-md-right">{{ __('Roll') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
+                                            <input id="ssc_roll" type="text" class="form-control form-control-sm" name="ssc_roll" value="{{ old('ssc_roll') }}" required autofocus>
 
-                                            @if ($errors->has('roll'))
+                                            @if ($errors->has('ssc_roll'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('roll') }}</strong>
+                                                    <strong>{{ $errors->first('ssc_roll') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Reg. No.') }}</label>
+                                        <label for="ssc_reg" class="col-md-4 col-form-label text-md-right">{{ __('Reg. No.') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
+                                            <input id="ssc_reg" type="text" class="form-control form-control-sm" name="ssc_reg" value="{{ old('ssc_reg') }}" required autofocus>
 
-                                            @if ($errors->has('email'))
+                                            @if ($errors->has('ssc_reg'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                    <strong>{{ $errors->first('ssc_reg') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Passing Year') }}</label>
+                                        <label for="ssc_year" class="col-md-4 col-form-label text-md-right">{{ __('Passing Year') }}</label>
 
                                         <div class="col-md-8">
-                                            <select class="custom-select custom-select-sm" size="5">
-                                                  <option selected>Select One</option>
+                                            <select name="ssc_year" class="custom-select custom-select-sm" size="5" required autofocus>
+                                                  <option value="" selected>None</option>
                                                   @for( $i = date('Y'); $i > 2010 ; $i -- )
                                                   <option value="{{ $i }}">{{ $i }}</option>
                                                   @endfor
@@ -64,10 +68,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Board') }}</label>
+                                        <label for="ssc_board" class="col-md-4 col-form-label text-md-right">{{ __('Board') }}</label>
 
                                         <div class="col-md-8">
-                                            <select class="custom-select custom-select-sm">
+                                            <select name="ssc_board" class="custom-select custom-select-sm" required autofocus>
                                                   <option selected>Select One</option>
                                                   <option value="barisal">Barisal</option>
                         						  <option value="chittagong">Chittagong</option>
@@ -92,36 +96,36 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Roll') }}</label>
+                                        <label for="hsc_roll" class="col-md-4 col-form-label text-md-right">{{ __('Roll') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
+                                            <input id="hsc_roll" type="text" class="form-control form-control-sm" name="hsc_roll" value="{{ old('hsc_roll') }}" required autofocus>
 
-                                            @if ($errors->has('roll'))
+                                            @if ($errors->has('hsc_roll'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('roll') }}</strong>
+                                                    <strong>{{ $errors->first('hsc_roll') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Reg. No.') }}</label>
+                                        <label for="hsc_reg" class="col-md-4 col-form-label text-md-right">{{ __('Reg. No.') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="roll" type="text" class="form-control form-control-sm" name="roll" value="{{ old('roll') }}" required autofocus>
+                                            <input id="hsc_reg" type="text" class="form-control form-control-sm" name="hsc_reg" value="{{ old('hsc_reg') }}" required autofocus>
 
-                                            @if ($errors->has('email'))
+                                            @if ($errors->has('hsc_reg'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                    <strong>{{ $errors->first('hsc_reg') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('passing Year') }}</label>
+                                        <label for="hsc_year" class="col-md-4 col-form-label text-md-right">{{ __('passing Year') }}</label>
 
                                         <div class="col-md-8">
-                                            <select class="custom-select custom-select-sm" size="5">
+                                            <select name="hsc_year" class="custom-select custom-select-sm" size="5" required autofocus>
                                                   <option selected>Select One</option>
                                                   @for( $i = date('Y'); $i > 2010 ; $i -- )
                                                   <option value="{{ $i }}">{{ $i }}</option>
@@ -131,9 +135,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Board') }}</label>
+                                        <label for="hsc_board" class="col-md-4 col-form-label text-md-right">{{ __('Board') }}</label>
                                         <div class="col-md-8">
-                                            <select class="custom-select custom-select-sm">
+                                            <select name="hsc_board" class="custom-select custom-select-sm" required autofocus >
                                                   <option selected>Select One</option>
                                                   <option value="barisal">Barisal</option>
                         						  <option value="chittagong">Chittagong</option>

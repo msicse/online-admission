@@ -21,8 +21,10 @@ Auth::routes();
 //Admission Routes
 Route::get('admission','AdmissionController@index')->name('admission.home');
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
-    Route::get('verify','AdmissionController@verify')->name('verify');
-    Route::get('apply','AdmissionController@apply')->name('apply');
+    Route::get('application/verify','AdmissionController@applicationVerify')->name('application.verify');
+    Route::post('application/verify','AdmissionController@applicationVerifySubmit')->name('application.verify.submit');
+    Route::post('application/form','AdmissionController@applicationForm')->name('application.form');
+    Route::post('application/submit','AdmissionController@applicationSubmit')->name('application.submit');
     Route::get('login','AdmissionController@login')->name('login');
     Route::get('guidelines','AdmissionController@guideline')->name('guidelines');
     Route::get('complain','AdmissionController@complain')->name('complain');

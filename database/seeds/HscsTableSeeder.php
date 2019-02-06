@@ -12,15 +12,18 @@ class HscsTableSeeder extends Seeder
     public function run()
     {
         DB::table('hscs')->insert([
-            'ssc_id' => 1,
-            'roll' => 121234,
-            'reg' => 56789065,
-            'board' => 'Rajshahi',
-            'session' => 2010-11,
-            'group' => 'Science',
-            'type' => 1,//1=regular 2=irr
-            'passing_year' => 2018,
-            'result' => 4.6
+            [
+                'ssc_id' => 1,
+                'roll' => 131313,
+                'reg' => 313131,
+                'board' => 'Rajshahi',
+                'institute' => '',
+                'session' => '2011-12',
+                'group' => 'Science',
+                'type' => 1,//1=regular 2=irr
+                'passing_year' => 2012,
+                'result' => 4.6
+            ],
 
         ]);
     }
