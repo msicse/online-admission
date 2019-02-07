@@ -17,13 +17,9 @@ class AdmissionController extends Controller
     }
     public function applicationVerifySubmit(Request $request)
     {
-        //return $request->all();
         //session(['apply' => $request->ssc_roll]);
-        $request->session()->put('apply', $request->ssc_roll);
-
-        $data = $request->session()->get('apply');
-
-        i
+        $request->session()->put('appl', 'value');
+        $data = $request->session()->get('key');
 
         return $data;
     }
