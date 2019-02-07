@@ -23,7 +23,7 @@ class AdmissionController extends Controller
 
         $data = $request->session()->get('apply');
 
-        
+        i
 
         return $data;
     }
