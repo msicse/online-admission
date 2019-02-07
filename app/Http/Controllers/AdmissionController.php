@@ -20,7 +20,10 @@ class AdmissionController extends Controller
         //return $request->all();
         //session(['apply' => $request->ssc_roll]);
         $request->session()->put('apply', $request->ssc_roll);
+
         $data = $request->session()->get('apply');
+
+        
 
         return $data;
     }
