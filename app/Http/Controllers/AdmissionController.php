@@ -84,7 +84,7 @@ class AdmissionController extends Controller
 
         if( $session_id == null ){
 
-            Toastr::warning('nbhbhbhb', 'Success');
+            Toastr::error('Access Denied', 'Error');
 
             return redirect()->route('admission.application.verify');
         } else {
@@ -112,13 +112,16 @@ class AdmissionController extends Controller
                'phone' => 'required',
                'email' => 'required|numeric',
                'guardian' => 'required',
-               'guardian_relation' => 'required',
+               'relation' => 'required',
                'present_address' => 'required|numeric',
                'parmanent_address' => 'required',
+               'nationality' => 'required',
+               'password' => 'required',
                'image' => 'required|image|mimes:jpeg,png',
            ));
 
-           $application = new Application;
+           return $request->all();
+           //$application = new Application;
 
 
             return view('admission.from.app-form')->withSsc($ssc);

@@ -80,7 +80,7 @@
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
 
                                         <div class="col-md-8">
-                                            <select class="custom-select custom-select-sm" size="5">
+                                            <select name="semester" class="custom-select custom-select-sm" size="5">
                                                   <option selected>Select One</option>
                                                   <option value="1">Spring</option>
                                                   <option value="2">Summar</option>
