@@ -14,19 +14,4 @@
 <script src="{{ asset('frontend/js/mail-script.js') }}"></script>
 <script src="{{ asset('frontend/js/theme.js') }}"></script>
 
-<script src="{{ asset('js/toastr.min.js') }}"></script>
-
 @stack('js')
-
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <script>
-            toastr.error('{{ $error }}',{
-                closeButton:true,
-                progressBar:true,
-            });
-
-        </script>
-    @endforeach
-@endif
-    {!! Toastr::message() !!}

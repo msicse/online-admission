@@ -60,7 +60,7 @@
                                         <div class="col-md-8">
                                             <select name="ssc_year" class="custom-select custom-select-sm" size="5" required autofocus>
                                                   <option value="" selected>None</option>
-                                                  @for( $i = date('Y'); $i > 2008 ; $i -- )
+                                                  @for( $i = date('Y'); $i > 2010 ; $i -- )
                                                   <option value="{{ $i }}">{{ $i }}</option>
                                                   @endfor
 
@@ -79,7 +79,7 @@
                                                   <option value="dhaka">Dhaka</option>
                         						  <option value="dinajpur">Dinajpur</option>
                         						  <option value="jessore">Jessore</option>
-                                                  <option value="Rajshahi">Rajshahi</option>
+                                                  <option value="rajshahi">Rajshahi</option>
                                                   <option value="sylhet">Sylhet</option>
                                                   <option value="madrasah">Madrasah</option>
                         						  <option value="tec">Technical</option>
@@ -127,7 +127,7 @@
                                         <div class="col-md-8">
                                             <select name="hsc_year" class="custom-select custom-select-sm" size="5" required autofocus>
                                                   <option selected>Select One</option>
-                                                  @for( $i = date('Y'); $i > 2008 ; $i -- )
+                                                  @for( $i = date('Y'); $i > 2010 ; $i -- )
                                                   <option value="{{ $i }}">{{ $i }}</option>
                                                   @endfor
 
@@ -145,7 +145,7 @@
                                                   <option value="dhaka">Dhaka</option>
                         						  <option value="dinajpur">Dinajpur</option>
                         						  <option value="jessore">Jessore</option>
-                                                  <option value="Rajshahi">Rajshahi</option>
+                                                  <option value="rajshahi">Rajshahi</option>
                                                   <option value="sylhet">Sylhet</option>
                                                   <option value="madrasah">Madrasah</option>
                         						  <option value="tec">Technical</option>

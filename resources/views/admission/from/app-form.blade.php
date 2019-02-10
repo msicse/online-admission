@@ -19,7 +19,7 @@
                         <div class="alert alert-danger text-center alert-custom">
                             All fields aren't be empty
                         </div>
-                        <form method="POST" action="{{ route('admission.application.form.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admission.application.submit') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -27,7 +27,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ $ssc->name }}" required autofocus readonly>
+                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ __('Name') }}" required autofocus readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Fathers Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ $ssc->fname }}" required autofocus readonly>
+                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ __('Fname') }}" required autofocus readonly>
 
                                         </div>
                                     </div>
@@ -49,7 +49,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Mother's Name"  ) }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ $ssc->mname }}" required autofocus readonly>
+                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ __('Name') }}" required autofocus readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Date Of Birth') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ $ssc->dob }}" required autofocus readonly>
+                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ __('Fname') }}" required autofocus readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ $ssc->gender }}" required autofocus readonly>
+                                            <input id="" type="text" class="form-control form-control-sm" name="" value="{{ __('Name') }}" required autofocus readonly>
 
                                         </div>
                                     </div>
