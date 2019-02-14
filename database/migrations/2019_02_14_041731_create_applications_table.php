@@ -15,6 +15,7 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('programe_id');
             $table->string('name');
             $table->string('fname');
             $table->string('mname');
@@ -35,6 +36,11 @@ class CreateApplicationsTable extends Migration
             $table->text('present_address');
             $table->text('parmanent_address');
             $table->string('image')->default('no-image.png');
+
+            $table->foreign('programe_id')
+                  ->references('id')->on('programes')
+                  ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

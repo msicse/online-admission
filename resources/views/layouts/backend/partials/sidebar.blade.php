@@ -22,13 +22,27 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active">
-                <a href="index.html">
+
+            @if (Auth::user()->role->id == 1 )
+            <li class="{{ Request::is('admin/dashboard*') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboard')}}">
                     <i class="material-icons">home</i>
                     <span>Home</span>
                 </a>
             </li>
-
+            <li class=" {{ Request::is('admin/departments*') ? 'active' : '' }} ">
+                <a href="{{ route('admin.departments.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <span>Departments</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/programs*') ? 'active' : '' }}">
+                <a href="{{ route('admin.programs.index') }}">
+                    <i class="material-icons">list</i>
+                    <span>Programs</span>
+                </a>
+            </li>
+            @endif
             <li class="header">LABELS</li>
             <li>
                 <a href="javascript:void(0);" class="menu-toggle">
