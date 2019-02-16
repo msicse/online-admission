@@ -10,7 +10,7 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('admission._sidebar')
+            @include('frontend.admission._sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
                     <h5 class="card-header">Application Form (Step-1)</h5>

@@ -81,7 +81,8 @@ class ProgrameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $program = Programe::find($id);
+        return $program;
     }
 
     /**
@@ -93,7 +94,25 @@ class ProgrameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,array(
+            'department' => 'required|integer',
+            'name' => 'required|max:255|unique:programes,id,'.$id,
+            'short_name' => 'required|max:255|unique:programes,id,'.$id,
+
+        ));
+        //return $request->all();
+
+        $slug  = str_slug($request->input('short_name'));
+
+        $program = Programe::find($id);
+        $program->department_id = $request->input('department');
+        $program->name = $request->input('name');
+        $program->short_name = $request->input('short_name');
+        $program->slug = $slug;
+        $program->status = true;
+        $program->save();
+        Toastr::success(' Succesfully Updated ', 'Success');
+        return redirect()->back();
     }
 
     /**

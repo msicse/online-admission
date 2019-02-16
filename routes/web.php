@@ -32,6 +32,7 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
 //Admin Routes
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::resource('users','UserController');
     Route::resource('departments','DepartmentController');
     Route::resource('programs','ProgrameController');
 });

@@ -13,7 +13,7 @@
         <button type="button" class="btn btn-primary waves-effect " data-toggle="modal" data-target="#craeatePrograme">
             <i class="material-icons">add</i>
 
-            <span>Add New Program</span>
+            <span>Add New User</span>
         </button>
 
     </div>
@@ -23,7 +23,8 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        All Programes
+
+                        All Users
                         <span class="badge ">{{ $programs->count() }}</span>
                     </h2>
                 </div>

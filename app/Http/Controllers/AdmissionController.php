@@ -19,7 +19,7 @@ class AdmissionController extends Controller
     {
         //$application = $request->session()->get('application');
         //return view('products.create-step1',compact('product', $product));
-        return view('admission.from.verify');
+        return view('frontend.admission.from.verify');
     }
     public function applicationVerifySubmit(Request $request)
     {
@@ -60,7 +60,7 @@ class AdmissionController extends Controller
             Session::put('application', $session);
         }
 
-        return redirect()->route('admission.application.form');
+        return redirect()->route('frontend.admission.application.form');
 
        //return $ssc;
 
@@ -89,7 +89,7 @@ class AdmissionController extends Controller
             return redirect()->route('admission.application.verify');
         } else {
             $ssc = Ssc::where('roll', $session_id)->first();
-            return view('admission.from.app-form')->withSsc($ssc);
+            return view('frontend.admission.from.app-form')->withSsc($ssc);
         }
         //return $session_data;
 
@@ -102,7 +102,7 @@ class AdmissionController extends Controller
 
             Toastr::error('Access Denied', 'Error');
 
-            return redirect()->route('admission.application.verify');
+            return redirect()->route('frontend.admission.application.verify');
         } else {
 
             $this->validate($request,array(
