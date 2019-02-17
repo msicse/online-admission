@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
+use App\Notifications\NewUser;
 use App\User;
 use App\Role;
 use Toastr;
@@ -13,6 +14,7 @@ use Toastr;
 use Storage;
 use Carbon\Carbon;
 use Image;
+use Notification;
 
 class UserController extends Controller
 {
@@ -50,7 +52,7 @@ class UserController extends Controller
         $this->validate($request,array(
             'role' => 'required|integer',
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255',
             'about' => 'string',
             'image' => 'mimes:jpg,jpeg,bmp,png,gif',
         ));
@@ -70,18 +72,21 @@ class UserController extends Controller
         } else {
             $imagename = 'default.png';
         }
-        $password = str_random(6);
+        $password = 123456; //str_random(6);
 
         $user = new User;
-        $user->role     = $request->input('role');
+        $user->role_id     = $request->input('role');
         $user->name     = $request->input('name');
         $user->email     = $request->input('email');
         $user->about     = $request->input('about');
         $user->image     = $imagename;
         $user->password  = Hash::make($password);
+        $user->save();
 
-        return $password;
+        Notification::send($user, new NewUser($user));
 
+        Toastr::success(' Succesfully Created User ', 'Success');
+        return redirect()->back();
 
 
     }
