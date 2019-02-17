@@ -1,11 +1,16 @@
 @extends('layouts.backend.app')
 
-@section('title','Admin | Programs')
+@section('title','Admin | Users')
 
 @push('css')
 	<!-- JQuery DataTable Css -->
     <link href="{{ asset('backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
-
+    <style>
+        textarea.form-control {
+            border: 1px solid #ddd !important;
+        }
+        .form-group { padding-bottom: 0;}
+    </style>
 @endpush
 @section('content')
 <div class="container-fluid">
@@ -25,7 +30,7 @@
                     <h2>
 
                         All Users
-                        <span class="badge ">{{ $programs->count() }}</span>
+                        <span class="badge ">{{ $users->count() }}</span>
                     </h2>
                 </div>
                 <div class="body">
@@ -34,31 +39,34 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Program Name</th>
-                                    <th>Department</th>
-                                    <th>Short Name</th>
-                                    <th>Slug</th>
+                                    <th> Name</th>
+                                    <th>Role</th>
+                                    <th> Email </th>
+                                    <th>About</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Program Name</th>
-                                    <th>Department</th>
-                                    <th>Short Name</th>
-                                    <th>Slug</th>
+                                    <th> Name</th>
+                                    <th>Role</th>
+                                    <th> Email </th>
+                                    <th>About</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach( $programs as $key => $data)
+                                @foreach( $users as $key => $data)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $data->name }}</td>
-                                    <td>{{ $data->department->name }}</td>
-                                    <td>{{ $data->short_name }}</td>
-                                    <td>{{ $data->slug }}</td>
+                                    <td>{{ $data->role->name }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td>{{ $data->about }}</td>
+                                    <td class="text-center"> <img src="{{ asset('backend/uploads/'. $data->image ) }}" height="100" alt=""> </td>
                                     <td>
                                         <button type="button" class="btn btn-success waves-effect " data-toggle="modal" data-target="#">
                                             <i class="material-icons">visibility</i>
@@ -76,7 +84,7 @@
                                                 }" >
                                             <i class="material-icons">delete</i>
                                         </button>
-                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.programs.destroy',$data->id) }}" method="post">
+                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.users.destroy',$data->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
 
@@ -98,20 +106,20 @@
 <div class="modal fade" id="craeatePrograme" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ route('admin.programs.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.users.store')}}" method="post" enctype="multipart/form-data">
                 <div class="modal-header custom-modal">
-                    <h4 class="modal-title" id="defaultModalLabel">Add New Programe</h4>
+                    <h4 class="modal-title" id="defaultModalLabel">Add New User</h4>
                 </div>
                 <div class="modal-body">
                     @csrf
                     <div class="form-group form-float">
 
-                        <label class="form-label">Department</label>
+                        <label class="form-label">Role</label>
 
-                        <select name="department" class="form-control show-tick form-line">
+                        <select name="role" class="form-control show-tick form-line">
                             <option value="">-- Please select --</option>
 
-                            @foreach( $departments as $data )
+                            @foreach( $roles as $data )
 
                             <option value="{{ $data->id }}" >{{ $data->name }}</option>
 
@@ -120,15 +128,29 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" id="sname" name="name" class="form-control">
-                            <label class="form-label">Name</label>
+                            <label class="">Name</label>
+                            <input type="text" id="name" name="name" class="form-control">
+
                         </div>
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" id="short_name" name="short_name" class="form-control">
-                            <label class="form-label">Short Name</label>
+                            <label class="">Email</label>
+                            <input type="text" id="email" name="email" class="form-control">
+
                         </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <label class="">About</label>
+                        <div class="">
+
+                            <textarea class="form-control" name="about"  rows="5" cols="50"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4 form-group ">
+                            <label class="">Image</label>
+                            <input type="file" class="" name="image" >
+
                     </div>
 
                 </div>
@@ -154,12 +176,12 @@
                     @method('PUT')
                     <div class="form-group form-float">
 
-                        <label class="form-label">Department</label>
+                        <label class="form-label">Role</label>
 
                         <select name="department" id="edit_dept" class="form-control show-tick form-line">
                             <option value="">-- Please select --</option>
 
-                            @foreach( $departments as $data )
+                            @foreach( $roles as $data )
 
                             <option value="{{ $data->id }}" >{{ $data->name }}</option>
 
@@ -212,8 +234,8 @@
 
 $( ".edit" ).click(function( event ) {
     var id = $(this).data('id');
-    var update_url = location.origin + "/admin/programs/" + id;
-    var url = location.origin + '/admin/programs/' + id + '/edit';
+    var update_url = location.origin + "/admin/users/" + id;
+    var url = location.origin + '/admin/users/' + id + '/edit';
     $('.edit-programe-form').attr('action', update_url);
     $.get(url, function (data) {
         //$('#edit_dept').val(data['name']);

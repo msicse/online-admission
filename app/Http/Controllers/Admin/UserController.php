@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+
 use App\User;
 use App\Role;
 use Toastr;
+
+use Storage;
+use Carbon\Carbon;
+use Image;
 
 class UserController extends Controller
 {
@@ -18,7 +24,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('backend.admin.user')->withUsers($users);
+        $roles = Role::all();
+
+        return view('backend.admin.user')->withUsers($users)->withRoles($roles);
     }
 
     /**
@@ -28,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -39,7 +47,43 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,array(
+            'role' => 'required|integer',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'about' => 'string',
+            'image' => 'mimes:jpg,jpeg,bmp,png,gif',
+        ));
+        $image = $request->file('image');
+        $slug  = str_slug($request->input('name'));
+        if (isset($image)){
+            if (!Storage::disk('public')->exists('users')){
+                Storage::disk('public')->makeDirectory('users');
+            }
+            $date = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $userImage = Image::make($image)->resize(400, 400)->save($image->getClientOriginalExtension());
+
+            Storage::disk('public')->put('users/'.$imagename, $userImage);
+
+
+        } else {
+            $imagename = 'default.png';
+        }
+        $password = str_random(6);
+
+        $user = new User;
+        $user->role     = $request->input('role');
+        $user->name     = $request->input('name');
+        $user->email     = $request->input('email');
+        $user->about     = $request->input('about');
+        $user->image     = $imagename;
+        $user->password  = Hash::make($password);
+
+        return $password;
+
+
+
     }
 
     /**

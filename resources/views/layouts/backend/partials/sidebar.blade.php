@@ -48,6 +48,12 @@
                     <span>Programs</span>
                 </a>
             </li>
+            <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
+                <a href="{{ route('admin.users.index') }}">
+                    <i class="material-icons">people</i>
+                    <span>Users</span>
+                </a>
+            </li>
             @endif
             <li class="header">LABELS</li>
             <li>
