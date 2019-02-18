@@ -2,7 +2,7 @@
     <!-- User Info -->
     <div class="user-info">
         <div class="image">
-            <img src="{{ asset('backend/uploads/'. Auth::user()->image ) }}" width="48" height="48" alt="User" />
+            <img src="{{ asset('storage/users/'. Auth::user()->image ) }}" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
@@ -55,6 +55,16 @@
                 </a>
             </li>
             @endif
+
+            @if (Auth::user()->role->id == 2 )
+            <li class="{{ Request::is('author/dashboard*') ? 'active' : '' }}">
+                <a href="{{ route('author.dashboard')}}">
+                    <i class="material-icons">home</i>
+                    <span>Home</span>
+                </a>
+            </li>
+            @endif
+
             <li class="header">LABELS</li>
             <li>
                 <a href="javascript:void(0);" class="menu-toggle">

@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 class NewUser extends Notification implements ShouldQueue
 {
     use Queueable;
-    public $user = 'Sumona';
+    public $user;
     public $password;
 
     /**
@@ -18,10 +18,10 @@ class NewUser extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct( $user, $password)
     {
         $this->user = $user;
-        //$this->password = $password;
+        $this->password = $password;
     }
 
     /**
@@ -45,10 +45,11 @@ class NewUser extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                     ->subject('Welcome to EUB')
-                    ->greeting('Hello ,' . '!!!')
+                    ->greeting('Hello,' . $this->user->name . '!!!')
                     ->line('Welcome to European University of Bangladesh.')
                     ->line('You are the member of admission commitee')
-                    ->line('Here your password : '.$this->user->name . '.')
+                    ->line('Your Login Email : '.$this->user->email )
+                    ->line(' Your Login password : '.$this->password )
                     ->line('Please change the password as soon as possible')
                     ->line('To login click bellow button')
                     ->action('Login', route('login'))

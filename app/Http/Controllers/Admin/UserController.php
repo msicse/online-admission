@@ -70,9 +70,9 @@ class UserController extends Controller
 
 
         } else {
-            $imagename = 'default.png';
+            $imagename = 'no-image.png';
         }
-        $password = 123456; //str_random(6);
+        $password = str_random(8);
 
         $user = new User;
         $user->role_id     = $request->input('role');
@@ -83,7 +83,7 @@ class UserController extends Controller
         $user->password  = Hash::make($password);
         $user->save();
 
-        Notification::send($user, new NewUser($user));
+        Notification::send($user, new NewUser($user, $password));
 
         Toastr::success(' Succesfully Created User ', 'Success');
         return redirect()->back();

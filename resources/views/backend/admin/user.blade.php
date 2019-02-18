@@ -66,7 +66,7 @@
                                     <td>{{ $data->role->name }}</td>
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->about }}</td>
-                                    <td class="text-center"> <img src="{{ asset('backend/uploads/'. $data->image ) }}" height="100" alt=""> </td>
+                                    <td class="text-center"> <img src="{{ asset('storage/users/'. $data->image ) }}" height="100" alt=""> </td>
                                     <td>
                                         <button type="button" class="btn btn-success waves-effect " data-toggle="modal" data-target="#">
                                             <i class="material-icons">visibility</i>
