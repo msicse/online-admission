@@ -48,6 +48,12 @@
                     <span>Programs</span>
                 </a>
             </li>
+            <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}">
+                <a href="{{ route('admin.roles.index') }}">
+                    <i class="material-icons">people</i>
+                    <span>Roles</span>
+                </a>
+            </li>
             <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
                 <a href="{{ route('admin.users.index') }}">
                     <i class="material-icons">people</i>
@@ -65,28 +71,12 @@
             </li>
             @endif
 
-            <li class="header">LABELS</li>
-            <li>
-                <a href="javascript:void(0);" class="menu-toggle">
-                    <span>Infobox</span>
+            <li class="header">Settings</li>
+            <li class="{{ Request::is('change-password*') ? 'active' : '' }}">
+                <a href="{{ route('setting.change.pass')}}">
+                    <i class="material-icons">home</i>
+                    <span>Change Password</span>
                 </a>
-                <ul class="ml-menu">
-                    <li>
-                        <a href="pages/widgets/infobox/infobox-1.html">Infobox-1</a>
-                    </li>
-                    <li>
-                        <a href="pages/widgets/infobox/infobox-2.html">Infobox-2</a>
-                    </li>
-                    <li>
-                        <a href="pages/widgets/infobox/infobox-3.html">Infobox-3</a>
-                    </li>
-                    <li>
-                        <a href="pages/widgets/infobox/infobox-4.html">Infobox-4</a>
-                    </li>
-                    <li>
-                        <a href="pages/widgets/infobox/infobox-5.html">Infobox-5</a>
-                    </li>
-                </ul>
             </li>
         </ul>
     </div>

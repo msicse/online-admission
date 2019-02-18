@@ -10,7 +10,7 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('admission._sidebar')
+            @include('frontend.admission._sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 admission-home">
                 <div class="card">
                     <div class="card-body text-center">
@@ -23,14 +23,14 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.apply') }}" class="btn btn-success"> Apply </a>
+                                <a href="{{ route('admission.application.verify') }}" class="btn btn-success"> Apply </a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.login') }}" class="btn btn-secondary"> Login </a>
+                                <a href="{{ route('admission.application.verify') }}" class="btn btn-secondary"> Login </a>
                             </div>
                         </div>
                     </div>

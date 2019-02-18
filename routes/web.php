@@ -18,6 +18,11 @@ Route::get('admission-', 'HomeController@login')->name('login');
 
 //Auth Routes
 Auth::routes();
+
+Route::group(['middleware'=>['auth']], function(){
+    Route::get('change-password', 'SettingController@index')->name('setting.change.pass');
+    Route::post('update-password', 'SettingController@updatePass')->name('setting.update.pass');
+});
 //Admission Routes
 Route::get('admission','AdmissionController@index')->name('admission.home');
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
@@ -32,6 +37,7 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
 //Admin Routes
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     Route::resource('departments','DepartmentController');
     Route::resource('programs','ProgrameController');

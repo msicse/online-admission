@@ -13,7 +13,7 @@ class AdmissionController extends Controller
 {
     public function index()
     {
-        return view('admission.home');
+        return view('frontend.admission.home');
     }
     public function applicationVerify()
     {
@@ -60,7 +60,7 @@ class AdmissionController extends Controller
             Session::put('application', $session);
         }
 
-        return redirect()->route('frontend.admission.application.form');
+        return redirect()->route('admission.application.form');
 
        //return $ssc;
 
@@ -129,14 +129,14 @@ class AdmissionController extends Controller
     }
     public function login()
     {
-        return view('admission.login');
+        return view('frontend.admission.login');
     }
     public function guideline()
     {
-        return view('admission.login');
+        return view('frontend.admission.login');
     }
     public function complain()
     {
-        return view('admission.login');
+        return view('frontend.admission.login');
     }
 }

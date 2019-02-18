@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Admin | Users')
+@section('title','Admin | Roles')
 
 @push('css')
 	<!-- JQuery DataTable Css -->
@@ -15,10 +15,10 @@
 @section('content')
 <div class="container-fluid">
     <div class="block-header">
-        <button type="button" class="btn btn-primary waves-effect " data-toggle="modal" data-target="#craeateUser">
+        <button type="button" class="btn btn-primary waves-effect " data-toggle="modal" data-target="#craeateRole">
             <i class="material-icons">add</i>
 
-            <span>Add New User</span>
+            <span>Add New Role</span>
         </button>
 
     </div>
@@ -29,8 +29,8 @@
                 <div class="header">
                     <h2>
 
-                        All Users
-                        <span class="badge ">{{ $users->count() }}</span>
+                        All Roles
+                        <span class="badge ">{{ $roles->count() }}</span>
                     </h2>
                 </div>
                 <div class="body">
@@ -40,10 +40,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th> Name</th>
-                                    <th>Role</th>
-                                    <th> Email </th>
-                                    <th>About</th>
-                                    <th>Image</th>
+                                    <th>Slug</th>
+                                    <th> User Count </th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -51,28 +49,24 @@
                                 <tr>
                                     <th>ID</th>
                                     <th> Name</th>
-                                    <th>Role</th>
-                                    <th> Email </th>
-                                    <th>About</th>
-                                    <th>Image</th>
+                                    <th>Slug</th>
+                                    <th> User Count </th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach( $users as $key => $data)
+                                @foreach( $roles as $key => $data)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $data->name }}</td>
-                                    <td>{{ $data->role->name }}</td>
-                                    <td>{{ $data->email }}</td>
-                                    <td>{{ $data->about }}</td>
-                                    <td class="text-center"> <img src="{{ asset('storage/users/'. $data->image ) }}" height="100" alt=""> </td>
+                                    <td>{{ $data->slug }}</td>
+                                    <td>{{ $data->users->count() }}</td>
                                     <td>
                                         <!-- <button type="button" class="btn btn-success waves-effect " data-toggle="modal" data-target="#">
                                             <i class="material-icons">visibility</i>
                                         </button> -->
 
-                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditUser" data-id="{{ $data->id }}">
+                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditRole" data-id="{{ $data->id }}">
                                             <i class="material-icons">edit</i>
                                         </button>
                                         <button type="button" class="btn btn-danger waves-effect"
@@ -84,7 +78,7 @@
                                                 }" >
                                             <i class="material-icons">delete</i>
                                         </button>
-                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.users.destroy',$data->id) }}" method="post">
+                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.roles.destroy',$data->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
 
@@ -102,55 +96,23 @@
     </div>
     <!-- #END# Exportable Table -->
 </div>
-<!-- Create User -->
-<div class="modal fade" id="craeateUser" tabindex="-1" role="dialog">
+<!-- Create Role -->
+<div class="modal fade" id="craeateRole" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ route('admin.users.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.roles.store')}}" method="post" enctype="multipart/form-data">
                 <div class="modal-header custom-modal">
-                    <h4 class="modal-title" id="defaultModalLabel">Add New User</h4>
+                    <h4 class="modal-title" id="defaultModalLabel">Add New Role</h4>
                 </div>
                 <div class="modal-body">
                     @csrf
-                    <div class="form-group form-float">
 
-                        <label class="form-label">Role</label>
-
-                        <select name="role" class="form-control show-tick form-line">
-                            <option value="">-- Please select --</option>
-
-                            @foreach( $roles as $data )
-
-                            <option value="{{ $data->id }}" >{{ $data->name }}</option>
-
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label class="">Name</label>
                             <input type="text" id="name" name="name" class="form-control">
 
                         </div>
-                    </div>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <label class="">Email</label>
-                            <input type="text" id="email" name="email" class="form-control">
-
-                        </div>
-                    </div>
-                    <div class="form-group form-float">
-                        <label class="">About</label>
-                        <div class="">
-
-                            <textarea class="form-control" name="about"  rows="5" cols="50"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-offset-4 form-group ">
-                            <label class="">Image</label>
-                            <input type="file" class="" name="image" >
-
                     </div>
 
                 </div>
@@ -163,31 +125,18 @@
     </div>
 </div>
 
-<!-- Edit User -->
-<div class="modal fade" id="EditUser" tabindex="-1" role="dialog">
+<!-- Edit Role -->
+<div class="modal fade" id="EditRole" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="edit-user-form" method="post" enctype="multipart/form-data">
+            <form class="edit-role-form" method="post" enctype="multipart/form-data">
                 <div class="modal-header custom-modal">
-                    <h4 class="modal-title" id="defaultModalLabel">Edit User</h4>
+                    <h4 class="modal-title" id="defaultModalLabel">Edit Role</h4>
                 </div>
                 <div class="modal-body">
                     @csrf
                     @method('PUT')
-                    <div class="form-group form-float">
 
-                        <label class="form-label">Role</label>
-
-                        <select name="role" id="edit_role" class="form-control show-tick form-line">
-                            <option value="">-- Please select --</option>
-
-                            @foreach( $roles as $data )
-
-                            <option value="{{ $data->id }}" >{{ $data->name }}</option>
-
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label class="">Name</label>
@@ -195,34 +144,7 @@
 
                         </div>
                     </div>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <label class="">Email</label>
-                            <input type="text" id="edit_email" name="email" class="form-control">
-
-                        </div>
-                    </div>
-                    <div class="form-group form-float">
-                        <label class="">About</label>
-                        <div class="">
-
-                            <textarea class="form-control" id="edit_about" name="about"  rows="5" cols="50"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-md-4">
-                                <label class="">Current Image</label>
-                                <img id="edit_image" height="120" alt="" class="img-responsive">
-                        </div>
-
-                        <div class="col-md-4 ">
-                                <label class="">Add New Image</label>
-                                <input type="file" class="" name="image" >
-
-                        </div>
-                    </div>
-
+                    
 
                 </div>
                 <div class="modal-footer">
@@ -256,16 +178,16 @@
 
 $( ".edit" ).click(function( event ) {
     var id = $(this).data('id');
-    var update_url = location.origin + "/admin/users/" + id;
-    var url = location.origin + '/admin/users/' + id + '/edit';
-    $('.edit-user-form').attr('action', update_url);
+    var update_url = location.origin + "/admin/roles/" + id;
+    var url = location.origin + '/admin/roles/' + id + '/edit';
+    $('.edit-role-form').attr('action', update_url);
     $.get(url, function (data) {
         //$('#edit_dept').val(data['name']);
         $('#edit_role').val(data['role_id']).attr("selected", "selected");
         $('#edit_name').val(data['name']);
         $('#edit_email').val(data['email']);
         $('#edit_about').text(data['about']);
-        $('#edit_image').attr('src',location.origin+'/storage/users/'+ data['image']);
+        $('#edit_image').attr('src',location.origin+'/storage/roles/'+ data['image']);
         //$('#edit_image').attr('src',location.origin + '/storage/category/' + data['image']);
     });
 });
