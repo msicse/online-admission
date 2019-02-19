@@ -33,7 +33,7 @@ body{ color: #000;}
  h5 { color: #000 !important; font-family:  serif; font-size: 21px;}
 
 .btn-width { min-width: 120px;}
-.custom-select ul.list li { border-bottom: 1px solid #eee !important; width: 200px;}
+.custom-select ul.list li { border-bottom: 1px solid #eee !important; width: 100%;}
 
 .alert-custom {
     font-size: 16px;

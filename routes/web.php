@@ -47,3 +47,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
 Route::group(['prefix'=>'author','as'=>'author.','namespace'=>'Author','middleware'=>['auth','author']], function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
 });
+
+Route::get('test', function ()
+{
+    return view('test');
+});
