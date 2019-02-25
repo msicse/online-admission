@@ -15,11 +15,11 @@ class AdmissionController extends Controller
     {
         return view('frontend.admission.home');
     }
-    public function applicationVerify()
+    public function apply()
     {
         //$application = $request->session()->get('application');
         //return view('products.create-step1',compact('product', $product));
-        return view('frontend.admission.from.verify');
+        return view('frontend.admission.apply');
     }
     public function applicationVerifySubmit(Request $request)
     {

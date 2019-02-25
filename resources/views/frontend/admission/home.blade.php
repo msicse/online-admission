@@ -23,21 +23,21 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.application.verify') }}" class="btn btn-success"> Apply </a>
+                                <a href="{{ route('admission.apply') }}" class="btn btn-success"> Apply </a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.application.verify') }}" class="btn btn-secondary"> Login </a>
+                                <a href="{{ route('admission.home') }}" class="btn btn-secondary"> Login </a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.application.verify') }}" class="btn btn-info"> Support </a>
+                                <a href="{{ route('admission.home') }}" class="btn btn-info"> Support </a>
                             </div>
                         </div>
                     </div>

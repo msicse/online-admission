@@ -24,9 +24,10 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('update-password', 'SettingController@updatePass')->name('setting.update.pass');
 });
 //Admission Routes
-Route::get('admission','AdmissionController@index')->name('admission.home');
+
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
-    Route::get('application/verify','AdmissionController@applicationVerify')->name('application.verify');
+    Route::get('/','AdmissionController@index')->name('home');
+    Route::get('apply','AdmissionController@apply')->name('apply');
     Route::post('application/verify','AdmissionController@applicationVerifySubmit')->name('application.verify.submit');
     Route::get('application/form','AdmissionController@applicationForm')->name('application.form');
     Route::post('application/form','AdmissionController@applicationSubmit')->name('application.form.submit');

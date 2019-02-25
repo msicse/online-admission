@@ -52,7 +52,7 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        <li class="nav-item addmission"><a class="btn btn-success" href="{{ route('admission.application.verify')}}">Online Addmission</a></li>
+                        <li class="nav-item addmission"><a class="btn btn-success" href="{{ route('admission.home')}}">Online Addmission</a></li>
                     </ul>
                 </div>
             </div>

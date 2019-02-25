@@ -5,7 +5,7 @@
                 <a class="nav-link {{ Request::is('admission') ? 'active' : '' }}" href="{{ route('admission.home') }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admission/application/*') ? 'active' : '' }}" href="{{ route('admission.application.verify') }}">Apply</a>
+                <a class="nav-link {{ Request::is('admission/apply*') ? 'active' : '' }}" href="{{ route('admission.apply') }}">Apply</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admission/login') ? 'active' : '' }}" href="{{ route('admission.login') }}">Login</a>
