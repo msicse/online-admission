@@ -482,6 +482,7 @@
 <script>
 
 window.scrollTo(0,document.querySelector(".container").scrollHeight);
+
     $(document).ready(function () {
 
         var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
@@ -554,7 +555,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
         });
 
-        //verify parmanent_address
+        //verify
 
         $('#btn-verify-prefious').on('click', function () {
             $('#program-details-list').addClass('active');
@@ -577,7 +578,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
             if ( $.trim($('#ssc_roll').val()) == '' ) {
                 error_program = 'SSC Roll is Required';
-                $('#error-program').text(error_program);
+                $('#error-ssc').text(error_program);
             } else {
                 if (!numberRegex.test(program) ){
                     error_ssc_roll = 'Program must be a number';
