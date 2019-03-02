@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Application;
+use App\Programe;
 use App\Ssc;
 use App\Hsc;
 use Session;
@@ -17,24 +18,36 @@ class AdmissionController extends Controller
     }
     public function apply()
     {
+        $programs = Programe::all();
         //$application = $request->session()->get('application');
         //return view('products.create-step1',compact('product', $product));
-        return view('frontend.admission.apply');
+        return view('frontend.admission.apply')->withPrograms($programs);
+    }
+    public function verify()
+    {
+        $programs = Programe::all();
+        //$application = $request->session()->get('application');
+        //return view('products.create-step1',compact('product', $product));
+        return view('frontend.admission.from.verify')->withPrograms($programs);
     }
     public function applicationVerifySubmit(Request $request)
     {
+        //return 'ok';
         //return $request->all();
         //session(['apply' => $request->ssc_roll]);
-        $this->validate($request,array(
-           'ssc_roll' => 'required|numeric',
-           'ssc_reg' => 'required|numeric',
-           'ssc_year' => 'required|numeric',
-           'ssc_board' => 'required',
-           'hsc_roll' => 'required|numeric',
-           'hsc_reg' => 'required|numeric',
-           'hsc_year' => 'required|numeric',
-           'hsc_board' => 'required',
-       ));
+
+       //  $this->validate($request,array(
+       //     'ssc_roll' => 'required|numeric',
+       //     'ssc_reg' => 'required|numeric',
+       //     'ssc_year' => 'required|numeric',
+       //     'ssc_board' => 'required',
+       //     'hsc_roll' => 'required|numeric',
+       //     'hsc_reg' => 'required|numeric',
+       //     'hsc_year' => 'required|numeric',
+       //     'hsc_board' => 'required',
+       // ));
+
+
 
 
 
@@ -42,25 +55,36 @@ class AdmissionController extends Controller
                  ->where('reg',$request->ssc_reg)
                  ->where('passing_year',$request->ssc_year)
                  ->where('board',$request->ssc_board)
-                 ->first();
+                 ->exists();
+
        $hsc = Hsc::where('roll',$request->hsc_roll)
                  ->where('reg',$request->hsc_reg)
                  ->where('passing_year',$request->hsc_year)
                  ->where('board',$request->hsc_board)
-                 ->first();
+                 ->exists();
 
-       if ( !$ssc ) {
-           Toastr::error('Your SSC information not found', 'Error');
-           return redirect()->back();
-       }else if ( $hsc === null ) {
-            Toastr::error('Your HSC information not found', 'Error');
-            return redirect()->back();
+
+        if (!$ssc) {
+            return 'ssc';
+        }elseif (!$hsc) {
+            return 'hsc';
         }else {
-            $session = 34568876 + $ssc->roll;
-            Session::put('application', $session);
+            return 'done';
         }
 
-        return redirect()->route('admission.application.form');
+
+       // if ( !$ssc ) {
+       //     Toastr::error('Your SSC information not found', 'Error');
+       //     return redirect()->back();
+       // }else if ( $hsc === null ) {
+       //      Toastr::error('Your HSC information not found', 'Error');
+       //      return redirect()->back();
+       //  }else {
+       //      $session = 34568876 + $ssc->roll;
+       //      Session::put('application', $session);
+       //  }
+
+        //return redirect()->route('admission.application.form');
 
        //return $ssc;
 
@@ -96,6 +120,8 @@ class AdmissionController extends Controller
     }
     public function applicationSubmit(Request $request)
     {
+
+        return $request->all();
         $session_id = Session::get('application') - 34568876;
 
         if( $session_id == null ){

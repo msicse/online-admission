@@ -24,16 +24,20 @@ body{ color: #000;}
     color: #000;
 }
 .admission-home .btn { min-width: 200px;}
-.addmission-form .form-group  { margin-bottom: 2.5px !important;}
-.nice-select {
-    width: 100% ;
+.addmission-form .form-group  { margin-bottom: 5px !important;}
+.custom-select {
+    min-width: 200px;
+    width: auto;
     height: 35px;
     line-height: 23px;
 }
  h5 { color: #000 !important; font-family:  serif; font-size: 21px;}
 
 .btn-width { min-width: 120px;}
-.custom-select ul.list li { border-bottom: 1px solid #eee !important; width: 100%;}
+.custom-select ul.list li {
+    border-bottom: 1px solid #eee !important;
+    min-width: 200px;
+}
 
 .alert-custom {
     font-size: 16px;
@@ -41,3 +45,5 @@ body{ color: #000;}
     padding-bottom: 5px;
 
 }
+
+.custom-tab { padding: 22px 5px ;}
