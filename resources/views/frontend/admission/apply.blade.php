@@ -720,7 +720,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
             if ( error_hsc_roll != '' || error_hsc_reg != '' || error_hsc_year != '' || error_hsc_board != '' ||
             error_hsc_roll != '' || error_hsc_reg != '' || error_hsc_year != '' || error_hsc_board != ''
-        ) {
+            ) {
                 return false;
             } else {
                 //alert('all-ok');
@@ -798,6 +798,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                     $('#error_phone').text(error_phone);
                     $('#phone').addClass('is-invalid');
                 }else {
+
                     error_phone = '';
                     $('#error_phone').text(error_phone);
                     $('#phone').removeClass('is-invalid');
@@ -814,9 +815,26 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                     $('#error_email').text(error_email);
                     $('#email').addClass('is-invalid');
                 }else {
-                    error_email = '';
-                    $('#error_email').text(error_email);
-                    $('#email').removeClass('is-invalid');
+                    var eUrl = location.origin + '/admission/check-email';
+                    $.ajax({
+                      type: "post",
+                      data: "email=" + email+"&_token="+token,
+                      url: eUrl,
+                      success:function(data){
+                          if ( data == 'found') {
+                              error_email = 'The email already exists';
+                              $('#error_email').text(error_email);
+                              $('#email').addClass('is-invalid');
+                          } else {
+                              error_email = '';
+                              $('#error_email').text(error_email);
+                              $('#email').removeClass('is-invalid');
+                          }
+
+                      }
+                  });
+
+
                 }
             }
             if ( gname == '' ) {

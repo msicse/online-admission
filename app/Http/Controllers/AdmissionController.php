@@ -36,20 +36,16 @@ class AdmissionController extends Controller
         //return $request->all();
         //session(['apply' => $request->ssc_roll]);
 
-       //  $this->validate($request,array(
-       //     'ssc_roll' => 'required|numeric',
-       //     'ssc_reg' => 'required|numeric',
-       //     'ssc_year' => 'required|numeric',
-       //     'ssc_board' => 'required',
-       //     'hsc_roll' => 'required|numeric',
-       //     'hsc_reg' => 'required|numeric',
-       //     'hsc_year' => 'required|numeric',
-       //     'hsc_board' => 'required',
-       // ));
-
-
-
-
+        $this->validate($request,array(
+           'ssc_roll' => 'required|numeric',
+           'ssc_reg' => 'required|numeric',
+           'ssc_year' => 'required|numeric',
+           'ssc_board' => 'required',
+           'hsc_roll' => 'required|numeric',
+           'hsc_reg' => 'required|numeric',
+           'hsc_year' => 'required|numeric',
+           'hsc_board' => 'required',
+       ));
 
        $ssc = Ssc::where('roll',$request->ssc_roll)
                  ->where('reg',$request->ssc_reg)
@@ -101,6 +97,21 @@ class AdmissionController extends Controller
 
 
 
+    }
+
+    public function checkEmail(Request $request )
+    {
+        $this->validate($request,array(
+           'ssc_roll' => 'required|numeric',
+       ));
+
+       $email = Application::where('email',$request->email)->exists();
+
+       if (email) {
+           return 'found';
+       }else{
+           return 'not-found';
+       }
     }
     public function applicationForm()
     {

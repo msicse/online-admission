@@ -28,10 +28,13 @@ Route::group(['middleware'=>['auth']], function(){
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::get('/','AdmissionController@index')->name('home');
     Route::get('apply','AdmissionController@apply')->name('apply');
+    Route::post('check-email','AdmissionController@checkEmail')->name('check.mail');
     Route::get('application/verify/form','AdmissionController@verify')->name('application.verify');
     Route::post('application/verify','AdmissionController@applicationVerifySubmit')->name('application.verify.submit');
     Route::get('application/form','AdmissionController@applicationForm')->name('application.form');
     Route::post('application/form','AdmissionController@applicationSubmit')->name('application.form.submit');
+
+
     Route::get('login','AdmissionController@login')->name('login');
     Route::get('guidelines','AdmissionController@guideline')->name('guidelines');
     Route::get('complain','AdmissionController@complain')->name('complain');
