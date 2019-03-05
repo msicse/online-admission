@@ -101,9 +101,11 @@ class AdmissionController extends Controller
 
     public function checkEmail(Request $request )
     {
-        $this->validate($request,array(
-           'ssc_roll' => 'required|numeric',
-       ));
+       //  $this->validate($request,array(
+       //     'ssc_roll' => 'required|numeric',
+       // ));
+       return $request->all();
+       $this->validate($request, ['email' => 'required|email']);
 
        $email = Application::where('email',$request->email)->exists();
 

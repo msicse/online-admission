@@ -816,12 +816,28 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                     $('#email').addClass('is-invalid');
                 }else {
                     var eUrl = location.origin + '/admission/check-email';
+
+                    // $.get(eUrl,function(data){
+                    //     if ( data == 'found') {
+                    //         console.log(data);
+                    //         error_email = 'The email already exists';
+                    //         $('#error_email').text(error_email);
+                    //         $('#email').addClass('is-invalid');
+                    //     } else {
+                    //         error_email = '';
+                    //         $('#error_email').text(error_email);
+                    //         $('#email').removeClass('is-invalid');
+                    //     }
+                    // });
+
                     $.ajax({
-                      type: "post",
-                      data: "email=" + email+"&_token="+token,
+                      type: "get",
+                      data: "email=" + email,
                       url: eUrl,
                       success:function(data){
+
                           if ( data == 'found') {
+                              console.log(data);
                               error_email = 'The email already exists';
                               $('#error_email').text(error_email);
                               $('#email').addClass('is-invalid');
