@@ -19,6 +19,12 @@
                         <div class="alert alert-danger text-center alert-custom">
                             All fields aren't be empty
                         </div>
+                        <h1>FORM</h1>
+                        <form class="" action="{{ route('admission.check.mail')}}" method="post">
+                            @csrf
+                            email = <input type="text" name="email" value="admin@admission.com">
+                            <input type="submit" name="" value="Send">
+                        </form>
                         <form method="POST" action="{{ route('admission.application.form.submit') }}" enctype="multipart/form-data">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
 

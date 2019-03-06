@@ -449,7 +449,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
         $('#program-details-list').addClass('disabled');
         $('#verify-details-list').addClass('disabled');
-        $('#personal-details-list').addClass('disabled');
+        //$('#personal-details-list').addClass('disabled');
 
 
 // Submit Program Details form
@@ -769,6 +769,8 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
         });
 
         $('#form-submit').on('click', function () {
+
+            var token = $("input[name='_token']").val();
             var error_phone = '';
             var error_gname = '';
             var error_grelation = '';
@@ -796,7 +798,8 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                 if (!phoneNumber.test( phone )) {
                     error_phone = 'Phone not valid';
                     $('#error_phone').text(error_phone);
-                    $('#phone').addClass('is-invalid');
+                    $('#phone').removeClass('is-valid');
+                    //form.classList.add('was-validated');
                 }else {
 
                     error_phone = '';
@@ -817,30 +820,18 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                 }else {
                     var eUrl = location.origin + '/admission/check-email';
 
-                    // $.get(eUrl,function(data){
-                    //     if ( data == 'found') {
-                    //         console.log(data);
-                    //         error_email = 'The email already exists';
-                    //         $('#error_email').text(error_email);
-                    //         $('#email').addClass('is-invalid');
-                    //     } else {
-                    //         error_email = '';
-                    //         $('#error_email').text(error_email);
-                    //         $('#email').removeClass('is-invalid');
-                    //     }
-                    // });
-
                     $.ajax({
-                      type: "get",
-                      data: "email=" + email,
+                      type: "post",
+                      data: "email=" + email+"&_token="+token,
                       url: eUrl,
                       success:function(data){
 
                           if ( data == 'found') {
-                              console.log(data);
+
                               error_email = 'The email already exists';
                               $('#error_email').text(error_email);
                               $('#email').addClass('is-invalid');
+                              $('#email').removeClass('custom-select is-valid');
                           } else {
                               error_email = '';
                               $('#error_email').text(error_email);
