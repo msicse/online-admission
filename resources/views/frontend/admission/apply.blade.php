@@ -3,6 +3,10 @@
 @section('title', 'Admission | Application | Form' )
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+    <style>
+        .display-n { display: none;}
+        .display-blk { display: block;}
+    </style>
 @endpush
 
 @section('content')
@@ -16,9 +20,14 @@
                     <h5 class="card-header">Application Form </h5>
 
                     <div class="card-body addmission-form ">
-                        <div class="alert alert-danger text-center alert-custom">
-                            All fields aren't be empty
+                        <div id="msg" class="alert alert-danger text-center alert-custom display-n">
+
                         </div>
+                        <!-- <div class="row">
+                            <div class="col">
+                                <p id="msg" class="alert alert-danger"></p>
+                            </div>
+                        </div> -->
                         <form method="POST" id="apply-form" class="was-validated" action="{{ route('admission.application.form.submit') }}" enctype="multipart/form-data">
                             @csrf
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -92,14 +101,10 @@
                                   </div> <!-- End Program Info Tab -->
                                   <!-- Verify Info -->
                                   <div class="tab-pane fade custom-tab" id="verify-details-tab" role="tabpanel" aria-labelledby="verify-details-list">
-                                      <div class="row">
-                                          <div class="col">
-                                              <p id="msg" class="alert alert-danger"></p>
-                                          </div>
-                                      </div>
+
                                       <div class="row">
 
-                                          <div class="col-md-3 offset-md-2 text-center v-align-middle">
+                                          <div class="col-md-3 text-center v-align-middle">
                                               <strong>SSC / Equivalent Degree</strong>
 
                                           </div>
@@ -170,7 +175,7 @@
                                       </div>
                                       <div class="dropdown-divider"></div>
                                       <div class="row">
-                                          <div class="col-md-3 offset-md-2 text-center v-align-middle">
+                                          <div class="col-md-3 text-center v-align-middle">
                                               <strong> HSC / Diploma</strong>
                                           </div>
                                           <div class="col-md-5">
@@ -178,7 +183,7 @@
                                                   <label for="hsc_roll" class="col-md-4 col-form-label text-md-right">{{ __('Roll') }}</label>
 
                                                   <div class="col-md-8">
-                                                      <input id="hsc_roll" type="text" class="form-control form-control-sm custom-select" name="hsc_roll" value="{{ old('hsc_roll') }}" required autofocus>
+                                                      <input id="hsc_roll" type="text" class="form-control form-control-sm" name="hsc_roll" value="{{ old('hsc_roll') }}" required autofocus>
                                                       <span id="error_hsc_roll" class="invalid-feedback" role="alert"></span>
                                                       @if ($errors->has('hsc_roll'))
                                                           <span class="invalid-feedback" role="alert">
@@ -392,7 +397,7 @@
                                                        </div>
                                                        <span id="error_image" class="invalid-feedback" role="alert"></span> -->
                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="image" required>
+                                                            <input type="file" class="custom-file-input" id="image" name="image" required>
                                                             <label class="custom-file-label" for="image">Choose file...</label>
                                                             <div class="invalid-feedback" id="error_image"></div>
                                                         </div>
@@ -421,7 +426,7 @@
        </div> <!--End Row-->
     </div> <!--End Container-->
 </section>
-<!--================End Finance Area =================-->
+<!--================End Content Area =================-->
 
 @endsection
 
@@ -446,13 +451,14 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
         var strings = /^[0-9a-zA-Z,. @_-]+$/;
         var address = /^[0-9a-zA-Z,-. #@_-]+$/;
         var password = /^[a-zA-Z0-9_-]{6,15}$/;
-
+        var token = $("input[name='_token']").val();
+        var uEmail = '';
         $('#program-details-list').addClass('disabled');
         $('#verify-details-list').addClass('disabled');
         //$('#personal-details-list').addClass('disabled');
 
 
-// Submit Program Details form
+        // Submit Program Details form
         $('#btn-program-details').click(function () {
             var error_program = '';
             var error_year = '';
@@ -571,7 +577,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
         $('#btn-verify-next').on('click', function () {
             //alert('test');
-            var token = $("input[name='_token']").val();
+
             // SSC Section
             var error_ssc_roll = '';
             var error_ssc_reg = '';
@@ -736,14 +742,17 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                       if (data == 'ssc') {
 
                           $("#msg").html("SSC info don't match");
+                          $("#msg").removeClass('display-n');
                           //$("#msg").fadeOut(1000);
                       }
                       if ( data == 'hsc' ) {
                           $("#msg").html("HSC info don't match");
-                          //$("#msg").fadeOut(2000);
+                          $("#msg").removeClass('display-n');
+                          //$("#msg").addClass('display-blk');
                       }
 
                       if( data == 'done' ){
+                          $("#msg").addClass('display-n');
                           //alert(data);
                           //$("#msg").html("Product has been inserted");
                          // $("#msg").fadeOut(2000);
@@ -767,8 +776,38 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
             $('#personal-details-list').removeClass('active');
             $('#personal-details-tab').removeClass('active show');
         });
+        //Personal email checkEmail
+        $('#email').keyup(function () {
 
-        $('#form-submit').on('click', function () {
+              var eUrl = location.origin + '/admission/check-email';
+              var eMail = $('#email').val();
+
+              $.ajax({
+                type: "post",
+                data: "email=" + eMail+"&_token="+token,
+                url: eUrl,
+                success:function(data){
+
+                    if ( data == 'found') {
+                        uEmail = 'The email already exists';
+                        $('#error_email').text(uEmail);
+                        $('#email').addClass('is-invalid');
+                        $('.was-validated #email .form-control:valid:focus').css("box-shadow","none");
+                        $('#email.form-control:valid').css("border-color","#f00");
+
+                    } else {
+                        uEmail = '';
+                        $('#error_email').text(uEmail);
+                        $('#email').removeClass('is-invalid');
+                        $('#email.form-control:valid').css("border-color","#28a745");
+                        $('#email.form-control:valid:focus').css("box-shadow","0 0 0 0.2rem rgba(40, 167, 69, .25)");
+                    }
+
+                }
+            });
+        });
+        //personal submit
+        $('#form-submit').click( function () {
 
             var token = $("input[name='_token']").val();
             var error_phone = '';
@@ -814,34 +853,21 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                 $('#email').addClass('is-invalid');
             }else {
                 if (!emailRegex.test( email )) {
-                    error_email = 'Email not valid ! Must be Number';
+                    error_email = 'Email not valid !';
                     $('#error_email').text(error_email);
                     $('#email').addClass('is-invalid');
                 }else {
-                    var eUrl = location.origin + '/admission/check-email';
-
-                    $.ajax({
-                      type: "post",
-                      data: "email=" + email+"&_token="+token,
-                      url: eUrl,
-                      success:function(data){
-
-                          if ( data == 'found') {
-
-                              error_email = 'The email already exists';
-                              $('#error_email').text(error_email);
-                              $('#email').addClass('is-invalid');
-                              $('#email').removeClass('custom-select is-valid');
-                          } else {
-                              error_email = '';
-                              $('#error_email').text(error_email);
-                              $('#email').removeClass('is-invalid');
-                          }
-
-                      }
-                  });
 
 
+                    if (uEmail != '') {
+                        error_email = 'Email already exists';
+                        $('#error_email').text(error_email);
+                        $('#email').addClass('is-invalid');
+                    }else {
+                        error_email = '';
+                        $('#error_email').text(error_email);
+                        $('#email').removeClass('is-invalid');
+                    }
                 }
             }
             if ( gname == '' ) {
@@ -953,13 +979,15 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
 
             if( error_phone != '' || error_email != '' || error_gname != '' || error_grelation != '' || error_present != '' ||
-                error_permanent != '' || error_nationality != '' || error_pass != '' || error_image != '' ) {
+                error_permanent != '' || error_nationality != '' || error_pass != '' || error_image != '' || uEmail != '' ) {
                     return false;
             } else {
-                var r = confirm("Are You Sure to Submit!");
-                 if (r == true) {
-                   $('#apply-form').submit();
-                 }
+                 //preventDefault();
+                 $('#apply-form').submit();
+                // var r = confirm("Are You Sure to Submit!");
+                //  if (r == true) {
+                //    $('#apply-form').submit();
+                //  }
 
             }
 

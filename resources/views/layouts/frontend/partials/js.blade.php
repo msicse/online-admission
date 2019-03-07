@@ -12,7 +12,7 @@
 <script src="{{ asset('frontend/vendors/counter-up/jquery.waypoints.min.js') }}"></script>
 <script src="{{ asset('frontend/vendors/counter-up/jquery.counterup.js') }}"></script>
 <script src="{{ asset('frontend/js/mail-script.js') }}"></script>
-<!-- <script src="{{ asset('frontend/js/theme.js') }}"></script> -->
+<script src="{{ asset('frontend/js/theme.js') }}"></script>
 
 <script src="{{ asset('js/toastr.min.js') }}"></script>
 

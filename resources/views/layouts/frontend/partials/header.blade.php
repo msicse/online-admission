@@ -13,6 +13,7 @@
             <div class="float-right">
                 <a class="dn_btn" href="tel:+4400123654896">+880 012 3654 896</a>
                 <a class="dn_btn" href="mailto:support@eubbd.com">support@eubbd.com</a>
+                <a class="dn_btn" href="mailto:support@eubbd.com">Admin Login</a>
             </div>
         </div>
     </div>

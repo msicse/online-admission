@@ -96,7 +96,6 @@ class AdmissionController extends Controller
        //  }
 
 
-
     }
 
     public function checkEmail(Request $request )
@@ -128,40 +127,69 @@ class AdmissionController extends Controller
         //return $session_data;
 
     }
+
     public function applicationSubmit(Request $request)
     {
 
         return $request->all();
-        $session_id = Session::get('application') - 34568876;
-
-        if( $session_id == null ){
-
-            Toastr::error('Access Denied', 'Error');
-
-            return redirect()->route('frontend.admission.application.verify');
-        } else {
 
             $this->validate($request,array(
                'semester' => 'required|numeric',
                'year' => 'required|numeric',
                'program' => 'required|numeric',
+               'ssc_roll' => 'required|numeric',
+               'ssc_reg' => 'required|numeric',
+               'ssc_year' => 'required|numeric',
+               'ssc_board' => 'required|alpha',
+               'hsc_roll' => 'required|numeric',
+               'hsc_reg' => 'required|numeric',
+               'hsc_year' => 'required|numeric',
+               'hsc_board' => 'required|alpha',
                'phone' => 'required',
                'email' => 'required|numeric',
                'guardian' => 'required',
                'relation' => 'required',
-               'present_address' => 'required|numeric',
+               'present_address' => 'required',
                'parmanent_address' => 'required',
                'nationality' => 'required',
                'password' => 'required',
-               'image' => 'required|image|mimes:jpeg,png',
+               'image' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
            ));
+           $ssc = Ssc::where('roll',$request->ssc_roll)
+                     ->where('reg',$request->ssc_reg)
+                     ->where('passing_year',$request->ssc_year)
+                     ->where('board',$request->ssc_board)
+                     ->first();
 
-           return $request->all();
+           $hsc = Hsc::where('roll',$request->hsc_roll)
+                     ->where('reg',$request->hsc_reg)
+                     ->where('passing_year',$request->hsc_year)
+                     ->where('board',$request->hsc_board)
+                     ->first();
+
+           $image = $request->file('image');
+           $slug  = str_slug($request->input('title'));
+           if (isset($image)){
+               if (!Storage::disk('public')->exists('post')){
+                   Storage::disk('public')->makeDirectory('post');
+               }
+               $date = Carbon::now()->toDateString();
+               $imagename = $slug.'-'.$date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+               $postImage = Image::make($image)->resize(1600, 1066)->save($image->getClientOriginalExtension());
+
+               Storage::disk('public')->put('post/'.$imagename, $postImage);
+
+           } else {
+               $imagename = 'default.png';
+           }
+
+
+
            //$application = new Application;
 
 
-            return view('admission.from.app-form')->withSsc($ssc);
-        }
+           return view('admission.from.app-form')->withSsc($ssc);
+
     }
     public function login()
     {
