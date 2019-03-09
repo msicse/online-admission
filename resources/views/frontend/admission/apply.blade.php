@@ -455,7 +455,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
         var uEmail = '';
         $('#program-details-list').addClass('disabled');
         $('#verify-details-list').addClass('disabled');
-        //$('#personal-details-list').addClass('disabled');
+        $('#personal-details-list').addClass('disabled');
 
 
         // Submit Program Details form

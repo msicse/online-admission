@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 use App\Application;
 use App\Programe;
 use App\Ssc;
 use App\Hsc;
+use Carbon\Carbon;
 use Session;
 use Toastr;
+use Storage;
+use Image;
 
 class AdmissionController extends Controller
 {
@@ -84,7 +89,6 @@ class AdmissionController extends Controller
 
        //return $ssc;
 
-
        // if(empty($request->session()->get('product'))){
        //      $application = new Application();
        //      $application->fill($validatedData);
@@ -94,7 +98,6 @@ class AdmissionController extends Controller
        //      $application->fill($validatedData);
        //      $application->session()->put('application', $application);
        //  }
-
 
     }
 
@@ -111,6 +114,7 @@ class AdmissionController extends Controller
            return 'not-found';
        }
     }
+
     public function applicationForm()
     {
         $session_id = Session::get('application') - 34568876;
@@ -131,7 +135,7 @@ class AdmissionController extends Controller
     public function applicationSubmit(Request $request)
     {
 
-        return $request->all();
+        //return $request->all();
 
             $this->validate($request,array(
                'semester' => 'required|numeric',
@@ -146,7 +150,7 @@ class AdmissionController extends Controller
                'hsc_year' => 'required|numeric',
                'hsc_board' => 'required|alpha',
                'phone' => 'required',
-               'email' => 'required|numeric',
+               'email' => 'required|email',
                'guardian' => 'required',
                'relation' => 'required',
                'present_address' => 'required',
@@ -167,17 +171,27 @@ class AdmissionController extends Controller
                      ->where('board',$request->hsc_board)
                      ->first();
 
+
+            if ( $ssc == null ) {
+                Toastr::error('Your SSC Information not Found', 'Error');
+                return redirect()->back();
+            }
+            if ( $hsc == null ) {
+                Toastr::error('Your HSC Information not Found', 'Error');
+                return redirect()->back();
+            }
+
            $image = $request->file('image');
-           $slug  = str_slug($request->input('title'));
+           $slug  = str_slug($ssc->name);
            if (isset($image)){
-               if (!Storage::disk('public')->exists('post')){
-                   Storage::disk('public')->makeDirectory('post');
+               if (!Storage::disk('public')->exists('admission')){
+                   Storage::disk('public')->makeDirectory('admission');
                }
                $date = Carbon::now()->toDateString();
                $imagename = $slug.'-'.$date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-               $postImage = Image::make($image)->resize(1600, 1066)->save($image->getClientOriginalExtension());
+               $appImage = Image::make($image)->resize(400, 400)->save($image->getClientOriginalExtension());
 
-               Storage::disk('public')->put('post/'.$imagename, $postImage);
+               Storage::disk('public')->put('admission/'.$imagename, $appImage);
 
            } else {
                $imagename = 'default.png';
@@ -185,10 +199,33 @@ class AdmissionController extends Controller
 
 
 
-           //$application = new Application;
+           $application = new Application;
 
+           $application->name               = $ssc->name;
+           $application->fname              = $ssc->fname;
+           $application->mname              = $ssc->mname;
+           $application->dob                = $ssc->dob;
+           $application->gender             = $ssc->gender;
+           $application->semester           = $request->semester;
+           $application->year               = $request->year;
+           $application->programe_id        = $request->program;
+           $application->phone              = $request->phone;
+           $application->email              = $request->email;
+           $application->nationality        = $request->nationality;
+           $application->guardian           = $request->guardian;
+           $application->guardian_relation  = $request->relation;
+           $application->ssc_result         = $ssc->result;
+           $application->hsc_result         = $hsc->result;
+           $application->present_address    = $request->present_address;
+           $application->parmanent_address  = $request->parmanent_address;
+           $application->image              = $imagename;
+           $application->password           = Hash::make($request->password);
 
-           return view('admission.from.app-form')->withSsc($ssc);
+           $application->save();
+
+           Toastr::success('Application Process Success', 'Success');
+
+           return redirect()->route('admission.home');
 
     }
     public function login()
