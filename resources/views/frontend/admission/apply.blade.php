@@ -534,7 +534,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
         $('#year').on('change', function () {
 
             var d = new Date();
-            var month = d.getMonth();
+            var month = 7;//d.getMonth();
             var year = d.getFullYear();
 
             if ( $('#year').val() !=  '') {
@@ -548,19 +548,23 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                 if( month >= 0 && month <= 3 ) {
                     //alert(month);
                     $('#semester').find('option[value="'+1+'"]').attr('disabled', 'disabled');
+                    $('#semester').find('option[value="'+2+'"]').removeAttr('disabled');
+                    $('#semester').find('option[value="'+3+'"]').removeAttr('disabled');
 
                 } else if ( month >= 4 && month <= 7 ) {
                     $('#semester').find('option[value="'+1+'"]').attr('disabled', 'disabled');
                     $('#semester').find('option[value="'+2+'"]').attr('disabled', 'disabled');
+                    $('#semester').find('option[value="'+3+'"]').removeAttr('disabled');
                 } else {
                     $('#semester').find('option[value="'+1+'"]').attr('disabled', 'disabled');
                     $('#semester').find('option[value="'+2+'"]').attr('disabled', 'disabled');
                     $('#semester').find('option[value="'+3+'"]').attr('disabled', 'disabled');
                 }
-            } else {
+            } else if( $('#year').val() == year + 1 ) {
+
                 $('#semester').find('option[value="'+1+'"]').removeAttr('disabled');
-                $('#semester').find('option[value="'+2+'"]').removeAttr('disabled');
-                $('#semester').find('option[value="'+3+'"]').removeAttr('disabled');
+                $('#semester').find('option[value="'+2+'"]').attr('disabled', 'disabled');
+                $('#semester').find('option[value="'+3+'"]').attr('disabled', 'disabled');
             }
 
         });
