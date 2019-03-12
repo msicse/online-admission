@@ -21,12 +21,48 @@ class AdmissionController extends Controller
     {
         return view('frontend.admission.home');
     }
-    public function apply()
+    public function apply(Request $request)
     {
         $programs = Programe::all();
         //$application = $request->session()->get('application');
         //return view('products.create-step1',compact('product', $product));
-        return view('frontend.admission.apply')->withPrograms($programs);
+        $applicant = $request->session()->get('applicant');
+        //return view('products.create-step1',compact('product', $product));
+        return view('frontend.admission.apply')->withPrograms($programs)->withApplicant($applicant);
+    }
+    public function postApply(Request $request)
+    {
+
+        $validatedData = $this->validate($request,array(
+           'semester' => 'required|numeric',
+           'year' => 'required|numeric',
+           'program' => 'required|numeric',
+           //'shift' => 'required|numeric',
+       ));
+
+       if(empty($request->session()->get('applicant'))){
+            $applicant = new Application();
+            $applicant->fill($validatedData);
+            $request->session()->put('applicant', $applicant);
+        }else{
+            $applicant = $request->session()->get('applicant');
+            $applicant->fill($validatedData);
+            $request->session()->put('applicant', $applicant);
+        }
+
+        return redirect()->route('admission.personal');
+
+
+    }
+
+    public function getPersonal(Request $request)
+    {
+        return view('frontend.admission.from.personal-info');
+
+    }
+    public function postPersonal(Request $request)
+    {
+
     }
     public function verify()
     {

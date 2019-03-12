@@ -27,7 +27,14 @@ Route::group(['middleware'=>['auth']], function(){
 
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::get('/','AdmissionController@index')->name('home');
+    //multistep check
     Route::get('apply','AdmissionController@apply')->name('apply');
+    Route::post('apply','AdmissionController@postApply')->name('apply.submit');
+    Route::get('personal','AdmissionController@getPersonal')->name('personal');
+    Route::post('personal','AdmissionController@postPersonal')->name('personal.submit');
+
+
+
     Route::post('check-email','AdmissionController@checkEmail')->name('check.mail');
     Route::get('application/verify/form','AdmissionController@verify')->name('application.verify');
     Route::post('application/verify','AdmissionController@applicationVerifySubmit')->name('application.verify.submit');

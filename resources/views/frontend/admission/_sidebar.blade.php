@@ -14,7 +14,7 @@
                 <a class="nav-link {{ Request::is('admission/guidelines') ? 'active' : '' }}" href="{{ route('admission.guidelines') }}">Guidelines</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admission/complain') ? 'active' : '' }}" href="{{ route('admission.complain') }}">Complain</a>
+                <a class="nav-link {{ Request::is('admission/complain') ? 'active' : '' }}" href="{{ route('admission.complain') }}">Support</a>
             </li>
 
         </ul>
