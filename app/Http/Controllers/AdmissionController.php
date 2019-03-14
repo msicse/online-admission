@@ -62,7 +62,7 @@ class AdmissionController extends Controller
     }
     public function postPersonal(Request $request)
     {
-
+        return $request->all();
     }
     public function verify()
     {

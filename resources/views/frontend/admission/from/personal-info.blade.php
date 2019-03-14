@@ -2,10 +2,12 @@
 
 @section('title', 'Admission | Application | Form' )
 @push('css')
+<link href="{{ asset('frontend/datepicker/datepicker.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
     <style>
         .display-n { display: none;}
         .display-blk { display: block;}
+        .input-group-append button { height: 32px;}
     </style>
 @endpush
 
@@ -28,7 +30,7 @@
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="apply-form" class="was-validated" action="{{ route('admission.application.form.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.personal.submit') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -65,9 +67,8 @@
                                 <div class="col">
                                     <div class="form-group row ">
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Date Of Birth') }}</label>
-
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="" required autofocus >
+                                            <input id="datepicker" type="text" class="form-control form-control-sm" name="dob" value="" required autofocus >
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +250,14 @@
 @endsection
 
 @push('js')
+<script src="{{ asset('frontend/datepicker/datepicker.min.js') }}"></script>
+
+
 <script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome'
+    });
 
 window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
@@ -479,7 +487,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                     return false;
             } else {
                  //preventDefault();
-                 $('#apply-form').submit();
+                 $('#personal-info-form').submit();
                 // var r = confirm("Are You Sure to Submit!");
                 //  if (r == true) {
                 //    $('#apply-form').submit();
