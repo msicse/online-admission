@@ -36,7 +36,7 @@
                                       <label for="program" class="col-md-4 col-form-label text-md-right">{{ __('Program') }}</label>
 
                                       <div class="col-md-8">
-                                          <select name="program" id="program" class="form-control form-control-sm custom-select" required>
+                                          <select name="porgram" id="program" class="form-control form-control-sm custom-select" required>
                                                 <option value="" selected>Select One</option>
                                                 @foreach( $programs as $data )
                                                 <option value="{{ $data->id }}">{{ $data->name }}</option>

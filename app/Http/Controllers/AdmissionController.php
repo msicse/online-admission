@@ -36,8 +36,8 @@ class AdmissionController extends Controller
         $validatedData = $this->validate($request,array(
            'semester' => 'required|numeric',
            'year' => 'required|numeric',
-           'program' => 'required|numeric',
-           //'shift' => 'required|numeric',
+           'porgram' => 'required|numeric',
+           'shift' => 'required|numeric',
        ));
 
        if(empty($request->session()->get('applicant'))){
@@ -57,12 +57,74 @@ class AdmissionController extends Controller
 
     public function getPersonal(Request $request)
     {
-        return view('frontend.admission.from.personal-info');
+        $applicant = $request->session()->get('applicant');
+        return view('frontend.admission.from.personal-info')->withApplicant($applicant);
 
     }
     public function postPersonal(Request $request)
     {
-        return $request->all();
+        $validatedData = $this->validate($request,array(
+           'name' => 'required',
+           'fname' => 'required',
+           'mname' => 'required',
+           'dob' => 'required',
+           'gender' => 'required',
+           'nationality' => 'required',
+           'phone' => 'required',
+           'email' => 'required|email',
+           'guardian' => 'required',
+           'relation' => 'required',
+           'present_address' => 'required',
+           'parmanent_address' => 'required',
+           'image' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
+       ));
+
+       $applicant = $request->session()->get('applicant');
+
+       $applicant->fill($validatedData);
+       $request->session()->put('applicant', $applicant);
+
+       return redirect()->route('admission.academic');
+
+    }
+    public function getAcademic(Request $request)
+    {
+        $applicant = $request->session()->get('applicant');
+        return view('frontend.admission.from.academic-info')->withApplicant($applicant);
+
+    }
+    public function postAcademic(Request $request)
+    {
+        $validatedData = $this->validate($request, array(
+            'ssc_roll' => 'required|numeric',
+            'ssc_reg' => 'required|numeric',
+            'ssc_year' => 'required|numeric',
+            'ssc_board' => 'required|alpha',
+            'hsc_roll' => 'required|numeric',
+            'hsc_reg' => 'required|numeric',
+            'hsc_year' => 'required|numeric',
+            'hsc_board' => 'required|alpha',
+            'hsc_marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
+            'ssc_marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
+        ));
+
+        $applicant = $request->session()->get('applicant');
+
+        $applicant->ssc_roll = $request->ssc_roll;
+        $applicant->ssc_reg = $request->ssc_reg;
+        $applicant->ssc_year = $request->ssc_year;
+        $applicant->ssc_board = $request->ssc_board;
+        $applicant->hsc_roll = $request->hsc_roll;
+        $applicant->hsc_reg = $request->hsc_reg;
+        $applicant->hsc_year = $request->hsc_year;
+        $applicant->hsc_board = $request->hsc_board;
+
+        $request->session()->put('applicant', $applicant);
+
+        $r =  $request->session()->get('applicant');
+        return $r;
+
+        return redirect()->route('admission.academic');
     }
     public function verify()
     {

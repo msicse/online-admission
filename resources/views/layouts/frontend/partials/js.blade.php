@@ -3,7 +3,6 @@
 <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('frontend/js/stellar.js') }}"></script>
 <script src="{{ asset('frontend/vendors/lightbox/simpleLightbox.min.js') }}"></script>
-<!-- <script src="{{ asset('frontend/vendors/nice-select/js/jquery.nice-select.min.js') }}"></script> -->
 <script src="{{ asset('frontend/vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('frontend/vendors/isotope/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('frontend/vendors/owl-carousel/owl.carousel.min.js') }}"></script>

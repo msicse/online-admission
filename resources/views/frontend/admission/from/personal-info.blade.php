@@ -38,7 +38,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="name" value="" required autofocus >
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Fathers Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="fname" value="" required autofocus >
 
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Mother's Name"  ) }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="" value="" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="mname" value="" required autofocus >
                                         </div>
                                     </div>
                                 </div>
@@ -73,6 +73,45 @@
                                     </div>
                                 </div>
                              </div>
+
+                             <div class="row">
+
+                                 <div class="col">
+                                     <div class="form-group row ">
+                                         <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                                         <div class="col-md-8">
+                                             <select name="gender" class="form-control form-control-sm" required>
+                                                   <option value="" selected>Select One</option>
+                                                   <option value="1">Male</option>
+                                                   <option value="2">Female</option>
+                                                   <option value="3">Others</option>
+                                             </select>
+                                             @if ($errors->has('gender'))
+                                                 <span class="invalid-feedback" role="alert">
+                                                     <strong>{{ $errors->first('gender') }}</strong>
+                                                 </span>
+                                             @endif
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="col">
+                                     <div class="form-group row ">
+                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Nationality') }}</label>
+
+                                         <div class="col-md-8">
+                                             <input id="nationality" type="text" class="form-control form-control-sm" name="nationality" value="{{ old('nationality') }}" required autofocus>
+                                             <span id="error_nationality" class="invalid-feedback" role="alert"></span>
+                                             @if ($errors->has('nationality'))
+                                                 <span class="invalid-feedback" role="alert">
+                                                     <strong>{{ $errors->first('nationality') }}</strong>
+                                                 </span>
+                                             @endif
+                                         </div>
+                                     </div>
+                                 </div>
+                              </div>
 
                             <div class="row">
                                 <div class="col">
@@ -173,38 +212,7 @@
                                 </div>
                              </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row ">
-                                        <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Nationality') }}</label>
 
-                                        <div class="col-md-8">
-                                            <input id="nationality" type="text" class="form-control form-control-sm" name="nationality" value="{{ old('nationality') }}" required autofocus>
-                                            <span id="error_nationality" class="invalid-feedback" role="alert"></span>
-                                            @if ($errors->has('nationality'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('nationality') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row ">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                        <div class="col-md-8">
-                                            <input id="password" type="password" class="form-control form-control-sm" name="password" value="{{ old('roll') }}" required autofocus>
-                                            <span id="error_pass" class="invalid-feedback" role="alert"></span>
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                             </div>
 
                             <div class="row">
                                 <div class="col">
@@ -450,21 +458,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                     $('#nationality').removeClass('is-invalid');
                 }
             }
-            if ( pass == '' ) {
-                error_pass = 'Password is Required';
-                $('#error_pass').text(error_pass);
-                $('#password').addClass('is-invalid');
-            }else {
-                if (!password.test( pass )) {
-                    error_pass = 'Only Alphabet, Number, Special Character  is allowed & Length must be 6-15 Character';
-                    $('#error_pass').text(error_pass);
-                    $('#password').addClass('is-invalid');
-                }else {
-                    error_pass = '';
-                    $('#error_pass').text(error_pass);
-                    $('#password').removeClass('is-invalid');
-                }
-            }
+
             if ( image == '' ) {
                 error_image = 'Image is Required';
                 $('#error_image').text(error_image);
@@ -486,6 +480,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
                 error_permanent != '' || error_nationality != '' || error_pass != '' || error_image != '' || uEmail != '' ) {
                     return false;
             } else {
+                console.log('ok');
                  //preventDefault();
                  $('#personal-info-form').submit();
                 // var r = confirm("Are You Sure to Submit!");

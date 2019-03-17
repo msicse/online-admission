@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/vendors/lightbox/simpleLightbox.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('frontend/vendors/nice-select/css/nice-select.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('frontend/vendors/nice-select/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/vendors/animate-css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/vendors/popup/magnific-popup.css') }}">
     <!-- main css -->

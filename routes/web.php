@@ -32,6 +32,8 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::post('apply','AdmissionController@postApply')->name('apply.submit');
     Route::get('personal','AdmissionController@getPersonal')->name('personal');
     Route::post('personal','AdmissionController@postPersonal')->name('personal.submit');
+    Route::get('academic','AdmissionController@getAcademic')->name('academic');
+    Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
 
 
 
