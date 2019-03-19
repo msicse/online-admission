@@ -31,73 +31,90 @@
                         <form method="POST" id="program-form" class="was-validated" action="{{ route('admission.apply.submit') }}" enctype="multipart/form-data">
                             @csrf
                             <!-- Program Info -->
-                              <div class="tab-pane fade show custom-tab active" id="program-details-tab" role="tabpanel" aria-labelledby="program-details-list">
-                                  <div class="form-group row ">
-                                      <label for="program" class="col-md-4 col-form-label text-md-right">{{ __('Program') }}</label>
 
-                                      <div class="col-md-8">
-                                          <select name="porgram" id="program" class="form-control form-control-sm custom-select" required>
-                                                <option value="" selected>Select One</option>
-                                                @foreach( $programs as $data )
-                                                <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                                @endforeach
+                              <div class="form-group row ">
+                                  <label for="program" class="col-md-4 col-form-label text-md-right">{{ __('Applying For') }}</label>
 
-                                          </select>
-                                          <span id="error-program" class="invalid-feedback" role="alert"></span>
+                                  <div class="col-md-8">
+                                      <div class="form-check-inline">
+                                          <label class="form-check-label">
+                                              <input type="radio" class="form-check-input mt-10" name="degree" value="1" required> Undergraduate
+                                         </label>
                                       </div>
-                                  </div>
-
-                                  <div class="form-group row ">
-                                      <label for="year" class="col-md-4 col-form-label text-md-right">{{ __('Applying Year') }}</label>
-
-                                      <div class="col-md-8">
-                                          <select name="year" id="year" class="form-control form-control-sm custom-select" required>
-                                                <option value="" selected>Select One</option>
-
-                                                <option value="{{ date('Y') }}">{{ date('Y') }}</option>
-                                                <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}</option>
-
-                                          </select>
-                                          <div id="error-year" class="invalid-feedback" role="alert"></div>
+                                      <div class="form-check-inline">
+                                          <label class="form-check-label">
+                                              <input type="radio" class="form-check-input mt-10" name="degree" value="2" required> Postgraduate
+                                         </label>
                                       </div>
+                                      <span id="error-program" class="invalid-feedback" role="alert"></span>
+                                  </div>
+                              </div>
+                              <div class="form-group row ">
+                                  <label for="program" class="col-md-4 col-form-label text-md-right">{{ __('Program') }}</label>
+
+                                  <div class="col-md-8">
+                                      <select name="porgram" id="program" class="form-control form-control-sm custom-select" required>
+                                            <option value="" selected>Select One</option>
+                                            @foreach( $programs as $data )
+                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                            @endforeach
+
+                                      </select>
+                                      <span id="error-program" class="invalid-feedback" role="alert"></span>
+                                  </div>
+                              </div>
+
+                              <div class="form-group row ">
+                                  <label for="year" class="col-md-4 col-form-label text-md-right">{{ __('Applying Year') }}</label>
+
+                                  <div class="col-md-8">
+                                      <select name="year" id="year" class="form-control form-control-sm custom-select" required>
+                                            <option value="" selected>Select One</option>
+
+                                            <option value="{{ date('Y') }}">{{ date('Y') }}</option>
+                                            <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}</option>
+
+                                      </select>
+                                      <div id="error-year" class="invalid-feedback" role="alert"></div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group row ">
+                                  <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
+
+                                  <div class="col-md-8">
+                                      <select name="semester" id="semester" class="form-control form-control-sm custom-select" disabled required>
+                                            <option value="" selected>Select One</option>
+                                            <option value="1" id="spring">Spring</option>
+                                            <option value="2">Summar</option>
+                                            <option value="3">Fall</option>
+
+                                      </select>
+                                      <span id="error-semester" class="invalid-feedback" role="alert"></span>
                                   </div>
 
-                                  <div class="form-group row ">
-                                      <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
+                              </div>
 
-                                      <div class="col-md-8">
-                                          <select name="semester" id="semester" class="form-control form-control-sm custom-select" disabled required>
-                                                <option value="" selected>Select One</option>
-                                                <option value="1" id="spring">Spring</option>
-                                                <option value="2">Summar</option>
-                                                <option value="3">Fall</option>
+                              <div class="form-group row ">
+                                  <label for="shift" class="col-md-4 col-form-label text-md-right">{{ __('Shift') }}</label>
 
-                                          </select>
-                                          <span id="error-semester" class="invalid-feedback" role="alert"></span>
-                                      </div>
+                                  <div class="col-md-8">
+                                      <select name="shift" id="shift" class="form-control form-control-sm custom-select" required>
+                                            <option value="" selected>Select One</option>
+                                            <option value="1" >Day</option>
+                                            <option value="2">Evening</option>
 
+                                      </select>
+                                      <span id="error-shift" class="invalid-feedback" role="alert"></span>
                                   </div>
 
-                                  <div class="form-group row ">
-                                      <label for="shift" class="col-md-4 col-form-label text-md-right">{{ __('Shift') }}</label>
+                              </div>
 
-                                      <div class="col-md-8">
-                                          <select name="shift" id="shift" class="form-control form-control-sm custom-select" required>
-                                                <option value="" selected>Select One</option>
-                                                <option value="1" >Day</option>
-                                                <option value="2">Evening</option>
+                              <br>
+                              <div class="col text-center">
+                                  <button type="button" name="btn-program-details" id="btn-program-details"  class="btn btn-success btn-width">Next</button>
 
-                                          </select>
-                                          <span id="error-shift" class="invalid-feedback" role="alert"></span>
-                                      </div>
-
-                                  </div>
-
-                                  <br>
-                                  <div class="col text-center">
-                                      <button type="button" name="btn-program-details" id="btn-program-details"  class="btn btn-success btn-width">Next</button>
-
-                                  </div>
+                              </div>
                         </form> <!-- End form -->
                    </div> <!-- End card-body -->
                </div><!--  End Card -->
