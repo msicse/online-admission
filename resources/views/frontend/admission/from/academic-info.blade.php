@@ -8,6 +8,11 @@
         .display-n { display: none;}
         .display-blk { display: block;}
         .input-group-append button { height: 32px;}
+        input[type='file'] {
+          color: transparent;
+          height: 35px;
+          
+        }
     </style>
 @endpush
 
@@ -35,87 +40,102 @@
                             <div class="card-header mb-10">
                                 SSC or Equivalent
                             </div>
-                            <div class="row mt-10">
-                                <div class="col">
-                                    <div class="form-group row ">
-                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __('School Name') }}</label>
-
-                                        <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="school" value="" required autofocus >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row ">
-                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Board Name') }}</label>
-
-                                        <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="board" value="" required autofocus >
-
-                                        </div>
-                                    </div>
-                                </div>
-                             </div>
-
                             <div class="row">
-                                <div class="col">
-                                    <div class="form-group row ">
-                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Division"  ) }}</label>
+                                <div class="col-md-10">
+                                    <div class="row mt-10">
+                                        <div class="col">
+                                            <div class="form-group row ">
+                                                <label for="" class="col-md-4 col-form-label text-md-right">{{ __('School Name') }}</label>
 
-                                        <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="division" value="" required autofocus >
+                                                <div class="col-md-8">
+                                                    <input id="" type="text" class="form-control form-control-sm" name="school" value="" required autofocus >
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row ">
-                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Duration') }}</label>
-                                        <div class="col-md-8">
-                                            <input id="datepicker" type="text" class="form-control form-control-sm" name="duration" value="" required autofocus >
+                                        <div class="col">
+                                            <div class="form-group row ">
+                                                <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Board Name') }}</label>
+
+                                                <div class="col-md-8">
+                                                    <input id="" type="text" class="form-control form-control-sm" name="board" value="" required autofocus >
+
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                             </div>
-
-                            <div class="row">
-
-                                 <div class="col">
-                                     <div class="form-group row ">
-                                         <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Passing Year') }}</label>
-
-                                         <div class="col-md-8">
-                                             <select name="gender" class="form-control form-control-sm" required>
-                                                   <option value="" selected>Select One</option>
-                                                   @for( $i = date('Y') ; $i >= date('Y') - 8 ; $i -- )
-                                                   <option value="{{ $i }}">{{ $i }}</option>
-                                                   @endfor
-                                                   
-                                             </select>
-                                             @if ($errors->has('gender'))
-                                                 <span class="invalid-feedback" role="alert">
-                                                     <strong>{{ $errors->first('gender') }}</strong>
-                                                 </span>
-                                             @endif
-                                         </div>
                                      </div>
-                                 </div>
 
-                                 <div class="col">
-                                     <div class="form-group row ">
-                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Result') }}</label>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group row ">
+                                                <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Division"  ) }}</label>
 
-                                         <div class="col-md-8">
-                                             <input id="nationality" type="text" class="form-control form-control-sm" name="nationality" value="{{ old('nationality') }}" required autofocus>
-                                             <span id="error_nationality" class="invalid-feedback" role="alert"></span>
-                                             @if ($errors->has('nationality'))
-                                                 <span class="invalid-feedback" role="alert">
-                                                     <strong>{{ $errors->first('nationality') }}</strong>
-                                                 </span>
-                                             @endif
-                                         </div>
+                                                <div class="col-md-8">
+                                                    <input id="" type="text" class="form-control form-control-sm" name="division" value="" required autofocus >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row ">
+                                                <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Duration') }}</label>
+                                                <div class="col-md-8">
+                                                    <input id="datepicker" type="text" class="form-control form-control-sm" name="duration" value="" required autofocus >
+                                                </div>
+                                            </div>
+                                        </div>
                                      </div>
-                                 </div>
-                              </div>
+
+                                    <div class="row">
+
+                                         <div class="col">
+                                             <div class="form-group row ">
+                                                 <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Passing Year') }}</label>
+
+                                                 <div class="col-md-8">
+                                                     <select name="gender" class="form-control form-control-sm" required>
+                                                           <option value="" selected>Select One</option>
+                                                           @for( $i = date('Y') ; $i >= date('Y') - 8 ; $i -- )
+                                                           <option value="{{ $i }}">{{ $i }}</option>
+                                                           @endfor
+
+                                                     </select>
+                                                     @if ($errors->has('gender'))
+                                                         <span class="invalid-feedback" role="alert">
+                                                             <strong>{{ $errors->first('gender') }}</strong>
+                                                         </span>
+                                                     @endif
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                         <div class="col">
+                                             <div class="form-group row ">
+                                                 <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Result') }}</label>
+
+                                                 <div class="col-md-8">
+                                                     <input id="nationality" type="text" class="form-control form-control-sm" name="nationality" value="{{ old('nationality') }}" required autofocus>
+                                                     <span id="error_nationality" class="invalid-feedback" role="alert"></span>
+                                                     @if ($errors->has('nationality'))
+                                                         <span class="invalid-feedback" role="alert">
+                                                             <strong>{{ $errors->first('nationality') }}</strong>
+                                                         </span>
+                                                     @endif
+                                                 </div>
+                                             </div>
+                                         </div>
+                                      </div>
+                               </div>
+                               <div class="col-md-2 ">
+
+                                        <div class="">
+                                            <label for="">Marksheet</label>
+                                            <input type="file" class="" id="yyy" required>
+
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                               </div>
+                            </div>
+
+
                             <div class="card-header mb-10">
                                 HSC or Equivalent
                             </div>
@@ -199,6 +219,7 @@
                                      </div>
                                  </div>
                               </div>
+                            @if( $applicant->degree == 2 )
                             <div class="card-header mb-10">
                                 B.Sc or Equivalent
                             </div>
@@ -282,7 +303,7 @@
                                      </div>
                                  </div>
                               </div>
-
+                            @endif
                             <div class="row mt-10">
                                 <div class="col-md-4 offset-md-4 text-center  mt-10">
                                     <button type="button" class="btn btn-info btn-width" name="btn-personal-prev" id="btn-personal-prev" >Previous</button>
@@ -303,6 +324,6 @@
 @push('js')
 
 <script>
-
+    $('#yyy').attr('title', '');
 </script>
 @endpush
