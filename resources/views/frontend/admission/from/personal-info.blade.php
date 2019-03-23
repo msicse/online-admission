@@ -243,7 +243,7 @@
                             <div class="row mt-10">
                                 <div class="col-md-4 offset-md-4 text-center  mt-10">
                                     <button type="button" class="btn btn-info btn-width" name="btn-personal-prev" id="btn-personal-prev" >Previous</button>
-                                    <button type="button" class="btn btn-success btn-width" id="form-submit"> Submit </button>
+                                    <button type="submit" class="btn btn-success btn-width" id="form-submit"> Submit </button>
                                 </div>
                             </div>
                         </form> <!-- End form -->
@@ -269,233 +269,233 @@
 
 window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
-    $(document).ready(function () {
-
-        // alert($('#year option').find('[value="'+1+'"]'));
-        // n = s.closest(".nice-select");
-        //     n.find("data-id").removeClass("selected"), s.addClass("selected");
-
-
-        var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
-        var alphaRegex = /^[a-zA-Z ]*$/;
-        var phoneNumber = /[0-9-()+]{3,20}/;
-        //var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/;
-        //var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/;
-        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-        var strings = /^[0-9a-zA-Z,. @_-]+$/;
-        var address = /^[0-9a-zA-Z,-. #@_-]+$/;
-        var password = /^[a-zA-Z0-9_-]{6,15}$/;
-        var token = $("input[name='_token']").val();
-        var uEmail = '';
-
-        //Personal email checkEmail
-        $('#email').keyup(function () {
-
-              var eUrl = location.origin + '/admission/check-email';
-              var eMail = $('#email').val();
-
-              $.ajax({
-                type: "post",
-                data: "email=" + eMail+"&_token="+token,
-                url: eUrl,
-                success:function(data){
-
-                    if ( data == 'found') {
-                        uEmail = 'The email already exists';
-                        $('#error_email').text(uEmail);
-                        $('#email').addClass('is-invalid');
-                        $('.was-validated #email .form-control:valid:focus').css("box-shadow","none");
-                        $('#email.form-control:valid').css("border-color","#f00");
-
-                    } else {
-                        uEmail = '';
-                        $('#error_email').text(uEmail);
-                        $('#email').removeClass('is-invalid');
-                        $('#email.form-control:valid').css("border-color","#28a745");
-                        $('#email.form-control:valid:focus').css("box-shadow","0 0 0 0.2rem rgba(40, 167, 69, .25)");
-                    }
-
-                }
-            });
-        });
-        //personal submit
-        $('#form-submit').click( function () {
-
-            var token = $("input[name='_token']").val();
-            var error_phone = '';
-            var error_gname = '';
-            var error_grelation = '';
-            var error_present = '';
-            var error_permanent = '';
-            var error_nationality = '';
-            var error_pass = '';
-            var error_imsge = '';
-
-            var phone = $.trim($('#phone').val());
-            var email = $.trim($('#email').val());
-            var gname = $.trim($('#gname').val());
-            var grelation = $.trim($('#grelation').val());
-            var present = $.trim($('#present').val());
-            var permanent = $.trim($('#permanent').val());
-            var nationality = $.trim($('#nationality').val());
-            var pass = $.trim($('#password').val());
-            var image = $('#image').val();
-
-            if ( phone == '' ) {
-                error_phone = 'Phone is Required';
-                $('#error_phone').text(error_phone);
-                $('#phone').addClass('is-invalid');
-            }else {
-                if (!phoneNumber.test( phone )) {
-                    error_phone = 'Phone not valid';
-                    $('#error_phone').text(error_phone);
-                    $('#phone').removeClass('is-valid');
-                    //form.classList.add('was-validated');
-                }else {
-
-                    error_phone = '';
-                    $('#error_phone').text(error_phone);
-                    $('#phone').removeClass('is-invalid');
-                }
-            }
-
-            if ( email == '' ) {
-                error_email = 'Email is Required';
-                $('#error_email').text(error_email);
-                $('#email').addClass('is-invalid');
-            }else {
-                if (!emailRegex.test( email )) {
-                    error_email = 'Email not valid !';
-                    $('#error_email').text(error_email);
-                    $('#email').addClass('is-invalid');
-                }else {
-
-
-                    if (uEmail != '') {
-                        error_email = 'Email already exists';
-                        $('#error_email').text(error_email);
-                        $('#email').addClass('is-invalid');
-                    }else {
-                        error_email = '';
-                        $('#error_email').text(error_email);
-                        $('#email').removeClass('is-invalid');
-                    }
-                }
-            }
-            if ( gname == '' ) {
-                error_gname = 'Guardian Name is Required';
-                $('#error_gname').text(error_gname);
-                $('#gname').addClass('is-invalid');
-            }else {
-                if (!strings.test( gname )) {
-                    error_gname = 'Only strings is allowed';
-                    $('#error_gname').text(error_gname);
-                    $('#gname').addClass('is-invalid');
-                }else {
-                    error_gname = '';
-                    $('#error_gname').text(error_gname);
-                    $('#gname').removeClass('is-invalid');
-                }
-            }
-            if ( grelation == '' ) {
-                error_grelation = 'Relation with Guardian is Required';
-                $('#error_grelation').text(error_grelation);
-                $('#grelation').addClass('is-invalid');
-            }else {
-                if (!strings.test( grelation )) {
-                    error_grelation = 'Only strings is allowed';
-                    $('#error_grelation').text(error_grelation);
-                    $('#grelation').addClass('is-invalid');
-                }else {
-                    error_grelation = '';
-                    $('#error_grelation').text(error_grelation);
-                    $('#grelation').removeClass('is-invalid');
-                }
-            }
-            if ( present == '' ) {
-                error_present = 'Present Address is Required';
-                $('#error_present').text(error_present);
-                $('#present').addClass('is-invalid');
-            }else {
-                if (!address.test( present )) {
-                    error_present = 'Only strings is allowed';
-                    $('#error_present').text(error_present);
-                    $('#present').addClass('is-invalid');
-                }else {
-                    error_present = '';
-                    $('#error_present').text(error_present);
-                    $('#present').removeClass('is-invalid');
-                }
-            }
-
-            if ( permanent == '' ) {
-                error_permanent = 'Permanent Address is Required';
-                $('#error_permanent').text(error_permanent);
-                $('#permanent').addClass('is-invalid');
-            }else {
-                if (!address.test( permanent )) {
-                    error_permanent = 'Only strings is allowed';
-                    $('#error_permanent').text(error_permanent);
-                    $('#permanent').addClass('is-invalid');
-                }else {
-                    error_permanent = '';
-                    $('#error_permanent').text(error_permanent);
-                    $('#permanent').removeClass('is-invalid');
-                }
-            }
-            if ( nationality == '' ) {
-                error_nationality = 'Nationality is Required';
-                $('#error_nationality').text(error_nationality);
-                $('#nationality').addClass('is-invalid');
-            }else {
-                if (!alphaRegex.test( nationality )) {
-                    error_nationality = 'Only Alphabet is allowed';
-                    $('#error_nationality').text(error_nationality);
-                    $('#nationality').addClass('is-invalid');
-                }else {
-                    error_nationality = '';
-                    $('#error_nationality').text(error_nationality);
-                    $('#nationality').removeClass('is-invalid');
-                }
-            }
-
-            if ( image == '' ) {
-                error_image = 'Image is Required';
-                $('#error_image').text(error_image);
-                $('#image').addClass('is-invalid');
-            }else {
-                if (!image.match(/(?:gif|jpg|png|bmp)$/)) {
-                    error_image = 'Image must be jpg,gif,png,bmp and jpeg';
-                    $('#error_image').text(error_pass);
-                    $('#image').addClass('is-invalid');
-                }else {
-                    error_image = '';
-                    $('#error_image').text(error_image);
-                    $('#image').removeClass('is-invalid');
-                }
-            }
-
-
-            if( error_phone != '' || error_email != '' || error_gname != '' || error_grelation != '' || error_present != '' ||
-                error_permanent != '' || error_nationality != '' || error_pass != '' || error_image != '' || uEmail != '' ) {
-                    return false;
-            } else {
-                console.log('ok');
-                 //preventDefault();
-                 $('#personal-info-form').submit();
-                // var r = confirm("Are You Sure to Submit!");
-                //  if (r == true) {
-                //    $('#apply-form').submit();
-                //  }
-
-            }
-
-
-        });
-
-
-
-
-    });
+    // $(document).ready(function () {
+    //
+    //     // alert($('#year option').find('[value="'+1+'"]'));
+    //     // n = s.closest(".nice-select");
+    //     //     n.find("data-id").removeClass("selected"), s.addClass("selected");
+    //
+    //
+    //     var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+    //     var alphaRegex = /^[a-zA-Z ]*$/;
+    //     var phoneNumber = /[0-9-()+]{3,20}/;
+    //     //var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/;
+    //     //var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/;
+    //     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    //     var strings = /^[0-9a-zA-Z,. @_-]+$/;
+    //     var address = /^[0-9a-zA-Z,-. #@_-]+$/;
+    //     var password = /^[a-zA-Z0-9_-]{6,15}$/;
+    //     var token = $("input[name='_token']").val();
+    //     var uEmail = '';
+    //
+    //     //Personal email checkEmail
+    //     $('#email').keyup(function () {
+    //
+    //           var eUrl = location.origin + '/admission/check-email';
+    //           var eMail = $('#email').val();
+    //
+    //           $.ajax({
+    //             type: "post",
+    //             data: "email=" + eMail+"&_token="+token,
+    //             url: eUrl,
+    //             success:function(data){
+    //
+    //                 if ( data == 'found') {
+    //                     uEmail = 'The email already exists';
+    //                     $('#error_email').text(uEmail);
+    //                     $('#email').addClass('is-invalid');
+    //                     $('.was-validated #email .form-control:valid:focus').css("box-shadow","none");
+    //                     $('#email.form-control:valid').css("border-color","#f00");
+    //
+    //                 } else {
+    //                     uEmail = '';
+    //                     $('#error_email').text(uEmail);
+    //                     $('#email').removeClass('is-invalid');
+    //                     $('#email.form-control:valid').css("border-color","#28a745");
+    //                     $('#email.form-control:valid:focus').css("box-shadow","0 0 0 0.2rem rgba(40, 167, 69, .25)");
+    //                 }
+    //
+    //             }
+    //         });
+    //     });
+    //     //personal submit
+    //     $('#form-submit').click( function () {
+    //
+    //         var token = $("input[name='_token']").val();
+    //         var error_phone = '';
+    //         var error_gname = '';
+    //         var error_grelation = '';
+    //         var error_present = '';
+    //         var error_permanent = '';
+    //         var error_nationality = '';
+    //         var error_pass = '';
+    //         var error_imsge = '';
+    //
+    //         var phone = $.trim($('#phone').val());
+    //         var email = $.trim($('#email').val());
+    //         var gname = $.trim($('#gname').val());
+    //         var grelation = $.trim($('#grelation').val());
+    //         var present = $.trim($('#present').val());
+    //         var permanent = $.trim($('#permanent').val());
+    //         var nationality = $.trim($('#nationality').val());
+    //         var pass = $.trim($('#password').val());
+    //         var image = $('#image').val();
+    //
+    //         if ( phone == '' ) {
+    //             error_phone = 'Phone is Required';
+    //             $('#error_phone').text(error_phone);
+    //             $('#phone').addClass('is-invalid');
+    //         }else {
+    //             if (!phoneNumber.test( phone )) {
+    //                 error_phone = 'Phone not valid';
+    //                 $('#error_phone').text(error_phone);
+    //                 $('#phone').removeClass('is-valid');
+    //                 //form.classList.add('was-validated');
+    //             }else {
+    //
+    //                 error_phone = '';
+    //                 $('#error_phone').text(error_phone);
+    //                 $('#phone').removeClass('is-invalid');
+    //             }
+    //         }
+    //
+    //         if ( email == '' ) {
+    //             error_email = 'Email is Required';
+    //             $('#error_email').text(error_email);
+    //             $('#email').addClass('is-invalid');
+    //         }else {
+    //             if (!emailRegex.test( email )) {
+    //                 error_email = 'Email not valid !';
+    //                 $('#error_email').text(error_email);
+    //                 $('#email').addClass('is-invalid');
+    //             }else {
+    //
+    //
+    //                 if (uEmail != '') {
+    //                     error_email = 'Email already exists';
+    //                     $('#error_email').text(error_email);
+    //                     $('#email').addClass('is-invalid');
+    //                 }else {
+    //                     error_email = '';
+    //                     $('#error_email').text(error_email);
+    //                     $('#email').removeClass('is-invalid');
+    //                 }
+    //             }
+    //         }
+    //         if ( gname == '' ) {
+    //             error_gname = 'Guardian Name is Required';
+    //             $('#error_gname').text(error_gname);
+    //             $('#gname').addClass('is-invalid');
+    //         }else {
+    //             if (!strings.test( gname )) {
+    //                 error_gname = 'Only strings is allowed';
+    //                 $('#error_gname').text(error_gname);
+    //                 $('#gname').addClass('is-invalid');
+    //             }else {
+    //                 error_gname = '';
+    //                 $('#error_gname').text(error_gname);
+    //                 $('#gname').removeClass('is-invalid');
+    //             }
+    //         }
+    //         if ( grelation == '' ) {
+    //             error_grelation = 'Relation with Guardian is Required';
+    //             $('#error_grelation').text(error_grelation);
+    //             $('#grelation').addClass('is-invalid');
+    //         }else {
+    //             if (!strings.test( grelation )) {
+    //                 error_grelation = 'Only strings is allowed';
+    //                 $('#error_grelation').text(error_grelation);
+    //                 $('#grelation').addClass('is-invalid');
+    //             }else {
+    //                 error_grelation = '';
+    //                 $('#error_grelation').text(error_grelation);
+    //                 $('#grelation').removeClass('is-invalid');
+    //             }
+    //         }
+    //         if ( present == '' ) {
+    //             error_present = 'Present Address is Required';
+    //             $('#error_present').text(error_present);
+    //             $('#present').addClass('is-invalid');
+    //         }else {
+    //             if (!address.test( present )) {
+    //                 error_present = 'Only strings is allowed';
+    //                 $('#error_present').text(error_present);
+    //                 $('#present').addClass('is-invalid');
+    //             }else {
+    //                 error_present = '';
+    //                 $('#error_present').text(error_present);
+    //                 $('#present').removeClass('is-invalid');
+    //             }
+    //         }
+    //
+    //         if ( permanent == '' ) {
+    //             error_permanent = 'Permanent Address is Required';
+    //             $('#error_permanent').text(error_permanent);
+    //             $('#permanent').addClass('is-invalid');
+    //         }else {
+    //             if (!address.test( permanent )) {
+    //                 error_permanent = 'Only strings is allowed';
+    //                 $('#error_permanent').text(error_permanent);
+    //                 $('#permanent').addClass('is-invalid');
+    //             }else {
+    //                 error_permanent = '';
+    //                 $('#error_permanent').text(error_permanent);
+    //                 $('#permanent').removeClass('is-invalid');
+    //             }
+    //         }
+    //         if ( nationality == '' ) {
+    //             error_nationality = 'Nationality is Required';
+    //             $('#error_nationality').text(error_nationality);
+    //             $('#nationality').addClass('is-invalid');
+    //         }else {
+    //             if (!alphaRegex.test( nationality )) {
+    //                 error_nationality = 'Only Alphabet is allowed';
+    //                 $('#error_nationality').text(error_nationality);
+    //                 $('#nationality').addClass('is-invalid');
+    //             }else {
+    //                 error_nationality = '';
+    //                 $('#error_nationality').text(error_nationality);
+    //                 $('#nationality').removeClass('is-invalid');
+    //             }
+    //         }
+    //
+    //         if ( image == '' ) {
+    //             error_image = 'Image is Required';
+    //             $('#error_image').text(error_image);
+    //             $('#image').addClass('is-invalid');
+    //         }else {
+    //             if (!image.match(/(?:gif|jpg|png|bmp)$/)) {
+    //                 error_image = 'Image must be jpg,gif,png,bmp and jpeg';
+    //                 $('#error_image').text(error_pass);
+    //                 $('#image').addClass('is-invalid');
+    //             }else {
+    //                 error_image = '';
+    //                 $('#error_image').text(error_image);
+    //                 $('#image').removeClass('is-invalid');
+    //             }
+    //         }
+    //
+    //
+    //         if( error_phone != '' || error_email != '' || error_gname != '' || error_grelation != '' || error_present != '' ||
+    //             error_permanent != '' || error_nationality != '' || error_pass != '' || error_image != '' || uEmail != '' ) {
+    //                 return false;
+    //         } else {
+    //             console.log('ok');
+    //              //preventDefault();
+    //              $('#personal-info-form').submit();
+    //             // var r = confirm("Are You Sure to Submit!");
+    //             //  if (r == true) {
+    //             //    $('#apply-form').submit();
+    //             //  }
+    //
+    //         }
+    //
+    //
+    //     });
+    //
+    //
+    //
+    //
+    // });
 </script>
 @endpush

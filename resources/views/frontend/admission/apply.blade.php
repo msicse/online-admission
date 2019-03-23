@@ -38,31 +38,18 @@
                                   <div class="col-md-8">
                                       <div class="form-check-inline">
                                           <label class="form-check-label">
-                                              <input type="radio" class="form-check-input mt-10" name="degree" value="1" required> Undergraduate
+                                              <input type="radio" class="form-check-input mt-10" name="level" value="1" required> Undergraduate
                                          </label>
                                       </div>
                                       <div class="form-check-inline">
                                           <label class="form-check-label">
-                                              <input type="radio" class="form-check-input mt-10" name="degree" value="2" required> Postgraduate
+                                              <input type="radio" class="form-check-input mt-10" name="level" value="2" required> Postgraduate
                                          </label>
                                       </div>
                                       <span id="error-program" class="invalid-feedback" role="alert"></span>
                                   </div>
                               </div>
-                              <div class="form-group row ">
-                                  <label for="program" class="col-md-4 col-form-label text-md-right">{{ __('Program') }}</label>
 
-                                  <div class="col-md-8">
-                                      <select name="porgram" id="program" class="form-control form-control-sm custom-select" required>
-                                            <option value="" selected>Select One</option>
-                                            @foreach( $programs as $data )
-                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                            @endforeach
-
-                                      </select>
-                                      <span id="error-program" class="invalid-feedback" role="alert"></span>
-                                  </div>
-                              </div>
 
                               <div class="form-group row ">
                                   <label for="year" class="col-md-4 col-form-label text-md-right">{{ __('Applying Year') }}</label>
@@ -156,27 +143,27 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
             var error_program = '';
             var error_year = '';
             var error_semester = '';
-            var program = $('#program').val();
+            //var program = $('#program').val();
             var semester = $('#semester').val();
             var year = $('#year').val();
 
-            if ( $.trim($('#program').val()) == '' ) {
-
-                error_program = 'Program is Required';
-                $('#error-program').text(error_program);
-                $('#program').addClass('is-invalid');
-
-            }else {
-                if (!numberRegex.test(program) ){
-                    error_program = 'Program must be a number';
-                    $('#error-program').text(error_program);
-                }else {
-                    error_program = '';
-                    $('#error-program').text(error_program);
-                    $('#program').removeClass('is-invalid');
-                }
-
-            }
+            // if ( $.trim($('#program').val()) == '' ) {
+            //
+            //     error_program = 'Program is Required';
+            //     $('#error-program').text(error_program);
+            //     $('#program').addClass('is-invalid');
+            //
+            // }else {
+            //     if (!numberRegex.test(program) ){
+            //         error_program = 'Program must be a number';
+            //         $('#error-program').text(error_program);
+            //     }else {
+            //         error_program = '';
+            //         $('#error-program').text(error_program);
+            //         $('#program').removeClass('is-invalid');
+            //     }
+            //
+            // }
 
             if ( $.trim($('#semester').val()) == '' ) {
 
@@ -211,7 +198,7 @@ window.scrollTo(0,document.querySelector(".container").scrollHeight);
 
             }
 
-            if ( error_year != '' || error_program != '' || error_semester != '') {
+            if ( error_year != '' || error_semester != '') {
                 return false;
             } else {
                 $('#program-form').submit();

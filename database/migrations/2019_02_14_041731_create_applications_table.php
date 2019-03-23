@@ -15,8 +15,8 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('programe_id');
-            $table->integer('program');
+            $table->unsignedInteger('program_id')->nullable();
+            $table->integer('level');
             $table->integer('year');
             $table->integer('semester');
             $table->integer('shift');
@@ -30,22 +30,15 @@ class CreateApplicationsTable extends Migration
             $table->string('nationality');
             $table->string('guardian');
             $table->string('guardian_relation');
-            $table->string('ssc_roll');
-            $table->string('ssc_reg');
-            $table->string('ssc_board');
-            $table->string('ssc_result');
-            $table->string('hsc_result');
-            $table->string('honrs_result');
-            $table->string('merit')->nullable();
-            $table->boolean('approved')->nullable();
             $table->text('present_address');
             $table->text('parmanent_address');
             $table->string('image');
-            $table->string('ssc_marksheet');
-            $table->string('hsc_marksheet');
-            $table->string('honrs_marksheet')->nullable();
+            $table->string('password');
+            $table->string('merit')->nullable();
+            $table->boolean('approved')->nullable();
 
-            $table->foreign('programe_id')
+
+            $table->foreign('program_id')
                   ->references('id')->on('programes')
                   ->onDelete('cascade');
 

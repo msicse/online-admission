@@ -9,6 +9,7 @@ use App\Application;
 use App\Programe;
 use App\Ssc;
 use App\Hsc;
+use App\Academic;
 use Carbon\Carbon;
 use Session;
 use Toastr;
@@ -36,8 +37,9 @@ class AdmissionController extends Controller
         $validatedData = $this->validate($request,array(
            'semester' => 'required|numeric',
            'year' => 'required|numeric',
-           'porgram' => 'required|numeric',
+           //'porgram' => 'required|numeric',
            'shift' => 'required|numeric',
+           'level' => 'required',
        ));
 
        if(empty($request->session()->get('applicant'))){
@@ -49,6 +51,8 @@ class AdmissionController extends Controller
             $applicant->fill($validatedData);
             $request->session()->put('applicant', $applicant);
         }
+
+        //return $applicant;
 
         return redirect()->route('admission.personal');
 
@@ -65,6 +69,7 @@ class AdmissionController extends Controller
     {
         $validatedData = $this->validate($request,array(
            'name' => 'required',
+
            'fname' => 'required',
            'mname' => 'required',
            'dob' => 'required',
@@ -80,51 +85,155 @@ class AdmissionController extends Controller
        ));
 
        $applicant = $request->session()->get('applicant');
+        //$request->session()->forget('applicant');
+
 
        $applicant->fill($validatedData);
-       $request->session()->put('applicant', $applicant);
+       // $applicant->name     = $request->name;
+       // $applicant->fname     = $request->fname;
+       // $applicant->mname     = $request->mname;
+       $applicant->guardian_relation     = $request->relation;
+
+       $image = $request->file('image');
+       $slug  = str_slug($request->name);
+       if (isset($image)){
+           if (!Storage::disk('public')->exists('admission')){
+               Storage::disk('public')->makeDirectory('admission');
+           }
+           $date = Carbon::now()->toDateString();
+           $imagename = $slug.'-'.$date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+           $appImage = Image::make($image)->resize(400, 400)->save($image->getClientOriginalExtension());
+
+           Storage::disk('public')->put('admission/'.$imagename, $appImage);
+
+       } else {
+           $imagename = 'default.png';
+       }
+       $password = str_random(8);
+       $applicant->image     = $imagename;
+       $applicant->password     = Hash::make($password);
+       //return $applicant;
+       $applicant->save();
+       //return $applicant;
+       //$request->session()->forget('applicant');
+
+       $request->session()->put('applicant_id', $applicant->id);
 
        return redirect()->route('admission.academic');
 
     }
     public function getAcademic(Request $request)
     {
-        $applicant = $request->session()->get('applicant');
+        $applicant_id = $request->session()->get('applicant_id');
+        $applicant = Application::find($applicant_id);
+        //return $applicant;
         return view('frontend.admission.from.academic-info')->withApplicant($applicant);
 
     }
     public function postAcademic(Request $request)
     {
-        $validatedData = $this->validate($request, array(
-            'ssc_roll' => 'required|numeric',
-            'ssc_reg' => 'required|numeric',
-            'ssc_year' => 'required|numeric',
-            'ssc_board' => 'required|alpha',
-            'hsc_roll' => 'required|numeric',
-            'hsc_reg' => 'required|numeric',
-            'hsc_year' => 'required|numeric',
-            'hsc_board' => 'required|alpha',
-            'hsc_marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
-            'ssc_marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
-        ));
 
+        //return $request->all();
+        // $validatedData = $this->validate($request, array(
+        //     'roll' => 'required|numeric',
+        //     'reg' => 'required|numeric',
+        //     'passing_year' => 'required|numeric',
+        //     'title' => 'required|alpha',
+        //     'institute' => 'required|alpha',
+        //     '' => 'required|numeric',
+        //     'hsc_reg' => 'required|numeric',
+        //     'hsc_year' => 'required|numeric',
+        //     'hsc_board' => 'required|alpha',
+        //     'hsc_marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
+        //     'ssc_marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
+        // ));
+
+        $input = $request->all();
+        //return $input;
+        $applicant_id = $request->session()->get('applicant_id');
+
+        for ($i=0; $i < count( $input['roll']) ; $i++) {
+            $academic  = new Academic;
+            $academic->applicant_id = $applicant_id;
+            $academic->title = 'ssc';
+            $academic->roll = $request->roll[$i];
+            $academic->reg = $request->reg[$i];
+            $academic->institute = $request->institute[$i];
+            $academic->group = $request->group[$i];
+            $academic->passing_year = $request->passing_year[$i];
+            $academic->board = $request->board[$i];
+            $academic->result = $request->result[$i];
+
+            $image = $request->file('marksheet')[$i];
+
+            //return $image;
+
+            $slug  = str_slug($request->title[$i]);
+            if (isset($image)){
+                if (!Storage::disk('public')->exists('admission/academic')){
+                    Storage::disk('public')->makeDirectory('admission/academic');
+                }
+                $date = Carbon::now()->toDateString();
+                $imagename = $slug.'-'.$date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+                $appImage = Image::make($image)->resize(400, 400)->save($image->getClientOriginalExtension());
+
+                Storage::disk('public')->put('admission/academic'.$imagename, $appImage);
+
+            } else {
+                $imagename = 'default.png';
+            }
+            $academic->marksheet = $imagename;
+            $academic->save();
+
+
+
+            //return 'ok';
+
+        }
+
+        // if(empty($request->session()->get('academic'))){
+        //
+        //      $request->session()->put('academic', $input);
+        //  }else{
+        //      $academic = $request->session()->get('academic');
+        //      $academic->session()->put('academic', $input);
+        //  }
+        //
+
+
+
+
+        //$request->session()->put('applicant', $applicant);
+
+        //$r =  $request->session()->get('academic');
+
+        //return $r;
+
+        return redirect()->route('admission.choice');
+    }
+
+    public function getChoice(Request $request)
+    {
         $applicant = $request->session()->get('applicant');
+        $academic = $request->session()->get('academic');
+        $programs = Programe::all();
+        return view('frontend.admission.from.choice')->withApplicant($applicant)->withPrograms($programs)->withAcademic($academic);
 
-        $applicant->ssc_roll = $request->ssc_roll;
-        $applicant->ssc_reg = $request->ssc_reg;
-        $applicant->ssc_year = $request->ssc_year;
-        $applicant->ssc_board = $request->ssc_board;
-        $applicant->hsc_roll = $request->hsc_roll;
-        $applicant->hsc_reg = $request->hsc_reg;
-        $applicant->hsc_year = $request->hsc_year;
-        $applicant->hsc_board = $request->hsc_board;
+    }
+    public function postChoice(Request $request)
+    {
 
-        $request->session()->put('applicant', $applicant);
+        //return $request->all();
+        $applicant_id = $request->session()->get('applicant');
+        //$academic = $request->session()->get('academic');
 
-        $r =  $request->session()->get('applicant');
-        return $r;
+        //return $applicant_id;
 
-        return redirect()->route('admission.academic');
+        $applicant = Application::where('id',$applicant_id->id)->first();
+        //return $applicant;
+        $applicant->programs()->attach($request->to);
+
+        return $applicant;
     }
     public function verify()
     {

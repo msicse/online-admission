@@ -19,6 +19,8 @@ class CreateProgramesTable extends Migration
             $table->string('name');
             $table->string('short_name');
             $table->string('slug');
+            $table->integer('seat');
+            $table->tinyInteger('level');
             $table->boolean('status');
 
             $table->foreign('department_id')

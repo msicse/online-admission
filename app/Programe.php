@@ -10,4 +10,8 @@ class Programe extends Model
     {
         return $this->belongsTo('App\Department','department_id');
     }
+
+    public function applications(){
+        return $this->belongsToMany('App\Application', 'application_programe')->withTimestamps();
+    }
 }

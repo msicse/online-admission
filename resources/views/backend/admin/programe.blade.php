@@ -105,6 +105,16 @@
                     @csrf
                     <div class="form-group form-float">
 
+                        <label class="form-label">Level</label>
+
+                        <select name="level" class="form-control show-tick form-line">
+                            <option value="">-- Please select --</option>
+                            <option value="1" >Undergraduate</option>
+                            <option value="2" >Postgraduate</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-float">
+
                         <label class="form-label">Department</label>
 
                         <select name="department" class="form-control show-tick form-line">
@@ -127,6 +137,12 @@
                         <div class="form-line">
                             <input type="text" id="short_name" name="short_name" class="form-control">
                             <label class="form-label">Short Name</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" id="short_name" name="short_name" class="form-control">
+                            <label class="form-label">Number of Seat</label>
                         </div>
                     </div>
 
