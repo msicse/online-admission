@@ -44,36 +44,39 @@
                         <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.choice.submit') }}" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <select name="from[]" id="undo_redo" class="form-control" size="13" multiple="multiple">
-                                        @foreach( $programs as $data )
-                                        <option value="{{ $data->id }}"> {{ $data->name }} </option>
-                                        @endforeach
+                            <div class="row text-center">
+                                <div class="col-md-8">
+                                    <h3>Md.Sumon Islam</h3>
+                                    <div><strong>Contact No: </strong> +88017378877676</div>
+                                    <div><strong>Email: </strong> abcd@gmail.com</div>
 
-                                    </select>
                                 </div>
-
-                                <div class="col-md-2">
-                                    <button type="button" id="undo_redo_undo" class="btn btn-primary btn-block"><i class="fa fa-undo" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i class="fa fa-forward" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_rightSelected" class="btn btn-default btn-block"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i class="fa fa-backward" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-                                </div>
-
-                                <div class="col-md-5">
-                                    <select name="to[]" id="undo_redo_to" class="form-control" size="13" multiple="multiple"></select>
+                                <div class="col-md-4">
+                                    <img src="{{ asset('frontend/img/team/team-1.jpg') }}" height="150" class="img-thumbnail" alt="">
                                 </div>
                             </div>
+                            <div class="card-header">Personal Information</div>
                             <div class="row mt-10">
-                                <div class="col-md-4 offset-md-4 text-center  mt-10">
-                                    <button type="button" class="btn btn-info btn-width" name="btn-personal-prev" id="btn-personal-prev" >Previous</button>
-                                    <button type="submit" class="btn btn-success btn-width" id="form-submit"> Submit </button>
-                                    <button type="button" class="btn btn-success btn-width" id="btn-t"> Test </button>
+
+                                <div class="col">
+                                    <div class=""><strong>Father Name:</strong> Father  Name</div>
+                                    <div class=""><strong>Date of Birth:</strong> Father  Name</div>
+                                    <div class=""><strong>Guardian Name:</strong> Father  Name</div>
+                                    <div class=""><strong>Present Address:</strong> Father  Name</div>
+                                    <div class=""><strong>Father Name:</strong> Father  Name</div>
                                 </div>
+
+                                <div class="col">
+                                    <div class=""><strong>Mother Name:</strong> Mother  Name</div>
+                                    <div class=""><strong>Gender:</strong> Father  Name</div>
+                                    <div class=""><strong>Relation with Guardian:</strong> Father  Name</div>
+                                    <div class=""><strong>Parmanent Address:</strong> Father  Name</div>
+                                    <div class=""><strong>Father Name:</strong> Father  Name</div>
+                                </div>
+
                             </div>
+                            <div class="card-header">Academic Information</div>
+
                         </form> <!-- End form -->
                    </div> <!-- End card-body -->
                </div><!--  End Card -->

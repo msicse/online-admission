@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProgramsTableSeeder extends Seeder
+class ProgramesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -47,7 +47,7 @@ class ProgramsTableSeeder extends Seeder
                 'seat' => 50,
                 'level' => 1,
                 'status' => 1,
-            ],
+            ]
         ]);
     }
 }

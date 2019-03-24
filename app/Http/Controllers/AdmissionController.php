@@ -154,7 +154,7 @@ class AdmissionController extends Controller
 
         for ($i=0; $i < count( $input['roll']) ; $i++) {
             $academic  = new Academic;
-            $academic->applicant_id = $applicant_id;
+            $academic->application_id = $applicant_id;
             $academic->title = 'ssc';
             $academic->roll = $request->roll[$i];
             $academic->reg = $request->reg[$i];
@@ -233,7 +233,16 @@ class AdmissionController extends Controller
         //return $applicant;
         $applicant->programs()->attach($request->to);
 
-        return $applicant;
+        //return $applicant;
+        return redirect()->route('admission.confirm');
+    }
+    public function getConfirm()
+    {
+        return view('frontend.admission.from.cv');
+    }
+    public function postConfirm()
+    {
+        // code...
     }
     public function verify()
     {
