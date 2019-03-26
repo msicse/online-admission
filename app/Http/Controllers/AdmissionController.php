@@ -238,7 +238,8 @@ class AdmissionController extends Controller
     }
     public function getConfirm()
     {
-        return view('frontend.admission.from.cv');
+        $applicant = Application::find(8);
+        return view('frontend.admission.from.cv')->withApplicant($applicant);
     }
     public function postConfirm()
     {
