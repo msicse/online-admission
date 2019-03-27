@@ -59,6 +59,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
     Route::resource('users','UserController');
     Route::resource('departments','DepartmentController');
     Route::resource('programs','ProgrameController');
+    Route::resource('programs','ProgrameController');
 });
 
 //Authors Routes

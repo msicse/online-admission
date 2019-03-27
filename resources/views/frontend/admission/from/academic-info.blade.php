@@ -140,10 +140,10 @@
 
                                         <div class="col-md-8">
                                             <select name="passing_year[]" class="form-control form-control-sm " required>
-                                                  <option value="" selected>Select One</option>
-                                                  <option value="1">Male</option>
-                                                  <option value="2">Female</option>
-                                                  <option value="3">Others</option>
+                                                <option value="" selected>Select One</option>
+                                                @for( $i = date('Y') - 10; $i <= date('Y'); $i++ )
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
                                             </select>
                                             @if ($errors->has('passing_year'))
                                                 <span class="invalid-feedback" role="alert">
@@ -180,7 +180,7 @@
 
                                              <div class="custom-file">
                                                   <input type="file" class="custom-file-input" id="customFile" name="marksheet[]" required>
-                                                  <label class="custom-file-label" for="customFile">Choose Image</label>
+                                                  <label class="custom-file-label" for="customFile">Upload Marksheet</label>
                                                   @if ($errors->has('marksheet'))
                                                       <span class="invalid-feedback" role="alert">
                                                           <strong>{{ $errors->first('marksheet') }}</strong>
@@ -295,9 +295,10 @@
                                         <div class="col-md-8">
                                             <select name="passing_year[]" class="form-control form-control-sm " required>
                                                   <option value="" selected>Select One</option>
-                                                  <option value="1">Male</option>
-                                                  <option value="2">Female</option>
-                                                  <option value="3">Others</option>
+
+                                                  @for( $i = date('Y') - 10; $i <= date('Y'); $i++ )
+                                                  <option value="{{ $i }}">{{ $i }}</option>
+                                                  @endfor
                                             </select>
                                             @if ($errors->has('passing_year'))
                                                 <span class="invalid-feedback" role="alert">
@@ -328,13 +329,13 @@
 
                                  <div class="col">
                                      <div class="form-group row ">
-                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Marksheet') }}</label>
+                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Marksheet Image') }}</label>
 
                                          <div class="col-md-8">
 
                                              <div class="custom-file">
                                                   <input type="file" class="custom-file-input" id="customFile" name="marksheet[]" required>
-                                                  <label class="custom-file-label" for="customFile">Choose Image</label>
+                                                  <label class="custom-file-label" for="customFile">Upload Marksheet</label>
                                                   @if ($errors->has('marksheet'))
                                                       <span class="invalid-feedback" role="alert">
                                                           <strong>{{ $errors->first('marksheet') }}</strong>
@@ -451,9 +452,10 @@
                                         <div class="col-md-8">
                                             <select name="passing_year[]" class="form-control form-control-sm " required>
                                                   <option value="" selected>Select One</option>
-                                                  <option value="1">Male</option>
-                                                  <option value="2">Female</option>
-                                                  <option value="3">Others</option>
+                                                  @for( $i = date('Y') - 10; $i <= date('Y'); $i++ )
+                                                  <option value="{{ $i }}">{{ $i }}</option>
+                                                  @endfor
+
                                             </select>
                                             @if ($errors->has('passing_year'))
                                                 <span class="invalid-feedback" role="alert">
