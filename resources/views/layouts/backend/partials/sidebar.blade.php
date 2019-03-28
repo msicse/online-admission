@@ -60,6 +60,13 @@
                     <span>Users</span>
                 </a>
             </li>
+            <li class="header">Admission</li>
+            <li class="{{ Request::is('admin/applications*') ? 'active' : '' }}">
+                <a href="{{ route('admin.applications.index') }}">
+                    <i class="material-icons">people</i>
+                    <span>Applications</span>
+                </a>
+            </li>
             @endif
 
             @if (Auth::user()->role->id == 2 )

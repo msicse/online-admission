@@ -60,6 +60,11 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
     Route::resource('departments','DepartmentController');
     Route::resource('programs','ProgrameController');
     Route::resource('programs','ProgrameController');
+
+    //Admission
+    Route::get('applications', 'ApplicationController@index')->name('applications.index');
+
+
 });
 
 //Authors Routes
