@@ -14,4 +14,10 @@ class ApplicationController extends Controller
         $applications = Application::all();
         return view('backend.admin.admission.index')->withApplications($applications);
     }
+
+    public function show($id)
+    {
+        $application = Application::find($id);
+        return view('backend.admin.admission.show')->withApplication($application);
+    }
 }

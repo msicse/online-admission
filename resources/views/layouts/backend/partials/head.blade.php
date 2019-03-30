@@ -29,5 +29,8 @@
     <link href="{{ asset('backend/css/themes/all-themes.css') }}" rel="stylesheet" />
 
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet" />
+    <style>
+        .theme-teal .navbar { background: #fff !important;}
+    </style>
     @stack('css')
 </head>

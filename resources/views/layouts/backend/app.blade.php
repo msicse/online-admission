@@ -28,8 +28,8 @@
     <!-- #END# Overlay For Sidebars -->
     <!-- Search Bar -->
     <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
+        <div class="search-icon ">
+            <i class="material-icons" >search</i>
         </div>
         <input type="text" placeholder="START TYPING...">
         <div class="close-search">
@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
-                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons" style="color: #999;">search</i></a></li>
                     <!-- #END# Call Search -->
                 </ul>
             </div>

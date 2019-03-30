@@ -177,7 +177,7 @@ class AdmissionController extends Controller
                 $imagename = $slug.'-'.$date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
                 $appImage = Image::make($image)->resize(400, 400)->save($image->getClientOriginalExtension());
 
-                Storage::disk('public')->put('admission/academic'.$imagename, $appImage);
+                Storage::disk('public')->put('admission/academic/'.$imagename, $appImage);
 
             } else {
                 $imagename = 'default.png';

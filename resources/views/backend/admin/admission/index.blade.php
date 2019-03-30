@@ -5,18 +5,14 @@
 @push('css')
 	<!-- JQuery DataTable Css -->
     <link href="{{ asset('backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <style>
+        .img-thumbnail { height: 100px;}
+    </style>
 
 @endpush
 @section('content')
 <div class="container-fluid">
-    <div class="block-header">
-        <button type="button" class="btn btn-primary waves-effect " data-toggle="modal" data-target="#craeatePrograme">
-            <i class="material-icons">add</i>
 
-            <span>Add New Program</span>
-        </button>
-
-    </div>
     <!-- Exportable Table -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -33,20 +29,24 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Program Name</th>
-                                    <th>Department</th>
-                                    <th>Short Name</th>
-                                    <th>Slug</th>
+                                    <th>Name</th>
+                                    <th>Level</th>
+                                    <th>Semester</th>
+                                    <th>Shift</th>
+                                    <th>Year</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Program Name</th>
-                                    <th>Department</th>
-                                    <th>Short Name</th>
-                                    <th>Slug</th>
+                                    <th>Name</th>
+                                    <th>Level</th>
+                                    <th>Semester</th>
+                                    <th>Shift</th>
+                                    <th>Year</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -55,31 +55,27 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $data->name }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->slug }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success waves-effect " data-toggle="modal" data-target="#">
+                                        {{ ($data->level == 1 ) ? 'Under Graduate' : '' }}
+                                        {{ ($data->level == 2 ) ? 'Post Graduate' : '' }}
+                                    </td>
+                                    <td>
+                                        {{ ($data->semester == 1) ? 'Spring' : '' }}
+                                        {{ ($data->semester == 2) ? 'Summer' : '' }}
+                                        {{ ($data->semester == 3) ? 'Fall' : '' }}
+                                    </td>
+                                    <td>
+                                        {{ ($data->shift == 1) ? 'Day' : ''}}
+                                        {{ ($data->level == 2) ? 'Evening' : ''}}
+                                    </td>
+
+                                    <td>{{ $data->year }}</td>
+                                    <td> <img src="{{ Storage::disk('public')->url('admission/'.$data->image) }}" class="img-thumbnail" height="100"> </td>
+                                    <td class="text-center">
+                                        <a href="{{ route('admin.applications.show',$data->id) }}" class="btn btn-success waves-effect " >
                                             <i class="material-icons">visibility</i>
-                                        </button>
+                                        </a>
 
-                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditPrograme" data-id="{{ $data->id }}">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger waves-effect"
-                                                onclick="if(confirm('Are You sure want To Delete?')){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-{{ $data->id }}').submit();
-                                                } else {
-                                                event.preventDefault();
-                                                }" >
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.programs.destroy',$data->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-
-                                        </form>
 
                                     </td>
                                 </tr>

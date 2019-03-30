@@ -14,10 +14,22 @@ class DatabaseSeeder extends Seeder
     {
         //$this->call(UserTableSeeder::class);
         //$this->call(RoleTableSeeder::class);
-        $this->call(DepartmentsTableSeeder::class);
-        $this->call(ProgramesTableSeeder::class);
+        //$this->call(DepartmentsTableSeeder::class);
+        //$this->call(ProgramesTableSeeder::class);
 
         //$this->call(SscsTableSeeder::class);
         //$this->call(HscsTableSeeder::class);
+
+        factory(App\Application::class, 5)
+            ->create()
+            ->each(function(App\Application $application) {
+                factory(App\Academic::class, 2)
+                    ->create([
+                        'application_id' => $application->id,
+                    ]);
+            })
+            ->each(function($u) {
+                $u->programs()->save(factory(App\Programe::class)->make());
+            });
     }
 }
