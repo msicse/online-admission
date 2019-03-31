@@ -18,18 +18,17 @@ class DatabaseSeeder extends Seeder
         //$this->call(ProgramesTableSeeder::class);
 
         //$this->call(SscsTableSeeder::class);
-        //$this->call(HscsTableSeeder::class);
+        $this->call(HscsTableSeeder::class);
 
-        factory(App\Application::class, 5)
-            ->create()
-            ->each(function(App\Application $application) {
-                factory(App\Academic::class, 2)
-                    ->create([
-                        'application_id' => $application->id,
-                    ]);
-            })
-            ->each(function($u) {
-                $u->programs()->save(factory(App\Programe::class)->make());
-            });
+        // factory(App\Application::class, 5)
+        //     ->create()
+        //     ->each(function(App\Application $application) {
+        //         factory(App\Academic::class, 2)
+        //             ->create([
+        //                 'application_id' => $application->id,
+        //             ]);
+        //     });
+
     }
 }
+ //$foo->bars()->save(factory(App\Bar::class)->create());

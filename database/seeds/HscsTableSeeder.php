@@ -11,20 +11,17 @@ class HscsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('hscs')->insert([
-            [
-                'ssc_id' => 1,
-                'roll' => 131313,
-                'reg' => 313131,
-                'board' => 'Rajshahi',
-                'institute' => '',
-                'session' => '2011-12',
-                'group' => 'Science',
-                'type' => 1,//1=regular 2=irr
-                'passing_year' => 2012,
-                'result' => 4.6
-            ],
+        for ($i=0; $i < 5 ; $i++) {
+            for ($j=0; $j < 3; $j++) {
+                DB::table('application_programe')->insert([
+                    [
+                        'application_id'    => rand(1,50),
+                        'programe_id'    => rand(1,5),
+                    ],
 
-        ]);
+                ]);
+            }
+        }
+
     }
 }
