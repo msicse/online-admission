@@ -55,6 +55,8 @@ class ProgrameController extends Controller
         $program->department_id = $request->input('department');
         $program->name = $request->input('name');
         $program->short_name = $request->input('short_name');
+        $program->seat = $request->input('seat');
+        $program->level = $request->input('level');
         $program->slug = $slug;
         $program->status = true;
         $program->save();

@@ -141,7 +141,7 @@
                     </div>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" id="short_name" name="short_name" class="form-control">
+                            <input type="text" id="seat" name="seat" class="form-control">
                             <label class="form-label">Number of Seat</label>
                         </div>
                     </div>

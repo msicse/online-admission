@@ -11,7 +11,7 @@ class HscsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 5 ; $i++) {
+        for ($i=0; $i < 50 ; $i++) {
             for ($j=0; $j < 3; $j++) {
                 DB::table('application_programe')->insert([
                     [
