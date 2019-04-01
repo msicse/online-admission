@@ -36,7 +36,7 @@
                             <div><strong>Year : </strong> {{ $application->year }}</div>
                             <div class="mb-10"><strong>Shift : </strong>
                                 {{ ($application->shift == 1) ? 'Day' : 'Evening'}}
-                                
+
                             </div>
                         </div>
                     </div>
@@ -160,13 +160,3 @@
 
 
 @endsection
-
-@push('js')
-
-<script>
-
-
-</script>
-
-
-@endpush

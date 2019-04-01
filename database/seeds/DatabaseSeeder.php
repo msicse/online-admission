@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
         //$this->call(DepartmentsTableSeeder::class);
         //$this->call(ProgramesTableSeeder::class);
 
-        //$this->call(SscsTableSeeder::class);
+        $this->call(SscsTableSeeder::class);
 
-        $this->call(HscsTableSeeder::class);
-
+        // $this->call(HscsTableSeeder::class);
+        //
         // factory(App\Application::class, 50)
         //     ->create()
         //     ->each(function(App\Application $application) {

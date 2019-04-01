@@ -67,6 +67,13 @@
                     <span>Applications</span>
                 </a>
             </li>
+            <li class="{{ Request::is('admin/admission/result') ? 'active' : '' }}">
+                <a href="{{ route('admin.applications.result') }}">
+                    <i class="material-icons">people</i>
+                    <span>Result</span>
+                </a>
+            </li>
+
             @endif
 
             @if (Auth::user()->role->id == 2 )

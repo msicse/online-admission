@@ -65,6 +65,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
     Route::get('applications', 'ApplicationController@index')->name('applications.index');
     Route::get('applications/{id}', 'ApplicationController@show')->name('applications.show');
     Route::get('applications/approved/{id}', 'ApplicationController@applicationApproved')->name('applications.approved');
+    Route::get('admission/result', 'ApplicationController@getResult')->name('applications.result');
 
 
 });

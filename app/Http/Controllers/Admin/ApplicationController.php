@@ -27,4 +27,10 @@ class ApplicationController extends Controller
         $application->save();
         return view('backend.admin.admission.show')->withApplication($application);
     }
+
+    public function getResult()
+    {
+        
+        return view('backend.admin.admission.show')->withApplication($application);
+    }
 }

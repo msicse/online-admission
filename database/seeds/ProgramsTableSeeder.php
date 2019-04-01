@@ -47,7 +47,7 @@ class ProgramsTableSeeder extends Seeder
                 'seat' => 50,
                 'level' => 1,
                 'status' => 1,
-            ],
+            ]
         ]);
     }
 }
