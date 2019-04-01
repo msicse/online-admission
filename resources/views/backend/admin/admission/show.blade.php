@@ -26,7 +26,7 @@
                 <div class="body">
                     <div class="row">
                         <div class="col text-center mt-10 mb-10">
-                            <img src="{{ Storage::disk('public')->url('admission/'.$application->image) }}" class="" height="150" alt="">
+                            <img src="{{ asset('storage/admission/'. $application->image ) }}" class="" height="150" alt="">
                             <div class="mt-10"><strong>Appling For : </strong> {{ ($application->level == 1 ) ? 'Under Graduate' : 'Post Graduate'  }}</div>
                             <div><strong>Semester : </strong>
                                 {{ ($application->semester == 1) ? 'Spring' : '' }}
@@ -35,8 +35,8 @@
                             </div>
                             <div><strong>Year : </strong> {{ $application->year }}</div>
                             <div class="mb-10"><strong>Shift : </strong>
-                                {{ ($application->shift == 1) ? 'Day' : ''}}
-                                {{ ($application->level == 2) ? 'Evening' : ''}}
+                                {{ ($application->shift == 1) ? 'Day' : 'Evening'}}
+                                
                             </div>
                         </div>
                     </div>
@@ -138,13 +138,19 @@
                         </tr>
                         <tr>
                             <td colspan="9" class="text-center marksheet">
-                                <img src="{{ Storage::disk('public')->url('admission/academic/'.$data->marksheet) }}" alt="">
+                                <img src="{{ asset('storage/admission/academic/'.$data->marksheet) }}" alt="">
                             </td>
                         </tr>
                         @endforeach
                       </tbody>
                     </table>
 
+                    <div class="col text-center">
+                        <a href="{{ route('admin.applications.index') }}" class="btn btn-primary">Back</a>
+                        @if( $application->approved == 1 )
+                        <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-success disable">Approved</a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

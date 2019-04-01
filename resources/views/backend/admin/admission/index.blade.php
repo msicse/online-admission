@@ -70,7 +70,7 @@
                                     </td>
 
                                     <td>{{ $data->year }}</td>
-                                    <td> <img src="{{ Storage::disk('public')->url('admission/'.$data->image) }}" class="img-thumbnail" height="100"> </td>
+                                    <td> <img src="{{ asset('storage/admission/'.$data->image) }}" class="img-thumbnail" height="100"> </td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.applications.show',$data->id) }}" class="btn btn-success waves-effect " >
                                             <i class="material-icons">visibility</i>

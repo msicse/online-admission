@@ -13,8 +13,8 @@ class ProgramesTableSeeder extends Seeder
     {
         DB::table('programes')->insert([
             [
-                'department_id' => 1,
-                'name' => 'Computer Science Engenirring',
+                'department_id' => 2,
+                'name' => 'Computer Science Enginieering',
                 'short_name' => 'CSE',
                 'slug' => 'cse',
                 'seat' => 50,
@@ -22,8 +22,8 @@ class ProgramesTableSeeder extends Seeder
                 'status' => 1,
             ],
             [
-                'department_id' => 1,
-                'name' => 'Civil Engenirring',
+                'department_id' => 2,
+                'name' => 'Civil Enginieering',
                 'short_name' => 'CE',
                 'slug' => 'ce',
                 'seat' => 50,
@@ -31,8 +31,8 @@ class ProgramesTableSeeder extends Seeder
                 'status' => 1,
             ],
             [
-                'department_id' => 1,
-                'name' => 'Electricle and Electronics  Engenirring',
+                'department_id' => 2,
+                'name' => 'Electrical and Electronic  Enginieering',
                 'short_name' => 'EEE',
                 'slug' => 'eee',
                 'seat' => 50,
@@ -40,10 +40,19 @@ class ProgramesTableSeeder extends Seeder
                 'status' => 1,
             ],
             [
-                'department_id' => 1,
-                'name' => 'Mecanicle Engenirring',
-                'short_name' => 'ME',
-                'slug' => 'ME',
+                'department_id' => 2,
+                'name' => 'Mecanical and Industrial Production Enginieering',
+                'short_name' => 'MIPE',
+                'slug' => 'mipe',
+                'seat' => 50,
+                'level' => 1,
+                'status' => 1,
+            ],
+            [
+                'department_id' => 2,
+                'name' => 'Textile Enginieering',
+                'short_name' => 'TE',
+                'slug' => 'te',
                 'seat' => 50,
                 'level' => 1,
                 'status' => 1,
