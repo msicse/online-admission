@@ -59,8 +59,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
     Route::resource('users','UserController');
     Route::resource('departments','DepartmentController');
     Route::resource('programs','ProgrameController');
-    Route::resource('programs','ProgrameController');
-
+   
     //Admission
     Route::get('applications', 'ApplicationController@index')->name('applications.index');
     Route::get('applications/{id}', 'ApplicationController@show')->name('applications.show');

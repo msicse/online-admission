@@ -30,7 +30,7 @@ class ApplicationController extends Controller
 
     public function getResult()
     {
-        
-        return view('backend.admin.admission.show')->withApplication($application);
+        $applications = Application::where('approved', true)->where('level', 1)->get();
+        return view('backend.admin.admission.result')->withApplications($applications);
     }
 }

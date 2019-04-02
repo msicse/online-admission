@@ -35,7 +35,7 @@ class CreateApplicationsTable extends Migration
             $table->string('image');
             $table->string('password');
             $table->string('merit')->nullable();
-            $table->boolean('approved')->nullable();
+            $table->boolean('approved')->default(false);
 
 
             $table->foreign('program_id')

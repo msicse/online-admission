@@ -25,7 +25,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="exampleTest">
+                        <table class="table table-bordered table-striped table-hover ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -108,6 +108,11 @@
 	<script src="{{ asset('backend/js/pages/tables/jquery-datatable.js') }}"></script>
 
 <script>
+    $(document).ready(function() {
+        $('#example').dataTable( {
+            "pageLength": 20
+        } );
+    } );
 
 </script>
 
