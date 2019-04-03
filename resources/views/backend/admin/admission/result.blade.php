@@ -53,7 +53,7 @@
                             <tbody>
                                 @foreach( $applications as $key => $data)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $key + 1 }} {{ (date('m') == 4 )? 'april' : 'no april' }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>
                                         {{ ($data->level == 1 ) ? 'Under Graduate' : '' }}

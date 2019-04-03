@@ -111,6 +111,7 @@ class AdmissionController extends Controller
        }
        $password = str_random(8);
        $applicant->image     = $imagename;
+       $applicant->approved     = false;
        $applicant->password     = Hash::make($password);
        //return $applicant;
        $applicant->save();

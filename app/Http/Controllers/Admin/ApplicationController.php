@@ -23,7 +23,7 @@ class ApplicationController extends Controller
     public function applicationApproved($id)
     {
         $application = Application::find($id);
-        $application->approved = 2;
+        $application->approved = 1;
         $application->save();
         return view('backend.admin.admission.show')->withApplication($application);
     }
