@@ -20,7 +20,7 @@
                 <div class="header">
                     <h2>
                         All Applications
-                        <span class="badge ">{{ $applications->count() }}</span>
+                        <span class="badge ">{{ $summers->count() }}</span>
                     </h2>
                 </div>
                 <div class="body">
@@ -51,9 +51,11 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach( $applications as $key => $data)
+                                @foreach( $summers as $key => $data)
+
+                                @if( $data->year == date('Y'))
                                 <tr>
-                                    <td>{{ $key + 1 }} {{ (date('m') == 4 )? 'april' : 'no april' }}</td>
+                                    <td>{{ $key + 1 }} {{ date('Y') }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>
                                         {{ ($data->level == 1 ) ? 'Under Graduate' : '' }}
@@ -79,6 +81,9 @@
 
                                     </td>
                                 </tr>
+
+                                @endif
+
                                 @endforeach
                             </tbody>
                         </table>

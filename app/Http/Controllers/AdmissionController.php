@@ -239,7 +239,14 @@ class AdmissionController extends Controller
     }
     public function getConfirm()
     {
+        $applicant_id = $request->session()->get('applicant');
         $applicant = Application::find(8);
+
+        
+        $result = 0;
+        foreach( $applicant->academics as $data ){
+            $result = $data->result;
+        }
         return view('frontend.admission.from.cv')->withApplicant($applicant);
     }
     public function postConfirm()
@@ -253,6 +260,21 @@ class AdmissionController extends Controller
         //return view('products.create-step1',compact('product', $product));
         return view('frontend.admission.from.verify')->withPrograms($programs);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function applicationVerifySubmit(Request $request)
     {
         //return 'ok';
