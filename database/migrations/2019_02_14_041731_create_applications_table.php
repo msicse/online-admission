@@ -26,7 +26,8 @@ class CreateApplicationsTable extends Migration
             $table->string('dob');
             $table->tinyInteger('gender');
             $table->string('phone');
-            $table->string('email');
+            $table->string('email')->unique();
+            $table->string('result')->nullable();
             $table->string('nationality');
             $table->string('guardian');
             $table->string('guardian_relation');
@@ -36,6 +37,7 @@ class CreateApplicationsTable extends Migration
             $table->string('password');
             $table->string('merit')->nullable();
             $table->boolean('approved')->default(false);
+            $table->rememberToken();
 
 
             $table->foreign('program_id')

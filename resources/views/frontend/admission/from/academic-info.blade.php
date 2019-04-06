@@ -38,7 +38,7 @@
                         <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.academic.submit') }}" enctype="multipart/form-data">
                             @csrf
 
-
+                            <input type="hidden" name="title[]" value="ssc">
                             <div class="card-header mb-10">
                                 SSC or Equivalent
                             </div>
@@ -196,6 +196,7 @@
                             <div class="card-header mb-10">
                                 {{ $applicant->shift == 1 ? 'HSC or Equivalent' : 'Diploma' }}
                             </div>
+                            <input type="hidden" name="title[]" value="hsc">
                             <div class="row mt-10">
                                 <div class="col">
                                     <div class="form-group row ">

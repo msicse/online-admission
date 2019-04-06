@@ -156,7 +156,7 @@ class AdmissionController extends Controller
         for ($i=0; $i < count( $input['roll']) ; $i++) {
             $academic  = new Academic;
             $academic->application_id = $applicant_id;
-            $academic->title = 'ssc';
+            $academic->title = $request->title[$i];
             $academic->roll = $request->roll[$i];
             $academic->reg = $request->reg[$i];
             $academic->institute = $request->institute[$i];
@@ -188,6 +188,7 @@ class AdmissionController extends Controller
 
 
 
+
             //return 'ok';
 
         }
@@ -209,13 +210,13 @@ class AdmissionController extends Controller
         //$r =  $request->session()->get('academic');
 
         //return $r;
-
+        $request->session()->put('applicant_id', $applicant_id);
         return redirect()->route('admission.choice');
     }
 
     public function getChoice(Request $request)
     {
-        $applicant = $request->session()->get('applicant');
+        $applicant = $request->session()->get('applicant_id');
         $academic = $request->session()->get('academic');
         $programs = Programe::all();
         return view('frontend.admission.from.choice')->withApplicant($applicant)->withPrograms($programs)->withAcademic($academic);
@@ -225,24 +226,32 @@ class AdmissionController extends Controller
     {
 
         //return $request->all();
-        $applicant_id = $request->session()->get('applicant');
+        $applicant_id = $request->session()->get('applicant_id');
         //$academic = $request->session()->get('academic');
 
         //return $applicant_id;
 
-        $applicant = Application::where('id',$applicant_id->id)->first();
+        $applicant = Application::where('id',$applicant_id)->first();
         //return $applicant;
         $applicant->programs()->attach($request->to);
+
+        $request->session()->put('applicant_id', $applicant->id);
 
         //return $applicant;
         return redirect()->route('admission.confirm');
     }
-    public function getConfirm()
-    {
-        $applicant_id = $request->session()->get('applicant');
-        $applicant = Application::find(8);
 
-        
+    public function editPersonal($id)
+    {
+        $application = Application::find($id);
+        return view('frontend.admission.from.edit-personal-info')->withApplication($application);
+    }
+    public function getConfirm( Request $request)
+    {
+        $applicant_id = $request->session()->get('applicant_id');
+        $applicant = Application::find($applicant_id);
+
+
         $result = 0;
         foreach( $applicant->academics as $data ){
             $result = $data->result;

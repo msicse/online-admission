@@ -12,23 +12,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(UserTableSeeder::class);
-        //$this->call(RoleTableSeeder::class);
-        //$this->call(DepartmentsTableSeeder::class);
+        // $this->call(RoleTableSeeder::class);
+        // $this->call(UserTableSeeder::class);
+        // $this->call(DepartmentsTableSeeder::class);
         //$this->call(ProgramesTableSeeder::class);
 
-        $this->call(SscsTableSeeder::class);
+        //$this->call(SscsTableSeeder::class); // programs table
 
-        // $this->call(HscsTableSeeder::class);
-        //
-        // factory(App\Application::class, 50)
-        //     ->create()
-        //     ->each(function(App\Application $application) {
-        //         factory(App\Academic::class, 2)
-        //             ->create([
-        //                 'application_id' => $application->id,
-        //             ]);
-        //     });
+        //$this->call(HscsTableSeeder::class); //application_programs table
+
+        factory(App\Application::class, 50)
+            ->create()
+            ->each(function(App\Application $application) {
+                factory(App\Academic::class, 2)
+                    ->create([
+                        'application_id' => $application->id,
+                    ]);
+            });
 
     }
 }

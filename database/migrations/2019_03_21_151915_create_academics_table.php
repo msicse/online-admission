@@ -15,7 +15,7 @@ class CreateAcademicsTable extends Migration
     {
         Schema::create('academics', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('applicant_id');
+            $table->integer('application_id');
             $table->integer('roll');
             $table->integer('reg');
             $table->string('title');

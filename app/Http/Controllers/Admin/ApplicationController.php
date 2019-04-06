@@ -13,7 +13,9 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        $applications = Application::all();
+        $applications = Application::where('year', date('Y'))
+                                    ->where('approved',false )
+                                    ->get();
         return view('backend.admin.admission.index')->withApplications($applications);
     }
 
@@ -45,7 +47,7 @@ class ApplicationController extends Controller
                                 ->where('year', date('Y'))
                                 ->get();
 
-                              
+
         $summers = Application::where('approved', true)
                                 ->where('level', 1)
                                 ->where('shift', 2)

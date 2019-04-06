@@ -17,6 +17,7 @@ $factory->define(App\Application::class, function (Faker $faker) {
         'mname' => $faker->name,
         'dob' => rand(1,2),
         'gender' => rand(1,2),
+        'result' => rand(6,9),
         'phone'  => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'nationality' => 'Bangladeshi',
@@ -26,6 +27,6 @@ $factory->define(App\Application::class, function (Faker $faker) {
         'parmanent_address' => $faker->address,
         'image' => $image,
         'approved' => true,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => '$2y$10$5wIiUJVnyZrBkh3MjryzDO/mIubd9BuFlJJgJx0gCj0.mEB4PhZLK', // secret
     ];
 });

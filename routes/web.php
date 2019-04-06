@@ -36,6 +36,9 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
     Route::get('choice','AdmissionController@getChoice')->name('choice');
     Route::post('choice','AdmissionController@postChoice')->name('choice.submit');
+    //edit routes
+    Route::get('personal/{id}','AdmissionController@editPersonal')->name('personal.edit');
+
     Route::get('confirm','AdmissionController@getConfirm')->name('confirm');
     Route::post('confirm','AdmissionController@postConfirm')->name('confirm.submit');
 
@@ -48,10 +51,27 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::post('application/form','AdmissionController@applicationSubmit')->name('application.form.submit');
 
 
-    Route::get('login','AdmissionController@login')->name('login');
+
     Route::get('guidelines','AdmissionController@guideline')->name('guidelines');
     Route::get('complain','AdmissionController@complain')->name('complain');
+
+    Route::get('login','Auth\ApplicationLoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\ApplicationLoginController@login')->name('login.post');
+    Route::post('logout', 'Auth\ApplicationLoginController@logout')->name('logout');
+
 });
+
+//Application Login RouteServiceProvider
+
+
+Route::group(['prefix'=>'application','as'=>'application.','namespace'=>'Application','middleware'=>'application'], function() {
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('information', 'HomeController@info')->name('info');
+    Route::get('change-password', 'HomeController@getPassword')->name('password');
+    Route::post('change-password', 'HomeController@postPassword')->name('password.submit');
+});
+
+
 //Admin Routes
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
@@ -59,7 +79,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
     Route::resource('users','UserController');
     Route::resource('departments','DepartmentController');
     Route::resource('programs','ProgrameController');
-   
+
     //Admission
     Route::get('applications', 'ApplicationController@index')->name('applications.index');
     Route::get('applications/{id}', 'ApplicationController@show')->name('applications.show');

@@ -46,7 +46,7 @@
 
                             <div class="row text-center">
                                 <div class="col-md-8">
-                                    <h3>{{ $applicant->name }} {{ $applicant->id}}</h3>
+                                    <h3>{{ $applicant->name }} </h3>
                                     <div><strong>Contact No : </strong> {{ $applicant->phone }}</div>
                                     <div><strong>Email : </strong> {{ $applicant->email }}</div>
                                     <div>
@@ -213,7 +213,7 @@
                             </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    <a href="#" class="btn btn-info btn-width "> Edit Personal Info </a>
+                                    <a href="{{ route('admission.personal.edit', $applicant->id) }}" class="btn btn-info btn-width "> Edit Personal Info </a>
                                     <a href="#" class="btn btn-info btn-width "> Edit Academic Info </a>
                                     <a href="#" class="btn btn-info btn-width "> Edit Programs Info </a>
                                     <a href="#" class="btn btn-success btn-width "> Submit </a>
