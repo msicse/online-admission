@@ -38,6 +38,7 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::post('choice','AdmissionController@postChoice')->name('choice.submit');
     //edit routes
     Route::get('personal/{id}','AdmissionController@editPersonal')->name('personal.edit');
+    Route::put('personal/{id}','AdmissionController@editPersonalSubmit')->name('personal.edit.submit');
 
     Route::get('confirm','AdmissionController@getConfirm')->name('confirm');
     Route::post('confirm','AdmissionController@postConfirm')->name('confirm.submit');

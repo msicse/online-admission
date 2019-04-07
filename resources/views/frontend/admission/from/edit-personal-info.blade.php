@@ -8,6 +8,55 @@
         .display-n { display: none;}
         .display-blk { display: block;}
         .input-group-append button { height: 32px;}
+        #imagePreview {
+            width: 100%;
+            height: 180px;
+            background-position: center center;
+            background:url('../../frontend/frame.jpg');
+            background-color:#fff;
+            background-size: cover;
+            background-repeat:no-repeat;
+            display: inline-block;
+            box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+        .btn-primary
+        {
+          display:block;
+          border-radius:0px;
+          box-shadow:0px 4px 6px 2px rgba(0,0,0,0.2);
+          margin-top:-5px;
+        }
+        .imgUp
+        {
+          margin-bottom:15px;
+        }
+        .del
+        {
+          position:absolute;
+          top:0px;
+          right:15px;
+          width:30px;
+          height:30px;
+          text-align:center;
+          line-height:30px;
+          background-color:rgba(255,255,255,0.6);
+          cursor:pointer;
+        }
+        .imgAdd
+        {
+          width:30px;
+          height:30px;
+          border-radius:50%;
+          background-color:#4bd7ef;
+          color:#fff;
+          box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
+          text-align:center;
+          line-height:30px;
+          margin-top:0px;
+          cursor:pointer;
+          font-size:15px;
+        }
     </style>
 @endpush
 
@@ -30,8 +79,9 @@
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.personal.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.personal.edit.submit', $application->id) }}" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row ">
@@ -218,19 +268,18 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row mt-10">
-                                        <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
-                                        <div class="col-md-4">
-                                            <!-- <div class="custom-file">
-                                                <input type="file" name="image" class="custom-file-input" id="image" aria-describedby="image">
-                                                <label class="custom-file-label" for="image">Choose Image</label>
-                                             </div>
-                                             <span id="error_image" class="invalid-feedback" role="alert"></span> -->
-                                             <div class="custom-file">
-                                                  <input type="file" class="custom-file-input" id="image" name="image" required>
-                                                  <label class="custom-file-label" for="image">Upload Photo</label>
-                                                  <div class="invalid-feedback" id="error_image"></div>
-                                              </div>
+                                        <div class="col-md-4 offset-md-4 imgUp">
+
+                                            <div id="imagePreview"></div>
+                                            <label class="btn btn-primary">Upload Photo
+                                                <input type="file" class="uploadFile img" name="image" value="{{  }}" style="width: 0px;height: 0px;overflow: hidden;" required>
+				                            </label>
+                                            <span id="btn-cls"></span>
+
+
+
+
                                             @if ($errors->has('image'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('image') }}</strong>
@@ -242,7 +291,7 @@
                             </div>
 
                             <div class="row mt-10">
-                                <div class="col-md-4 offset-md-4 text-center  mt-10">
+                                <div class="col-md-4 offset-md-4 text-center  ">
                                     <button type="button" class="btn btn-info btn-width" name="btn-personal-prev" id="btn-personal-prev" >Previous</button>
                                     <button type="submit" class="btn btn-success btn-width" id="form-submit"> Submit </button>
                                 </div>
@@ -267,6 +316,36 @@
         uiLibrary: 'bootstrap4',
         iconsLibrary: 'fontawesome'
     });
+
+$(document).on("click", "i.del" , function() {
+    $("input[name = 'image']").val(null);
+	$('.imgUp').find('#imagePreview').css("background-image", "url(../../frontend/frame.jpg)");
+    $('#btn-cls').html('');
+	//$(this).parent().remove();
+    //uploadFile.closest(".imgUp").find('#imagePreview').css("background-image", "url("+this.result+")");
+
+});
+
+$(function() {
+    $(document).on("change",".uploadFile", function()
+    {
+    	var uploadFile = $(this);
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+        if (/^image/.test( files[0].type)){ // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
+
+            reader.onloadend = function(){ // set image data as background of div
+                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                uploadFile.closest(".imgUp").find('#imagePreview').css("background-image", "url("+this.result+")");
+                $('#btn-cls').append('<i class="fa fa-times del"></i>');
+            }
+        }
+
+    });
+});
 
 </script>
 @endpush

@@ -246,6 +246,13 @@ class AdmissionController extends Controller
         $application = Application::find($id);
         return view('frontend.admission.from.edit-personal-info')->withApplication($application);
     }
+    public function editPersonalSubmit(Request $request, $id)
+    {
+
+        return $request->image;
+        $application = Application::find($id);
+        return view('frontend.admission.from.edit-personal-info')->withApplication($application);
+    }
     public function getConfirm( Request $request)
     {
         $applicant_id = $request->session()->get('applicant_id');
