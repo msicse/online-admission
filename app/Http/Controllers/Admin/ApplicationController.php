@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Application;
+use App\Programe;
 
 use DB;
 
@@ -40,13 +41,17 @@ class ApplicationController extends Controller
 
     public function getResult()
     {
+        
+        $programs = Programe::all();
         $springs = Application::where('approved', true)
                                 ->where('level', 1)
                                 ->where('semester', 1)
                                 ->where('shift', 1)
                                 ->where('year', date('Y'))
+                                ->orderBy('result', 'desc')
                                 ->get();
-
+  
+                                //dd ($springs);
 
         $summers = Application::where('approved', true)
                                 ->where('level', 1)
@@ -55,19 +60,19 @@ class ApplicationController extends Controller
                                 ->where('year', date('Y'))
                                 ->get();
 
-        $users = DB::table('applications')
-            ->join('academics', 'applications.id', '=', 'academics.application_id')
-            //->join('orders', 'users.id', '=', 'orders.user_id')
-            ->select('applications.*', DB::raw('sum(academics.result) as fresult'))
-            ->get();
+        // $users = DB::table('applications')
+        //     ->join('academics', 'applications.id', '=', 'academics.application_id')
+        //     //->join('orders', 'users.id', '=', 'orders.user_id')
+        //     ->select('applications.*', DB::raw('sum(academics.result) as fresult'))
+        //     ->get();
 
-                                return $users;
-        $falls = Application::where('approved', true)
-                                ->where('level', 1)
-                                ->where('semester', 2)
-                                ->where('year', date('Y'))
-                                ->get();
+                               // return $users;
+        // $falls = Application::where('approved', true)
+        //                         ->where('level', 1)
+        //                         ->where('semester', 2)
+        //                         ->where('year', date('Y'))
+        //                         ->get();
 
-        return view('backend.admin.admission.result')->with( compact('springs', 'summers', 'falls'));
+        return view('backend.admin.admission.result')->with( compact('springs', 'summers', 'falls','programs'));
     }
 }

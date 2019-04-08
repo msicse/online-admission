@@ -24,70 +24,51 @@
                     </h2>
                 </div>
                 <div class="body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover ">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Level</th>
-                                    <th>Semester</th>
-                                    <th>Shift</th>
-                                    <th>Year</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Level</th>
-                                    <th>Semester</th>
-                                    <th>Shift</th>
-                                    <th>Year</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                @foreach( $summers as $key => $data)
 
-                                @if( $data->year == date('Y'))
-                                <tr>
-                                    <td>{{ $key + 1 }} {{ date('Y') }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>
-                                        {{ ($data->level == 1 ) ? 'Under Graduate' : '' }}
-                                        {{ ($data->level == 2 ) ? 'Post Graduate' : '' }}
-                                    </td>
-                                    <td>
-                                        {{ ($data->semester == 1) ? 'Spring' : '' }}
-                                        {{ ($data->semester == 2) ? 'Summer' : '' }}
-                                        {{ ($data->semester == 3) ? 'Fall' : '' }}
-                                    </td>
-                                    <td>
-                                        {{ ($data->shift == 1) ? 'Day' : ''}}
-                                        {{ ($data->level == 2) ? 'Evening' : ''}}
-                                    </td>
+                    @php 
+                        $users = [];
+                    @endphp
+                    @foreach( $programs as $program )
+                        <h4> {{ $program->name}} </h4>
+                        <h5> Spring- {{date('Y')}}</h5>
+                        <table class="table-bordered table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Program</th>
+                                <th>Marks</th>
+                            </tr>
 
-                                    <td>{{ $data->year }}</td>
-                                    <td> <img src="{{ asset('storage/admission/'.$data->image) }}" class="img-thumbnail" height="100"> </td>
-                                    <td class="text-center">
-                                        <a href="{{ route('admin.applications.show',$data->id) }}" class="btn btn-success waves-effect " >
-                                            <i class="material-icons">visibility</i>
-                                        </a>
+                            
+
+                            @foreach( $springs as $key => $spring )
+                               
+                                @if( in_array($spring->id, $users)  )
+                                     @continue
+                                @else
 
 
-                                    </td>
-                                </tr>
+                                    @foreach( $spring->programs as $data )
 
+                                        @if( $program->id == $data->id )
+                                        
+                                        <tr>
+                                            <td>{{ $key +1 }}</td>
+                                            <td>  {{ $spring->name}}</td>
+                                            <td>  {{ $data->short_name}}</td>
+                                            <td>  {{ $spring->result}}</td>
+                                        </tr>
+
+                                        <?php $users[] = $spring->id; ?>
+
+                                        @endif
+                                    @endforeach
                                 @endif
+                            @endforeach
 
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        </table> 
+                       
+                    @endforeach
                 </div>
             </div>
         </div>
