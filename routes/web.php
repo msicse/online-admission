@@ -27,6 +27,7 @@ Route::group(['middleware'=>['auth']], function(){
 
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::get('/','AdmissionController@index')->name('home');
+   
     //multistep check
     Route::get('apply','AdmissionController@apply')->name('apply');
     Route::post('apply','AdmissionController@postApply')->name('apply.submit');
@@ -36,6 +37,7 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
     Route::get('choice','AdmissionController@getChoice')->name('choice');
     Route::post('choice','AdmissionController@postChoice')->name('choice.submit');
+    
     //edit routes
     Route::get('personal/{id}','AdmissionController@editPersonal')->name('personal.edit');
     Route::put('personal/{id}','AdmissionController@editPersonalSubmit')->name('personal.edit.submit');

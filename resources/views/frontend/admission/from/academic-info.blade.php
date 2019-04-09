@@ -9,7 +9,7 @@
         .display-blk { display: block;}
         .input-group-append button { height: 32px;}
         input[type='file'] {
-          color: transparent;
+         
           height: 35px;
 
         }
@@ -173,20 +173,12 @@
                                  </div>
 
                                  <div class="col">
-                                     <div class="form-group row ">
-                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Marksheet') }}</label>
+                                     <div class=" row ">
+                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Transcript') }}</label>
 
                                          <div class="col-md-8">
 
-                                             <div class="custom-file">
-                                                  <input type="file" class="custom-file-input" id="customFile" name="marksheet[]" required>
-                                                  <label class="custom-file-label" for="customFile">Upload Marksheet</label>
-                                                  @if ($errors->has('marksheet'))
-                                                      <span class="invalid-feedback" role="alert">
-                                                          <strong>{{ $errors->first('marksheet') }}</strong>
-                                                      </span>
-                                                  @endif
-                                                </div>
+                                             <input type="file" class="" id="" name="marksheet[]" required>
 
                                          </div>
                                      </div>
@@ -330,29 +322,19 @@
 
                                  <div class="col">
                                      <div class="form-group row ">
-                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Marksheet Image') }}</label>
+                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Transcript ') }}</label>
 
                                          <div class="col-md-8">
-
-                                             <div class="custom-file">
-                                                  <input type="file" class="custom-file-input" id="customFile" name="marksheet[]" required>
-                                                  <label class="custom-file-label" for="customFile">Upload Marksheet</label>
-                                                  @if ($errors->has('marksheet'))
-                                                      <span class="invalid-feedback" role="alert">
-                                                          <strong>{{ $errors->first('marksheet') }}</strong>
-                                                      </span>
-                                                  @endif
-                                                </div>
-
+                                            <input type="file" name="marksheet[]">
                                          </div>
                                      </div>
                                  </div>
                               </div>
 
-                            @if( $applicant->degree == 2 )
+                            @if( $applicant->level == 1 )
 
                             <div class="card-header mb-10">
-                                {{ $applicant->shift == 1 ? 'Honors or Equivalent' : 'B.Sc' }}
+                                Honors or Equivalent
                             </div>
                             <div class="row mt-10">
                                 <div class="col">
@@ -434,7 +416,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row ">
-                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Group"  ) }}</label>
+                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Concentration/ Major"  ) }}</label>
 
                                         <div class="col-md-8">
                                             <input id="" type="text" class="form-control form-control-sm" name="group[]" value="" required autofocus >
@@ -487,19 +469,16 @@
 
                                  <div class="col">
                                      <div class="form-group row ">
-                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Marksheet') }}</label>
+                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Transcript') }}</label>
 
                                          <div class="col-md-8">
-
-                                             <div class="custom-file">
-                                                  <input type="file" class="custom-file-input" id="customFile" name="marksheet[]" required>
-                                                  <label class="custom-file-label" for="customFile">Choose Image</label>
-                                                  @if ($errors->has('marksheet'))
-                                                      <span class="invalid-feedback" role="alert">
-                                                          <strong>{{ $errors->first('marksheet') }}</strong>
-                                                      </span>
-                                                  @endif
-                                                </div>
+                                            <input type="file" class="" id="" name="marksheet[]" required>
+                                            
+                                            @if ($errors->has('marksheet'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('marksheet') }}</strong>
+                                                </span>
+                                            @endif
 
                                          </div>
                                      </div>

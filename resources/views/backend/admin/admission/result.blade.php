@@ -71,7 +71,7 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div>a
     </div>
     <!-- #END# Exportable Table -->
 </div>
