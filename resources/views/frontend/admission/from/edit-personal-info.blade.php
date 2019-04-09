@@ -10,7 +10,7 @@
         .input-group-append button { height: 32px;}
         #imagePreview {
             width: 100%;
-            height: 180px;
+            height: 180PX;
             background-position: center center;
             background:url('../../frontend/frame.jpg');
             background-color:#fff;
@@ -18,7 +18,7 @@
             background-repeat:no-repeat;
             display: inline-block;
             box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
-            margin-top: 20px;
+
         }
         .btn-primary
         {
@@ -273,7 +273,7 @@
 
                                             <div id="imagePreview"></div>
                                             <label class="btn btn-primary">Upload Photo
-                                                <input type="file" class="uploadFile img" name="image" value="{{  }}" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                                <input type="file" class="uploadFile img" name="image" value="" style="width: 0px;height: 0px;overflow: hidden;" required>
 				                            </label>
                                             <span id="btn-cls"></span>
 
