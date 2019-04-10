@@ -46,7 +46,7 @@
 
                             <div class="row">
                                 <div class="col-md-5">
-                                    <select name="from[]" id="undo_redo" class="form-control" size="13" multiple="multiple">
+                                    <select name="from[]" id="undo_redo" onchange="optionLimit()" class="form-control" size="13" multiple="multiple">
                                         @foreach( $programs as $data )
                                         <option value="{{ $data->id }}"> {{ $data->name }} </option>
                                         @endforeach
@@ -54,24 +54,24 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-2">
-                                    <button type="button" id="undo_redo_undo" class="btn btn-primary btn-block"><i class="fa fa-undo" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i class="fa fa-forward" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_rightSelected" class="btn btn-default btn-block"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i class="fa fa-backward" aria-hidden="true"></i></button>
-                                    <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+                                <div class="col-md-2 v">
+                                    <button type="button" id="undo_redo_undo"  onclick="optionLimit()" class="btn btn-primary btn-block"><i class="fa fa-undo" aria-hidden="true"></i></button>
+                                    <!-- <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i class="fa fa-forward" aria-hidden="true"></i></button> -->
+                                    <button type="button" id="undo_redo_rightSelected" onclick="optionLimit()" class="btn btn-default btn-block"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                    <button type="button" id="undo_redo_leftSelected" onclick="optionLimit()" class="btn btn-default btn-block"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                                    <!-- <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i class="fa fa-backward" aria-hidden="true"></i></button> -->
+                                    <button type="button" id="undo_redo_redo" onclick="optionLimit()" class="btn btn-warning btn-block"><i class="fa fa-repeat" aria-hidden="true"></i></button>
                                 </div>
 
                                 <div class="col-md-5">
-                                    <select name="to[]" id="undo_redo_to" class="form-control" size="13" multiple="multiple"></select>
+                                    <select name="to[]" onchange="optionLimit()" id="undo_redo_to"  class="form-control" size="13" multiple="multiple"></select>
                                 </div>
                             </div>
                             <div class="row mt-10">
                                 <div class="col-md-4 offset-md-4 text-center  mt-10">
                                     <button type="button" class="btn btn-info btn-width" name="btn-personal-prev" id="btn-personal-prev" >Previous</button>
                                     <button type="submit" class="btn btn-success btn-width" id="form-submit"> Submit </button>
-                                    <button type="button" class="btn btn-success btn-width" id="btn-t"> Test </button>
+                                    
                                 </div>
                             </div>
                         </form> <!-- End form -->
@@ -88,18 +88,25 @@
 @push('js')
 <!-- <script src="{{ asset('frontend/pages/multiselectable.js')}}"></script> -->
 <script src="{{ asset('frontend/pages/multiselect.js')}}"></script>
+
 <script>
 
-    $('#btn-t').on('click', function () {
-        var l = $('#undo_redo_to option').length;
-        if( l > 3 ) {
-            $('#undo_redo_rightAll').addClass('disabled');
-        }
-        alert(l);
-    });
 
     $(function() {
         $('#undo_redo').multiselect();
+
     });
+
+
+    function optionLimit(){
+        var length = $('#undo_redo_to option').length;
+        if ( length >= 3) {
+             $('#undo_redo_rightSelected').attr("disabled", true);
+
+        }else {
+            $('#undo_redo_rightSelected').attr("disabled", false);
+        }
+    }
+
 </script>
 @endpush

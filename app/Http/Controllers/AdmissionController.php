@@ -15,6 +15,7 @@ use Session;
 use Toastr;
 use Storage;
 use Image;
+use Validator;
 
 class AdmissionController extends Controller
 {
@@ -68,7 +69,6 @@ class AdmissionController extends Controller
     {
         $validatedData = $this->validate($request,array(
            'name' => 'required',
-
            'fname' => 'required',
            'mname' => 'required',
            'dob' => 'required',
@@ -84,7 +84,7 @@ class AdmissionController extends Controller
        ));
 
        $applicant = $request->session()->get('applicant');
-        //$request->session()->forget('applicant');
+       //$request->session()->forget('applicant');
 
 
        $applicant->fill($validatedData);
@@ -134,30 +134,26 @@ class AdmissionController extends Controller
     {
 
         //return $request->all();
-        // $validatedData = $this->validate($request, array(
-        //     'roll' => 'required|numeric',
-        //     'reg' => 'required|numeric',
-        //     'passing_year' => 'required|numeric',
-        //     'title' => 'required|alpha_dash',
-        //     'institute' => 'required|alpha_dash',
-        //     'marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
+        $validatedData = $this->validate($request, array(
+            // "roll"    => "required|array",
+            // "roll.*"  => "required|numeric|min:6",
+            'roll.*' => 'required|numeric|min:6',
+            'reg.*' => 'required|numeric|min:6',
+            'passing_year.*' => 'required|numeric|min:4',
+            'result.*' => 'required|between:1,99.99',
+            'title.*' => 'required|alpha_dash',
+            'institute.*' => 'required|alpha_dash',
+            'marksheet.*' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
+            'certificate.*' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
 
-        // ));
+        ));
 
-        $data = [ 'data' => $requests->all() ];
-        return $data;
+        //$data = [ 'data' => $request->all() ];
+        //return $request->all();
 
-        $validator = Validator::make($data, [
-            'data.*.roll' => 'required|numeric',
-            'data.*.reg' => 'required|numeric',
-            'data.*.passing_year' => 'required|numeric',
-            'data.*.title' => 'required|alpha_dash',
-            'data.*.institute' => 'required|alpha_dash',
-            'data.*.marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
-        ]);
 
         $input = $request->all();
-        return $input;
+        //return $input;
         $applicant_id = $request->session()->get('applicant_id');
 
         for ($i=0; $i < count( $input['roll']) ; $i++) {
@@ -173,6 +169,7 @@ class AdmissionController extends Controller
             $academic->result = $request->result[$i];
 
             $image = $request->file('marksheet')[$i];
+            $certificate = $request->file('certificate')[$i];
 
             //return $image;
 
@@ -190,7 +187,23 @@ class AdmissionController extends Controller
             } else {
                 $imagename = 'default.png';
             }
+
+            if (isset($certificate)){
+                if (!Storage::disk('public')->exists('admission/academic/certificate')){
+                    Storage::disk('public')->makeDirectory('admission/academic/certificate');
+                }
+                $date = Carbon::now()->toDateString();
+                $certificateImg = $slug.'-'.$date.'-'.uniqid().'.'.$certificate->getClientOriginalExtension();
+                $certificateImgApp = Image::make($certificate)->resize(400, 400)->save($certificate->getClientOriginalExtension());
+
+                Storage::disk('public')->put('admission/academic/certificate'.$certificateImg, $certificateImgApp);
+
+            } else {
+                $certificateImg = 'default.png';
+            }
+
             $academic->marksheet = $imagename;
+            $academic->certificate = $certificateImg;
             $academic->save();
         }
 
@@ -209,12 +222,17 @@ class AdmissionController extends Controller
     public function postChoice(Request $request)
     {
 
-        //return $request->all();
+
         $applicant_id = $request->session()->get('applicant_id');
         //$academic = $request->session()->get('academic');
 
         //return $applicant_id;
 
+        $this->validate($request, array(
+            'to' => 'required|array|min:3',
+            'to*' =>'required|integer'
+        ));
+//return $request->all();
         $applicant = Application::where('id',$applicant_id)->first();
         //return $applicant;
         $applicant->programs()->attach($request->to);

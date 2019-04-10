@@ -9,7 +9,7 @@
         .display-blk { display: block;}
         .input-group-append button { height: 32px;}
         input[type='file'] {
-         
+
           height: 35px;
 
         }
@@ -184,6 +184,21 @@
                                      </div>
                                  </div>
                               </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="col">
+                                          <div class=" row ">
+                                              <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Certificate') }}</label>
+
+                                              <div class="col-md-8">
+
+                                                  <input type="file" class="" id="" name="certificate[]" required>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
 
                             <div class="card-header mb-10">
                                 {{ $applicant->shift == 1 ? 'HSC or Equivalent' : 'Diploma' }}
@@ -320,6 +335,7 @@
                                      </div>
                                  </div>
 
+
                                  <div class="col">
                                      <div class="form-group row ">
                                          <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Transcript ') }}</label>
@@ -330,8 +346,23 @@
                                      </div>
                                  </div>
                               </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="col">
+                                          <div class=" row ">
+                                              <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Certificate') }}</label>
 
-                            @if( $applicant->level == 1 )
+                                              <div class="col-md-8">
+
+                                                  <input type="file" class="" id="" name="certificate[]" required>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            @if( $applicant->level == 2 )
 
                             <div class="card-header mb-10">
                                 Honors or Equivalent
@@ -384,36 +415,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col">
-                                    <div class="form-group row ">
-                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Board') }}</label>
 
-                                        <div class="col-md-8">
-                                            <select name="board[]" id="" class="form-control form-control-sm " required autofocus>
-                                                <option value="" selected>Select One</option>
-                                                <option value="barisal">Barisal</option>
-                                                <option value="chittagong">Chittagong</option>
-                                                <option value="comilla">Comilla</option>
-                                                <option value="dhaka">Dhaka</option>
-                                                <option value="dinajpur">Dinajpur</option>
-                                                <option value="jessore">Jessore</option>
-                                                <option value="Rajshahi">Rajshahi</option>
-                                                <option value="sylhet">Sylhet</option>
-                                                <option value="madrasah">Madrasah</option>
-                                                <option value="tec">Technical</option>
-                                                <option value="dibs">DIBS(Dhaka)</option>
-                                            </select>
-                                            @if ($errors->has('board'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('board') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                             </div>
-
-                            <div class="row">
                                 <div class="col">
                                     <div class="form-group row ">
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Concentration/ Major"  ) }}</label>
@@ -428,6 +430,11 @@
                                         </div>
                                     </div>
                                 </div>
+
+                             </div>
+
+                            <div class="row">
+
                                 <div class="col">
                                     <div class="form-group row ">
                                         <label for="passing_year" class="col-md-4 col-form-label text-md-right">{{ __('Passing Year') }}</label>
@@ -449,23 +456,23 @@
                                     </div>
 
                                 </div>
+                                <div class="col">
+                                    <div class="form-group row ">
+                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Result') }}</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control form-control-sm" name="result[]" value="" required autofocus >
+                                            @if ($errors->has('result'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('result') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                              </div>
 
                             <div class="row">
 
-                                 <div class="col">
-                                     <div class="form-group row ">
-                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Result') }}</label>
-                                         <div class="col-md-8">
-                                             <input type="text" class="form-control form-control-sm" name="result[]" value="" required autofocus >
-                                             @if ($errors->has('result'))
-                                                 <span class="invalid-feedback" role="alert">
-                                                     <strong>{{ $errors->first('result') }}</strong>
-                                                 </span>
-                                             @endif
-                                         </div>
-                                     </div>
-                                 </div>
 
                                  <div class="col">
                                      <div class="form-group row ">
@@ -473,10 +480,26 @@
 
                                          <div class="col-md-8">
                                             <input type="file" class="" id="" name="marksheet[]" required>
-                                            
+
                                             @if ($errors->has('marksheet'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('marksheet') }}</strong>
+                                                </span>
+                                            @endif
+
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group row ">
+                                         <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Certificate') }}</label>
+
+                                         <div class="col-md-8">
+                                            <input type="file" class="" id="" name="certificate[]" required>
+
+                                            @if ($errors->has('certificate'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('certificate') }}</strong>
                                                 </span>
                                             @endif
 

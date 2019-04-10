@@ -25,6 +25,7 @@ class CreateAcademicsTable extends Migration
             $table->integer('passing_year');
             $table->string('result');
             $table->string('marksheet');
+            $table->string('certificate');
             $table->timestamps();
         });
     }
