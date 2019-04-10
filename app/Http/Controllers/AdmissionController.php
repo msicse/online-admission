@@ -75,7 +75,7 @@ class AdmissionController extends Controller
            'gender' => 'required',
            'nationality' => 'required',
            'phone' => 'required',
-           'email' => 'required|email',
+           'email' => 'required|email|unique:applications',
            'guardian' => 'required',
            'relation' => 'required',
            'present_address' => 'required',
@@ -114,7 +114,7 @@ class AdmissionController extends Controller
        $applicant->approved     = false;
        $applicant->password     = Hash::make($password);
        $applicant->save();
-    
+
        //$request->session()->forget('applicant');
 
        $request->session()->put('applicant_id', $applicant->id);
@@ -141,7 +141,7 @@ class AdmissionController extends Controller
         //     'title' => 'required|alpha_dash',
         //     'institute' => 'required|alpha_dash',
         //     'marksheet' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
-           
+
         // ));
 
         $data = [ 'data' => $requests->all() ];
@@ -254,10 +254,10 @@ class AdmissionController extends Controller
 
     public function postConfirm()
     {
-      
+
 
     }
-    
+
 
     public function checkEmail(Request $request )
     {
