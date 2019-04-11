@@ -41,7 +41,7 @@
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.choice.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.confirm.submit') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row text-center">
@@ -189,11 +189,9 @@
                                     <table class="table table-striped table-bordered">
                                       <thead>
                                         <tr>
-                                          <th scope="col">#</th>
+                                          <th scope="col">Choice S.L</th>
                                           <th scope="col">Programs</th>
-                                          <th scope="col">Group / Concentration</th>
-                                          <th scope="col">Result</th>
-                                          <th scope="col">Passing Year</th>
+                                          
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -216,7 +214,7 @@
                                     <a href="{{ route('admission.personal.edit', $applicant->id) }}" class="btn btn-info btn-width "> Edit Personal Info </a>
                                     <a href="#" class="btn btn-info btn-width "> Edit Academic Info </a>
                                     <a href="#" class="btn btn-info btn-width "> Edit Programs Info </a>
-                                    <a href="#" class="btn btn-success btn-width "> Submit </a>
+                                    <button type="submit" class="btn btn-success btn-width "> Submit </button>
                                 </div>
                             </div>
 

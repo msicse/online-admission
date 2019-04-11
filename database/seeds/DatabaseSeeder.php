@@ -12,14 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(RoleTableSeeder::class);
-        // $this->call(UserTableSeeder::class);
-        // $this->call(DepartmentsTableSeeder::class);
+         $this->call(RoleTableSeeder::class);
+         $this->call(UserTableSeeder::class);
+        $this->call(DepartmentsTableSeeder::class);
         //$this->call(ProgramesTableSeeder::class);
 
-        //$this->call(SscsTableSeeder::class); // programs table
+        $this->call(SscsTableSeeder::class); // programs table
 
-        //$this->call(HscsTableSeeder::class); //application_programs table
+        
 
         factory(App\Application::class, 50)
             ->create()
@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
                         'application_id' => $application->id,
                     ]);
             });
+
+            $this->call(HscsTableSeeder::class); //application_programs table
 
     }
 }

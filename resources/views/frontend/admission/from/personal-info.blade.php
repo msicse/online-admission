@@ -89,7 +89,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="name" value="" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="name" value="{{ old('name') }}" required autofocus >
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Fathers Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="fname" value="" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="fname" value="{{ old('fname') }}" required autofocus >
 
                                         </div>
                                     </div>
@@ -111,7 +111,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __("Mother's Name"  ) }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="mname" value="" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="mname" value="{{ old('mname') }}" required autofocus >
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                     <div class="form-group row ">
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Date Of Birth') }}</label>
                                         <div class="col-md-8">
-                                            <input id="datepicker" type="text" class="form-control form-control-sm" name="dob" value="" required autofocus >
+                                            <input id="datepicker" type="text" class="form-control form-control-sm" name="dob" value="{{ old('dob') }}" required autofocus >
                                         </div>
                                     </div>
                                 </div>
@@ -134,9 +134,9 @@
                                          <div class="col-md-8">
                                              <select name="gender" class="form-control form-control-sm" required>
                                                    <option value="" selected>Select One</option>
-                                                   <option value="1">Male</option>
-                                                   <option value="2">Female</option>
-                                                   <option value="3">Others</option>
+                                                   <option value="1" {{ (old('gender') == 1) ? 'selected' : ''  }}>Male</option>
+                                                   <option value="2" {{ (old('gender') == 2) ? 'selected' : ''  }}>Female</option>
+                                                   <option value="3" {{ (old('gender') == 3) ? 'selected' : ''  }}>Others</option>
                                              </select>
                                              @if ($errors->has('gender'))
                                                  <span class="invalid-feedback" role="alert">
@@ -203,7 +203,7 @@
                                         <label for="guardian" class="col-md-4 col-form-label text-md-right">{{ __('Guardian Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="gname" type="text" class="form-control form-control-sm" name="guardian" value="{{ old('roll') }}" required autofocus>
+                                            <input id="gname" type="text" class="form-control form-control-sm" name="guardian" value="{{ old('guardian') }}" required autofocus>
                                             <span id="error_gname" class="invalid-feedback" role="alert"></span>
                                             @if ($errors->has('guardian'))
                                                 <span class="invalid-feedback" role="alert">
@@ -218,7 +218,7 @@
                                         <label for="relation" class="col-md-4 col-form-label text-md-right">{{ __('Relation') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="grelation" type="text" class="form-control form-control-sm" name="relation" value="{{ old('roll') }}" required autofocus>
+                                            <input id="grelation" type="text" class="form-control form-control-sm" name="relation" value="{{ old('relation') }}" required autofocus>
                                             <span id="error_grelation" class="invalid-feedback" role="alert"></span>
                                             @if ($errors->has('relation'))
                                                 <span class="invalid-feedback" role="alert">
@@ -236,7 +236,7 @@
                                         <label for="present_address" class="col-md-4 col-form-label text-md-right">{{ __('Present Address') }}</label>
 
                                         <div class="col-md-8">
-                                            <textarea name="present_address"class="form-control" id="present" rows="3"></textarea>
+                                            <textarea name="present_address"class="form-control" id="present" rows="3">{{ old('present_address')}}</textarea>
                                             <span id="error_present" class="invalid-feedback" role="alert"></span>
                                             @if ($errors->has('present_address'))
                                                 <span class="invalid-feedback" role="alert">
@@ -251,7 +251,7 @@
                                         <label for="parmanent_address" class="col-md-4 col-form-label text-md-right">{{ __('Permanent Address') }}</label>
 
                                         <div class="col-md-8">
-                                            <textarea name="parmanent_address" class="form-control" id="permanent" rows="3"></textarea>
+                                            <textarea name="parmanent_address" class="form-control" id="permanent" rows="3">{{ old('parmanent_address') }}</textarea>
 
                                             <div class="form-check">
                                                 <input type="checkbox" class="form-check-input" id="address-checked">
@@ -279,7 +279,7 @@
                                         <div class="col-md-4 offset-md-4 imgUp">
                                             <div id="imagePreview"></div>
                                             <label class="btn btn-primary">Select Profile Image
-                                                <input type="file" class="uploadFile img" name="image" value="" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                                <input type="file" class="uploadFile img" name="image" value="{{ old('image') }}" style="width: 0px;height: 0px;overflow: hidden;" required>
 				                            </label>
                                             <span id="btn-cls"></span>
 

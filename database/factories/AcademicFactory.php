@@ -19,6 +19,7 @@ $factory->define(App\Academic::class, function (Faker $faker) {
         'passing_year' => rand(2010,2018),
         'result' => rand(3,5),
         'marksheet' => $image,
+        'certificate' => $image,
 
 
 

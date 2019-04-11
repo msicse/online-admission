@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Application;
 use App\Programe;
-use App\Ssc;
-use App\Hsc;
 use App\Academic;
 use Carbon\Carbon;
 use Session;
@@ -16,6 +14,8 @@ use Toastr;
 use Storage;
 use Image;
 use Validator;
+use App\Notifications\NewApplication;
+use Notification;
 
 class AdmissionController extends Controller
 {
@@ -118,6 +118,7 @@ class AdmissionController extends Controller
        //$request->session()->forget('applicant');
 
        $request->session()->put('applicant_id', $applicant->id);
+       $request->session()->put('pass', $password);
 
        return redirect()->route('admission.academic');
 
@@ -229,7 +230,7 @@ class AdmissionController extends Controller
         //return $applicant_id;
 
         $this->validate($request, array(
-            'to' => 'required|array|min:3',
+            'to' => 'required|array|max:3|min:3',
             'to*' =>'required|integer'
         ));
 //return $request->all();
@@ -237,10 +238,26 @@ class AdmissionController extends Controller
         //return $applicant;
         $applicant->programs()->attach($request->to);
 
-        $request->session()->put('applicant_id', $applicant->id);
+        //$request->session()->put('applicant_id', $applicant->id);
 
-        //return $applicant;
+        return $applicant;
         return redirect()->route('admission.confirm');
+    }
+
+    
+    public function getConfirm( Request $request)
+    {
+        $applicant_id = $request->session()->get('applicant_id');
+        $pass = $request->session()->get('pass');
+
+       // return $pass;
+        $applicant = Application::find($applicant_id);
+
+        $result = 0;
+        foreach( $applicant->academics as $data ){
+            $result = $data->result;
+        }
+        return view('frontend.admission.from.cv')->withApplicant($applicant);
     }
 
     public function editPersonal($id)
@@ -257,22 +274,25 @@ class AdmissionController extends Controller
     }
 
 
-    public function getConfirm( Request $request)
+
+    public function postConfirm( Request $request )
     {
         $applicant_id = $request->session()->get('applicant_id');
+        $password = $request->session()->get('pass');
+
+       // return $pass;
         $applicant = Application::find($applicant_id);
+        
+        
+        
+        Notification::send($applicant, new NewApplication($applicant, $password));
 
+        Toastr::success(' Succesfully Created User ', 'Success');
 
-        $result = 0;
-        foreach( $applicant->academics as $data ){
-            $result = $data->result;
-        }
-        return view('frontend.admission.from.cv')->withApplicant($applicant);
-    }
+        $request->session()->forget('applicant');
+        $request->session()->forget('applicant');
 
-    public function postConfirm()
-    {
-
+        return redirect()->route('admission.home');
 
     }
 

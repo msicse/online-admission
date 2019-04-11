@@ -66,6 +66,11 @@
                                 <div class="col-md-5">
                                     <select name="to[]" onchange="optionLimit()" id="undo_redo_to"  class="form-control" size="13" multiple="multiple"></select>
                                 </div>
+                                @if ($errors->has('to'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('to') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="row mt-10">
                                 <div class="col-md-4 offset-md-4 text-center  mt-10">
