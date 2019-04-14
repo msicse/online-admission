@@ -30,7 +30,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.home') }}" class="btn btn-secondary"> Login </a>
+                                <a href="{{ route('admission.login') }}" class="btn btn-secondary"> Login </a>
                             </div>
                         </div>
                     </div>

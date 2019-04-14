@@ -13,8 +13,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        
+
         return view('frontend.application.home');
+
+        $app = Auth::guard('application')->user()->academics()->count();
+        if ($app == 0) {
+            return 'empty';
+        }
+        return $app;
     }
 
     public function getPassword()
@@ -55,5 +61,13 @@ class HomeController extends Controller
         //$application = Application::find(2);
         return view('frontend.application.info')->withApplication($application);
 
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('application')->logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
+        return redirect()->route('admission.home');
     }
 }

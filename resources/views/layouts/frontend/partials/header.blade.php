@@ -1,6 +1,6 @@
 
-<header class="header_area">
-    <div class="top_menu row m0">
+<header class="header_area ">
+    <div class="top_menu row m0" style="border-bottom: 1px solid #eee;">
         <div class="container">
             <div class="float-left">
                 <ul class="list header_social">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div class="main_menu">
+    <div class="main_menu bg-light">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->

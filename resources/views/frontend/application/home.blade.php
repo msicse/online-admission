@@ -4,16 +4,50 @@
 @section('title', 'Admission | Login' )
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/themify/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/student.css') }}">
+
 @endpush
 
 @section('content')
 <!--================Finance Area =================-->
+
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
+            @include('frontend.application.sidebar')
+            <div class="col">
 
-            <div class="col ">
-                <div class="card">
+                    @if(auth()->guard('application')->user()->academics()->count() == 0 && auth()->guard('application')->user()->programs()->count() == 0 )
+                    <div class="progress bg-light" style="height:25px; border:1px solid #eee;">
+                        <div class="progress-bar" role="progressbar" style="width:50%"aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                    <p class="bg-light text-danger">Complete Your Application Process </p>
+                    <div class="col text-center">
+                        <a href="{{ route('application.academic') }}" class="btn btn-primary"> Complete Application </a>
+                    </div>
+                    @elseif(auth()->guard('application')->user()->programs()->count() == 0)
+                    <div class="progress bg-light" style="height:25px; border:1px solid #eee;">
+                        <div class="progress-bar" role="progressbar" style="width:75%"aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    </div>
+                    <p class="bg-light text-danger">Complete Your Application Process </p>
+                    <div class="col text-center">
+                        <a href="{{ route('application.choice') }}" class="btn btn-primary"> Complete Application </a>
+                    </div>
+                    @elseif(auth()->guard('application')->user()->academics()->count() == 0)
+                    <div class="progress bg-light" style="height:25px; border:1px solid #eee;">
+                        <div class="progress-bar" role="progressbar" style="width:75%"aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    </div>
+                    <p class="bg-light text-danger">Complete Your Application Process </p>
+                    <div class="col text-center">
+                        <a href="{{ route('application.academic') }}" class="btn btn-primary"> Complete Application </a>
+                    </div>
+                    @else
+                    <p></p>
+                    @endif
+
+                <div class="card mt-10">
                     <h5 class="card-header">Welcome {{ auth()->guard('application')->user()->name }}</h5>
 
                     <div class="card-body">
@@ -25,6 +59,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col">
                                 <div class="card">
                                     <div class="card-body text-center">
@@ -34,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col admission-home mt-10">
+                        <div class="col mt-10">
 
                             <div class="row">
                                 <div class="col-md-3">
@@ -76,5 +111,9 @@
     </div>
 </section>
 <!--================End Finance Area =================-->
+
+
+
+
 
 @endsection

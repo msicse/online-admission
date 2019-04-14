@@ -4,6 +4,9 @@
 @push('css')
 
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/themify/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/student.css') }}">
     <style>
         .display-n { display: none;}
         .display-blk { display: block;}
@@ -27,21 +30,18 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('frontend.admission._sidebar')
+
+            @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header">Application Form </h5>
+                    <h5 class="card-header">Choose Programs </h5>
 
-                    <div class="card-body addmission-form ">
-                        <div id="msg" class="alert alert-danger text-center alert-custom display-n">
-
-                        </div>
                         <!-- <div class="row">
                             <div class="col">
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.choice.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('application.submit.choice') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
@@ -54,7 +54,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-2 v">
+                                <div class="col-md-2" style="margin-top: 6%;">
                                     <button type="button" id="undo_redo_undo"  onclick="optionLimit()" class="btn btn-primary btn-block"><i class="fa fa-undo" aria-hidden="true"></i></button>
                                     <!-- <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i class="fa fa-forward" aria-hidden="true"></i></button> -->
                                     <button type="button" id="undo_redo_rightSelected" onclick="optionLimit()" class="btn btn-default btn-block"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
@@ -76,7 +76,7 @@
                                 <div class="col-md-4 offset-md-4 text-center  mt-10">
                                     <button type="button" class="btn btn-info btn-width" name="btn-personal-prev" id="btn-personal-prev" >Previous</button>
                                     <button type="submit" class="btn btn-success btn-width" id="form-submit"> Submit </button>
-                                    
+
                                 </div>
                             </div>
                         </form> <!-- End form -->

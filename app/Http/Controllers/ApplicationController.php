@@ -17,7 +17,7 @@ use Validator;
 use App\Notifications\NewApplication;
 use Notification;
 
-class AdmissionController extends Controller
+class ApplicationController extends Controller
 {
     public function index()
     {
@@ -67,7 +67,7 @@ class AdmissionController extends Controller
     }
     public function postPersonal(Request $request)
     {
-        return $request()->all();
+        //return $request->all();
 
         $validatedData = $this->validate($request,array(
            'name' => 'required',
@@ -82,13 +82,13 @@ class AdmissionController extends Controller
            'relation' => 'required',
            'present_address' => 'required',
            'parmanent_address' => 'required',
-           'skill' => 'required',
+           'extra_curriculam' => 'required',
            'image' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
        ));
 
        $applicant = $request->session()->get('applicant');
 
-       return $applicant;
+       //return $applicant;
        //$request->session()->forget('applicant');
 
 
@@ -97,7 +97,7 @@ class AdmissionController extends Controller
        // $applicant->fname     = $request->fname;
        // $applicant->mname     = $request->mname;
        $applicant->guardian_relation     = $request->relation;
-       $applicant->present_address     = $request->present_address;
+       //$applicant->present_address     = $request->present_address;
 
        $image = $request->file('image');
        $slug  = str_slug($request->name);

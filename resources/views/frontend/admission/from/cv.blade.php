@@ -4,6 +4,9 @@
 @push('css')
 
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/themify/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/student.css') }}">
     <style>
         .display-n { display: none;}
         .display-blk { display: block;}
@@ -27,7 +30,7 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('frontend.admission._sidebar')
+            @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
                     <h5 class="card-header">Application Form </h5>
@@ -183,7 +186,7 @@
                                 </div>
                             </div>
 
-                            <div class="card-header"> Programs</div>
+                            <div class="card-header"> Choice List</div>
                             <div class="row">
                                 <div class="col padding-inner">
                                     <table class="table table-striped table-bordered">
@@ -191,7 +194,7 @@
                                         <tr>
                                           <th scope="col">Choice S.L</th>
                                           <th scope="col">Programs</th>
-                                          
+
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -212,8 +215,8 @@
                             <div class="row">
                                 <div class="col text-center">
                                     <a href="{{ route('admission.personal.edit', $applicant->id) }}" class="btn btn-info btn-width "> Edit Personal Info </a>
-                                    <a href="#" class="btn btn-info btn-width "> Edit Academic Info </a>
-                                    <a href="#" class="btn btn-info btn-width "> Edit Programs Info </a>
+                                    <a href="{{ route('admission.academic.edit', $applicant->id) }}" class="btn btn-info btn-width "> Edit Academic Info </a>
+                                    <a href="{{ route('application.download.cv') }}" class="btn btn-info btn-width "> Download </a>
                                     <button type="submit" class="btn btn-success btn-width "> Submit </button>
                                 </div>
                             </div>

@@ -236,7 +236,7 @@
                                         <label for="present_address" class="col-md-4 col-form-label text-md-right">{{ __('Present Address') }}</label>
 
                                         <div class="col-md-8">
-                                            <textarea name="present_address"class="form-control" id="present" rows="3">{{ old('present_address')}}</textarea>
+                                            <textarea name="present_address"class="form-control" id="present" rows="5" required>{{ old('present_address')}}</textarea>
                                             <span id="error_present" class="invalid-feedback" role="alert"></span>
                                             @if ($errors->has('present_address'))
                                                 <span class="invalid-feedback" role="alert">
@@ -251,7 +251,7 @@
                                         <label for="parmanent_address" class="col-md-4 col-form-label text-md-right">{{ __('Permanent Address') }}</label>
 
                                         <div class="col-md-8">
-                                            <textarea name="parmanent_address" class="form-control" id="permanent" rows="3">{{ old('parmanent_address') }}</textarea>
+                                            <textarea name="parmanent_address" class="form-control" id="permanent" rows="5" required>{{ old('parmanent_address') }}</textarea>
 
                                             <div class="form-check">
                                                 <input type="checkbox" class="form-check-input" id="address-checked">
@@ -272,14 +272,29 @@
 
 
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row mt-10">
+                            <div class="row mt-10">
+                                <div class="col-md-6">
+                                    <div class="form-group row ">
+                                        <label for="extra_curriculam" class="col-md-4 col-form-label text-md-right">{{ __('Extra Curriculam') }}</label>
 
-                                        <div class="col-md-4 offset-md-4 imgUp">
+                                        <div class="col-md-8">
+                                            <textarea name="extra_curriculam"class="form-control" id="present" rows="8" required>{{ old('extra_curriculams')}}</textarea>
+                                            <span id="error_present" class="invalid-feedback" role="alert"></span>
+                                            @if ($errors->has('extra_curriculam'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('extra_curriculam') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row ">
+
+                                        <div class="col-md-8 offset-md-2 imgUp">
                                             <div id="imagePreview"></div>
                                             <label class="btn btn-primary">Select Profile Image
-                                                <input type="file" class="uploadFile img" name="image" value="{{ old('image') }}" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                                <input type="file" onchange="imgUpload()" class="uploadFile img" name="image" value="{{ old('image') }}" style="width: 0px;height: 0px;overflow: hidden;" required >
 				                            </label>
                                             <span id="btn-cls"></span>
 
@@ -288,15 +303,19 @@
                                                     <strong>{{ $errors->first('image') }}</strong>
                                                 </span>
                                             @endif
+                                            <span class="text-danger"id="imgIn" role="alert">
+
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="row mt-10">
                                 <div class="col-md-4 offset-md-4 text-center  mt-10">
-                                    <button type="button" class="btn btn-info btn-width" name="btn-personal-prev" id="btn-personal-prev" >Previous</button>
-                                    <button type="submit" class="btn btn-success btn-width" id="form-submit"> Submit </button>
+                                    <a href="{{ route('admission.apply') }}" class="btn btn-info btn-width" >Previous</a>
+                                    <button type="submit" onclick="imgUpload()" class="btn btn-success btn-width" id="form-submit"> Submit </button>
                                 </div>
                             </div>
                         </form> <!-- End form -->
@@ -319,6 +338,7 @@
         uiLibrary: 'bootstrap4',
         iconsLibrary: 'fontawesome'
     });
+
     $(function()
     {
       $('#address-checked').change(function()
@@ -343,12 +363,24 @@
 
     });
 
+
+    function imgUpload() {
+        if ($('.uploadFile').val() == '') {
+            $('#imgIn').html('Image is required');
+        }else {
+            $('#imgIn').html('');
+        }
+    }
     $(function() {
+
         $(document).on("change",".uploadFile", function()
         {
         	var uploadFile = $(this);
+            //alert(uploadFile);
             var files = !!this.files ? this.files : [];
-            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+            if (!files.length || !window.FileReader){
+                alert('no-file ss');
+            } // no file selected, or no FileReader support
 
             if (/^image/.test( files[0].type)){ // only image file
                 var reader = new FileReader(); // instance of the FileReader
@@ -363,5 +395,6 @@
 
         });
     });
+
 </script>
 @endpush

@@ -23,24 +23,33 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('change-password', 'SettingController@index')->name('setting.change.pass');
     Route::post('update-password', 'SettingController@updatePass')->name('setting.update.pass');
 });
+
+
 //Admission Routes
 
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
-    Route::get('/','AdmissionController@index')->name('home');
-   
+    Route::get('/','ApplicationController@index')->name('home');
+
     //multistep check
-    Route::get('apply','AdmissionController@apply')->name('apply');
-    Route::post('apply','AdmissionController@postApply')->name('apply.submit');
-    Route::get('personal','AdmissionController@getPersonal')->name('personal');
-    Route::post('personal','AdmissionController@postPersonal')->name('personal.submit');
-    Route::get('academic','AdmissionController@getAcademic')->name('academic');
-    Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
-    Route::get('choice','AdmissionController@getChoice')->name('choice');
-    Route::post('choice','AdmissionController@postChoice')->name('choice.submit');
-    
+    Route::get('apply','ApplicationController@apply')->name('apply');
+    Route::post('apply','ApplicationController@postApply')->name('apply.submit');
+    Route::get('personal','ApplicationController@getPersonal')->name('personal');
+    Route::post('personal','ApplicationController@postPersonal')->name('personal.submit');
+
+    // Route::get('academic','AdmissionController@getAcademic')->name('academic');
+    // Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
+    // Route::get('choice','AdmissionController@getChoice')->name('choice');
+    // Route::post('choice','AdmissionController@postChoice')->name('choice.submit');
+
     //edit routes
     Route::get('personal/{id}','AdmissionController@editPersonal')->name('personal.edit');
     Route::put('personal/{id}','AdmissionController@editPersonalSubmit')->name('personal.edit.submit');
+
+    Route::get('academic/{id}','AdmissionController@editAcademic')->name('academic.edit');
+    Route::put('academic/{id}','AdmissionController@editAcademicSubmit')->name('academic.edit.submit');
+
+    Route::get('program/{id}','AdmissionController@editProgram')->name('program.edit');
+    Route::put('program/{id}','AdmissionController@editProgramSubmit')->name('program.edit.submit');
 
     Route::get('confirm','AdmissionController@getConfirm')->name('confirm');
     Route::post('confirm','AdmissionController@postConfirm')->name('confirm.submit');
@@ -67,13 +76,34 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
 //Application Login RouteServiceProvider
 
 
-Route::group(['prefix'=>'application','as'=>'application.','namespace'=>'Application','middleware'=>'application'], function() {
-    Route::get('home', 'HomeController@index')->name('home');
+Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application','middleware'=>'application'], function() {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('payment', 'HomeController@payment')->name('payment');
     Route::get('information', 'HomeController@info')->name('info');
     Route::get('change-password', 'HomeController@getPassword')->name('password');
     Route::post('change-password', 'HomeController@postPassword')->name('password.submit');
+    Route::post('logout', 'HomeController@logout')->name('logout');
+
+    //admission route
+
+    Route::get('academic','AdmissionController@getAcademic')->name('academic');
+    Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
+    Route::get('choice','AdmissionController@getChoice')->name('choice');
+    Route::post('choice','AdmissionController@submitChoice')->name('submit.choice');
+    Route::get('cv','AdmissionController@getCv')->name('cv');
+    Route::get('download-cv','AdmissionController@downloadCV')->name('download.cv');
+
+
+
+
 });
 
+//payment routes
+Route::get('/pay', 'PublicSslCommerzPaymentController@index')->name('pay');
+Route::POST('/success', 'PublicSslCommerzPaymentController@success')->name('success');
+Route::POST('/fail', 'PublicSslCommerzPaymentController@fail')->name('fail');
+Route::POST('/cancel', 'PublicSslCommerzPaymentController@cancel')->name('cancel');
+Route::POST('/ipn', 'PublicSslCommerzPaymentController@ipn')->name('ipn');
 
 //Admin Routes
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']], function(){

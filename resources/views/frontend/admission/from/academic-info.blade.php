@@ -4,6 +4,9 @@
 @push('css')
 
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/themify/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/student.css') }}">
     <style>
         .display-n { display: none;}
         .display-blk { display: block;}
@@ -21,7 +24,7 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('frontend.admission._sidebar')
+            @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
                     <h5 class="card-header">Application Form </h5>
@@ -35,7 +38,7 @@
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.academic.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('application.academic.submit') }}" enctype="multipart/form-data">
                             @csrf
 
                             <input type="hidden" name="title[]" value="ssc">
@@ -201,7 +204,7 @@
                               </div>
 
                             <div class="card-header mb-10">
-                                {{ $applicant->shift == 1 ? 'HSC or Equivalent' : 'Diploma' }}
+                                {{Auth::guard('application')->user()->shift == 1 ? 'HSC or Equivalent' : 'Diploma' }}
                             </div>
                             <input type="hidden" name="title[]" value="hsc">
                             <div class="row mt-10">
@@ -362,7 +365,7 @@
                                   </div>
                               </div>
 
-                            @if( $applicant->level == 2 )
+                            @if( Auth::guard('application')->user()->level == 2 )
 
                             <div class="card-header mb-10">
                                 Honors or Equivalent
@@ -472,7 +475,6 @@
                              </div>
 
                             <div class="row">
-
 
                                  <div class="col">
                                      <div class="form-group row ">

@@ -3,7 +3,9 @@
 
 @section('title', 'Application | Chaange Password' )
 @push('css')
-    <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/pages/themify/themify-icons.css') }}">
 @endpush
 
 @section('content')
@@ -11,7 +13,7 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('frontend.admission._sidebar')
+            @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
                     <h5 class="card-header">Change Password</h5>

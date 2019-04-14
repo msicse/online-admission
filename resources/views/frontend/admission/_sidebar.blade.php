@@ -25,6 +25,7 @@
             <form id="logout-form" action="{{  route('admission.logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
+            
             @else
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admission') ? 'active' : '' }}" href="{{ route('admission.home') }}">Home</a>

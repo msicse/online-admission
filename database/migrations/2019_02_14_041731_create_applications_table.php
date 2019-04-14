@@ -31,6 +31,7 @@ class CreateApplicationsTable extends Migration
             $table->string('nationality');
             $table->string('guardian');
             $table->string('guardian_relation');
+            $table->text('skill')->nullable();
             $table->text('present_address');
             $table->text('parmanent_address');
             $table->string('image');

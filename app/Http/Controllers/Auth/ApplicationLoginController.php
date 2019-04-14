@@ -12,7 +12,7 @@ class ApplicationLoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/application/home';
+    protected $redirectTo = '/student';
 
     public function __construct()
     {

@@ -82,7 +82,72 @@
                         <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.personal.edit.submit', $application->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="row">
+                            <div class="form-group row ">
+                                <label for="program" class="col-md-4 col-form-label text-md-right">{{ __('Applying For') }}</label>
+
+                                <div class="col-md-8">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input mt-10" name="level" value="1" {{ ( $application->level == 1) ? 'checked' : ''}} required> Undergraduate
+                                       </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input mt-10" name="level" value="2" {{ ( $application->level == 2) ? 'checked' : ''}} required> Postgraduate
+                                       </label>
+                                    </div>
+                                    <span id="error-program" class="invalid-feedback" role="alert"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row ">
+                                <label for="year" class="col-md-4 col-form-label text-md-right">{{ __('Applying Year') }}</label>
+
+                                <div class="col-md-8">
+                                    <select name="year" id="year" class="form-control form-control-sm custom-select" required>
+                                          <option value="" selected>Select One</option>
+
+                                          <option value="{{ date('Y') }}" {{ ( $application->year == date('Y')) ? 'selected' : ''}}>{{ date('Y') }}</option>
+                                          <option value="{{ date('Y') + 1 }}" {{ ( $application->year == date('Y') + 1) ? 'selected' : ''}}>{{ date('Y') + 1 }}</option>
+
+                                    </select>
+                                    <div id="error-year" class="invalid-feedback" role="alert"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
+
+                                <div class="col-md-8">
+                                    <select name="semester" id="semester" class="form-control form-control-sm custom-select" disabled required>
+                                          <option value="" selected>Select One</option>
+                                          <option value="1" id="spring" {{ ( $application->semester == 1 ) ? 'selected' : ''}}>Spring</option>
+                                          <option value="2" {{ ( $application->semester == 2 ) ? 'selected' : ''}}>Summar</option>
+                                          <option value="3" {{ ( $application->semester == 3 ) ? 'selected' : ''}}>Fall</option>
+
+                                    </select>
+                                    <span id="error-semester" class="invalid-feedback" role="alert"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row ">
+                                <label for="shift" class="col-md-4 col-form-label text-md-right">{{ __('Shift') }}</label>
+
+                                <div class="col-md-8">
+                                    <select name="shift" id="shift" class="form-control form-control-sm custom-select" required>
+                                          <option value="" selected>Select One</option>
+                                          <option value="1" {{ ( $application->shift == 1 ) ? 'selected' : ''}}>Day</option>
+                                          <option value="2" {{ ( $application->shift == 2 ) ? 'selected' : ''}}>Evening</option>
+
+                                    </select>
+                                    <span id="error-shift" class="invalid-feedback" role="alert"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-10">
                                 <div class="col">
                                     <div class="form-group row ">
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -268,8 +333,10 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group row mt-10">
-
-                                        <div class="col-md-4 offset-md-4 imgUp">
+                                        <div class="col-md-4">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="col-md-4  imgUp">
 
                                             <div id="imagePreview"></div>
                                             <label class="btn btn-primary">Upload Photo
@@ -312,6 +379,45 @@
 
 
 <script>
+// Check Year Condition
+$('#year').on('change', function () {
+
+    var d = new Date();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+
+    if ( $('#year').val() !=  '') {
+        $('#semester').removeAttr('disabled');
+    } else {
+        $('#semester').attr('disabled', 'disabled');
+    }
+
+    if ( $('#year').val() == year ) {
+
+        if( month >= 0 && month <= 3 ) {
+            //alert(month);
+            $('#semester').find('option[value="'+1+'"]').attr('disabled', 'disabled');
+            $('#semester').find('option[value="'+2+'"]').removeAttr('disabled');
+            $('#semester').find('option[value="'+3+'"]').removeAttr('disabled');
+
+        } else if ( month >= 4 && month <= 7 ) {
+            $('#semester').find('option[value="'+1+'"]').attr('disabled', 'disabled');
+            $('#semester').find('option[value="'+2+'"]').attr('disabled', 'disabled');
+            $('#semester').find('option[value="'+3+'"]').removeAttr('disabled');
+        } else {
+            $('#semester').find('option[value="'+1+'"]').attr('disabled', 'disabled');
+            $('#semester').find('option[value="'+2+'"]').attr('disabled', 'disabled');
+            $('#semester').find('option[value="'+3+'"]').attr('disabled', 'disabled');
+        }
+    } else if( $('#year').val() == year + 1 ) {
+
+        $('#semester').find('option[value="'+1+'"]').removeAttr('disabled');
+        $('#semester').find('option[value="'+2+'"]').attr('disabled', 'disabled');
+        $('#semester').find('option[value="'+3+'"]').attr('disabled', 'disabled');
+    }
+
+});
+
     $('#datepicker').datepicker({
         uiLibrary: 'bootstrap4',
         iconsLibrary: 'fontawesome'
