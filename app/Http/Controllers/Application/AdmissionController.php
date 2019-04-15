@@ -145,17 +145,19 @@ class AdmissionController extends Controller
 
     public function getCv()
     {
-        $applicant = Auth::guard('application')->user();
+        //$applicant = Auth::guard('application')->user();
+        $applicant = Application::find(45);
         return view('frontend.admission.from.cv')->withApplicant($applicant);
     }
     public function downloadCV()
     {
-        $applicant = Auth::guard('application')->user();
+        $applicant = Application::find(45);
+        //$applicant = Auth::guard('application')->user();
         //return view('')->withApplicant($applicant);
         //$pdf = PDF::loadView('frontend.application.download-pdf', compact('applicant') )->save('pdf/specification.pdf');
         //$pdf = PDF::loadView('frontend.application.download-pdf', compact('applicant'))->setPaper('a4');
         //return view('frontend.application.pdf',compact('applicant'));
-        $pdf = PDF::loadView('frontend.application.pdf',compact('applicant'))->setPaper('a4','portrait');
-        return $pdf->download('invoice.pdf');
+        $pdf = PDF::loadView('frontend.application.pdf-test',compact('applicant'))->setPaper('a4','portrait');
+        return $pdf->stream('invoice.pdf');
     }
 }

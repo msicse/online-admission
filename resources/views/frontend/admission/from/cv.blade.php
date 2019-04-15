@@ -164,7 +164,7 @@
                                           <th scope="col">Result</th>
                                           <th scope="col">Passing Year</th>
                                           <th scope="col">Board</th>
-                                      </tr>
+                                        </tr>
                                       </thead>
                                       <tbody>
                                         @foreach( $applicant->academics as $key => $data )
