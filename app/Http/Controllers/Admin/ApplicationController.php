@@ -45,9 +45,9 @@ class ApplicationController extends Controller
         $programs = Programe::all();
         $springs = Application::where('approved', true)
                                 ->where('level', 1)
-                                ->where('semester', 1)
+                                ->where('semester', 2)
                                 ->where('shift', 1)
-                                ->where('year', date('Y'))
+                                ->where('year', date('Y')+1)
                                 ->orderBy('result', 'desc')
                                 ->get();
   
