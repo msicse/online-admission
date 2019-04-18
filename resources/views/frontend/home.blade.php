@@ -2,404 +2,399 @@
 
 @section('title','EUB | Home')
 
+@push('css')
+    <style>
+        .testi_item { border: 0 solid #000 !important; }
+    </style>
+@endpush
+
 @section('content')
-<!--================Home Banner Area =================-->
-<section class="home_banner_area">
-    <div class="banner_inner d-flex align-items-center">
-        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0"
+                 data-background=""></div>
+            <div class="container">
+                <div class="banner_content text-center">
+
+
+                    <h3>We Ensure better education <br/>for a better world</h3>
+                    <p>WE SHAPE YOUR DREAM </p>
+                    <a class="main_btn" href="#">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="team_area p_120">
         <div class="container">
-            <div class="banner_content text-center">
-                <h3>We Ensure better education <br />for a better world</h3>
-                <p>In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.</p>
-                <a class="main_btn" href="#">Get Started</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Home Banner Area =================-->
+            <div class="main_title">
+                <h2>Meet Our Faculty</h2>
 
-<!--================Finance Area =================-->
-<section class="finance_area">
-    <div class="container">
-        <div class="finance_inner row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="finance_item">
-                    <div class="media">
-                        <div class="d-flex">
-                            <i class="lnr lnr-rocket"></i>
-                        </div>
-                        <div class="media-body">
-                            <h5>Science & <br />Engineering</h5>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="finance_item">
-                    <div class="media">
-                        <div class="d-flex">
-                            <i class="lnr lnr-earth"></i>
-                        </div>
-                        <div class="media-body">
-                            <h5>Science & <br />Engineering</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="finance_item">
-                    <div class="media">
-                        <div class="d-flex">
-                            <i class="lnr lnr-smile"></i>
-                        </div>
-                        <div class="media-body">
-                            <h5>Science & <br />Engineering</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="finance_item">
-                    <div class="media">
-                        <div class="d-flex">
-                            <i class="lnr lnr-tag"></i>
-                        </div>
-                        <div class="media-body">
-                            <h5>Science & <br />Engineering</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Finance Area =================-->
-
-<!--================Courses Area =================-->
-<section class="courses_area p_120">
-    <div class="container">
-        <div class="main_title">
-            <h2>Popular Free Courses</h2>
-            <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station.</p>
-        </div>
-        <div class="row courses_inner">
-            <div class="col-lg-9">
-                <div class="grid_inner">
-                    <div class="grid_item wd55">
-                        <div class="courses_item">
-                            <img src="img/courses/course-1.jpg" alt="">
-                            <div class="hover_text">
-                                <a class="cat" href="#">Free</a>
-                                <a href="#"><h4>Japanease Language Class</h4></a>
-                                <ul class="list">
-                                    <li><a href="#"><i class="lnr lnr-users"></i> 355</a></li>
-                                    <li><a href="#"><i class="lnr lnr-bubble"></i> 35</a></li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i> T. Robert</a></li>
-                                </ul>
+            <hr>
+            <section class="finance_area">
+                <div class="container">
+                    <div class="finance_inner row">
+                        <div class="col-lg-4 col-sm-8">
+                            <div class="finance_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <i class="lnr lnr-rocket"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Business &<br/>Endustrial Mgt </h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="grid_item wd44">
-                        <div class="courses_item">
-                            <img src="img/courses/course-2.jpg" alt="">
-                            <div class="hover_text">
-                                <a class="cat" href="#">Free</a>
-                                <a href="#"><h4>Japanease Language Class</h4></a>
-                                <ul class="list">
-                                    <li><a href="#"><i class="lnr lnr-users"></i> 355</a></li>
-                                    <li><a href="#"><i class="lnr lnr-bubble"></i> 35</a></li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i> T. Robert</a></li>
-                                </ul>
+                        <div class="col-lg-4 col-sm-8">
+                            <div class="finance_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <i class="lnr lnr-earth"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Faculty of Arts & <br/>Social science </h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="grid_item wd44">
-                        <div class="courses_item">
-                            <img src="img/courses/course-4.jpg" alt="">
-                            <div class="hover_text">
-                                <a class="cat" href="#">Free</a>
-                                <a href="#"><h4>Japanease Language Class</h4></a>
-                                <ul class="list">
-                                    <li><a href="#"><i class="lnr lnr-users"></i> 355</a></li>
-                                    <li><a href="#"><i class="lnr lnr-bubble"></i> 35</a></li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i> T. Robert</a></li>
-                                </ul>
+                        <div class="col-lg-4 col-sm-8">
+                            <div class="finance_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <i class="lnr lnr-smile"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Faculty of Science & <br/>Engineering</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-                    <div class="grid_item wd55">
-                        <div class="courses_item">
-                            <img src="img/courses/course-5.jpg" alt="">
-                            <div class="hover_text">
-                                <a class="cat" href="#">Free</a>
-                                <a href="#"><h4>Japanease Language Class</h4></a>
-                                <ul class="list">
-                                    <li><a href="#"><i class="lnr lnr-users"></i> 355</a></li>
-                                    <li><a href="#"><i class="lnr lnr-bubble"></i> 35</a></li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i> T. Robert</a></li>
-                                </ul>
+                </div>
+
+            </section>
+
+        </div>
+
+<br>
+<br>
+        <!--================End Team Area =================-->
+
+        <!--================Testimonials Area =================-->
+
+            <div class="container">
+                <div class="testi_slider owl-carousel ">
+                    <div class="item">
+
+
+                        <div class="main_title">
+
+                            <h2> Our Departments</h2>
+                            <br>
+
+
+                            <hr>
+                        </div>
+
+                        <div class="row team_inner testi_item">
+
+
+                            <div class="col-lg-3 col-sm-12">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/civil.png" alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Civil Engineering</h4>
+
+                                    </div>
+                                </div>
                             </div>
+
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/Electronics-and-Telecommunication-Engineering.png"
+                                             alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Electrical & Electronic Engineering</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img ">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/textile.png" alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Textile Engineering</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/Computer-Science-and-Engineering.png"
+                                             alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Computer Science & Engineering</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+
+                        <div class="row team_inner testi_item">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/Business-Studies.png" alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Business</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/English-Studies.png" alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">English</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/Law.png" alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Law</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/Tourism-Hospitality-Management.png"
+                                             alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Tourism & Hospitality Management</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="row team_inner testi_item">
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/Economics.png" alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">Economics</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="team_item">
+                                    <div class="team_img">
+                                        <img class="rounded-circle col-lg-6"
+                                             src="{{asset('/frontend/')}}/img/departmant/ME-IPE.png" alt="">
+
+                                    </div>
+                                    <div class="team_name">
+                                        <h4 class="col-lg-12">MIPE</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        <br>
+        <br>
+        <br>
+
+  <hr>
+
+            <div class="container">
+                <div class="row packages_inner">
+                    <div class="col-lg-12">
+                        <div class="packages_item">
+                            <div class="pack_head">
+                                <i class="lnr lnr-graduation-hat"></i>
+                                <h3>Our Programs</h3>
+
+                            </div>
+                            <br>
+                            <div class="pack_body">
+
+                                <table class="table table-bordered table-hover">
+                                    <thead class="thead-dark">
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <th scope="col-lg-12">Undergraduate Programs</th>
+                                        <th scope="col">  Graduate Programs</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>Civil Engineering</td>
+                                        <td>MBA</td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>Electrical & Electronic Engineering</td>
+                                        <td>E MBA</td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>Textile Engineering</td>
+                                        <td>MA in English</td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>Computer Science Engineering</td>
+                                        <td>LL.M</td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>Business Administration ( BBA )</td>
+                                        <td>Masters in Engineering Management(MEM)</td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>Law (LLB-Hons)</td>
+                                        <td></td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>B.A (Honours) in English</td>
+                                        <td></td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>Tourism and Hospitality Management</td>
+                                        <td></td>
+
+                                    </tr>
+                                    <tr style="font-style:normal;color: #0D0A0A; font-size:15px">
+
+                                        <td>BSS (Hons. in Economics)</td>
+                                        <td></td>
+
+                                    </tr><tr>
+
+                                        <td style="font-style:normal;color: #0D0A0A; font-size:15px">Mechanical and Industrial Production Engineering</td>
+                                        <td></td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+
+
+                            </div>
+
+
+
+
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="course_item">
-                    <img src="img/courses/course-3.jpg" alt="">
-                    <div class="hover_text">
-                        <a class="cat" href="#">Free</a>
-                        <a href="#"><h4>Japanease Language Class</h4></a>
-                        <ul class="list">
-                            <li><a href="#"><i class="lnr lnr-users"></i> 355</a></li>
-                            <li><a href="#"><i class="lnr lnr-bubble"></i> 35</a></li>
-                            <li><a href="#"><i class="lnr lnr-user"></i> T. Robert</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Courses Area =================-->
 
-<!--================Team Area =================-->
-<section class="team_area p_120">
-    <div class="container">
-        <div class="main_title">
-            <h2>Meet Our Faculty</h2>
-            <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station.</p>
-        </div>
-        <div class="row team_inner">
-            <div class="col-lg-3 col-sm-6">
-                <div class="team_item">
-                    <div class="team_img">
-                        <img class="rounded-circle" src="img/team/team-1.jpg" alt="">
-                        <div class="hover">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team_name">
-                        <h4>Ethel Davis</h4>
-                        <p>Managing Director (Sales)</p>
-                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="team_item">
-                    <div class="team_img">
-                        <img class="rounded-circle" src="img/team/team-2.jpg" alt="">
-                        <div class="hover">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team_name">
-                        <h4>Ethel Davis</h4>
-                        <p>Managing Director (Sales)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="team_item">
-                    <div class="team_img">
-                        <img class="rounded-circle" src="img/team/team-3.jpg" alt="">
-                        <div class="hover">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team_name">
-                        <h4>Ethel Davis</h4>
-                        <p>Managing Director (Sales)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="team_item">
-                    <div class="team_img">
-                        <img class="rounded-circle" src="img/team/team-4.jpg" alt="">
-                        <div class="hover">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team_name">
-                        <h4>Ethel Davis</h4>
-                        <p>Managing Director (Sales)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Team Area =================-->
 
-<!--================Testimonials Area =================-->
-<section class="testimonials_area p_120">
-    <div class="container">
-        <div class="testi_slider owl-carousel">
-            <div class="item">
-                <div class="testi_item">
-                    <img src="img/testimonials/testi-3.png" alt="">
-                    <h4>Fannie Rowe</h4>
-                    <ul class="list">
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    </ul>
-                    <p>Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.</p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="testi_item">
-                    <img src="img/testimonials/testi-3.png" alt="">
-                    <h4>Fannie Rowe</h4>
-                    <ul class="list">
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    </ul>
-                    <p>Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.</p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="testi_item">
-                    <img src="img/testimonials/testi-3.png" alt="">
-                    <h4>Fannie Rowe</h4>
-                    <ul class="list">
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    </ul>
-                    <p>Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Testimonials Area =================-->
 
-<!--================Pagkages Area =================-->
-<section class="packages_area p_120">
-    <div class="container">
-        <div class="row packages_inner">
-            <div class="col-lg-4">
-                <div class="packages_text">
-                    <h3>Choose <br />Course Packages</h3>
-                    <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station.</p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="packages_item">
-                    <div class="pack_head">
-                        <i class="lnr lnr-graduation-hat"></i>
-                        <h3>Premium</h3>
-                        <p>For the individuals</p>
-                    </div>
-                    <div class="pack_body">
-                        <ul class="list">
-                            <li><a href="#">Secure Online Transfer</a></li>
-                            <li><a href="#">Unlimited Styles for interface</a></li>
-                            <li><a href="#">Reliable Customer Service</a></li>
-                        </ul>
-                    </div>
-                    <div class="pack_footer">
-                        <h4>£399.00</h4>
-                        <a class="main_btn" href="#">Join Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="packages_item">
-                    <div class="pack_head">
-                        <i class="lnr lnr-diamond"></i>
-                        <h3>Exclusive</h3>
-                        <p>For the individuals</p>
-                    </div>
-                    <div class="pack_body">
-                        <ul class="list">
-                            <li><a href="#">Secure Online Transfer</a></li>
-                            <li><a href="#">Unlimited Styles for interface</a></li>
-                            <li><a href="#">Reliable Customer Service</a></li>
-                        </ul>
-                    </div>
-                    <div class="pack_footer">
-                        <h4>£399.00</h4>
-                        <a class="main_btn" href="#">Join Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Pagkages Area =================-->
+        <section class="impress_area p_120">
+            <div class="container">
+                <div class="impress_inner text-center">
 
-<!--================Latest Blog Area =================-->
-<section class="latest_blog_area p_120">
-    <div class="container">
-        <div class="main_title">
-            <h2>Latest Posts From Blog</h2>
-            <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station.</p>
-        </div>
-        <div class="row latest_blog_inner">
-            <div class="col-lg-3 col-md-6">
-                <div class="l_blog_item">
-                    <img class="img-fluid" src="img/latest-blog/l-blog-1.jpg" alt="">
-                    <a class="date" href="#">25 October, 2018  |  By Mark Wiens</a>
-                    <a href="single-blog.html"><h4>Addiction When Gambling Becomes A Problem</h4></a>
-                    <p>Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="l_blog_item">
-                    <img class="img-fluid" src="img/latest-blog/l-blog-2.jpg" alt="">
-                    <a class="date" href="#">25 October, 2018  |  By Mark Wiens</a>
-                    <a href="single-blog.html"><h4>Addiction When Gambling Becomes A Problem</h4></a>
-                    <p>Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="l_blog_item">
-                    <img class="img-fluid" src="img/latest-blog/l-blog-3.jpg" alt="">
-                    <a class="date" href="#">25 October, 2018  |  By Mark Wiens</a>
-                    <a href="single-blog.html"><h4>Addiction When Gambling Becomes A Problem</h4></a>
-                    <p>Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="l_blog_item">
-                    <img class="img-fluid" src="img/latest-blog/l-blog-4.jpg" alt="">
-                    <a class="date" href="#">25 October, 2018  |  By Mark Wiens</a>
-                    <a href="single-blog.html"><h4>Addiction When Gambling Becomes A Problem</h4></a>
-                    <p>Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Latest Blog Area =================-->
+                    <h2>WE SHAPE YPUR DREAMS</h2>
 
-<!--================Impress Area =================-->
-<section class="impress_area p_120">
-    <div class="container">
-        <div class="impress_inner text-center">
-            <h2>Become an instructor</h2>
-            <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station whether that is on the deck</p>
-            <a class="main_btn2" href="#">Apply for the post</a>
-        </div>
-    </div>
-</section>
-<!--================End Impress Area =================-->
+                </div>
+            </div>
+        </section>
+
+
+
+
 
 @endsection
+

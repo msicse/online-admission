@@ -17,3 +17,9 @@
     align-items: center;     /* Align the flex-items vertically */
     justify-content: center;
 }
+.dropdown-menu {
+
+    width: 250px !important;
+}
+.mt-200 { margin-top: 200px !important;}
+.mt-150 { margin-top: 150px !important;}

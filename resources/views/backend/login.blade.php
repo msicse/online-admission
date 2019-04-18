@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Admission | Login' )
+@section('title', 'Admin | Login' )
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
 @endpush
@@ -10,13 +10,12 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('frontend.admission._sidebar')
-            <div class="col-lg-9 col-md-9 col-sm-12 ">
+            <div class="col-lg-8 col-md-8 offset-md-2 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header">Student Login</h5>
+                    <h5 class="card-header">Admin Login</h5>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admission.login.post') }}">
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <div class="form-group row">

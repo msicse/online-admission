@@ -13,8 +13,23 @@
 
 //Frontend Routes
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('contact', 'HomeController@contact')->name('contact');
-Route::get('admission-', 'HomeController@login')->name('login');
+Route::get('admin/login', 'HomeController@login')->name('admin.login');
+
+
+Route::get('message', 'FrontendController@message')->name('message');
+Route::get('contact','FrontendController@contact')->name('contact');
+Route::get('certification','FrontendController@certification')->name('certification');
+Route::get('mission','FrontendController@mission')->name('mission');
+Route::get('rules','FrontendController@rules')->name('rules');
+Route::get('degrees','FrontendController@degrees')->name('degrees');
+Route::get('credit','FrontendController@credit')->name('credit');
+Route::get('guideline','FrontendController@guideline')->name('guideline');
+Route::get('tuition','FrontendController@tuition')->name('tuition');
+Route::get('registration','FrontendController@registration')->name('registration');
+Route::get('office','FrontendController@office')->name('office');
+Route::get('business','FrontendController@business')->name('business');
+Route::get('arts','FrontendController@arts')->name('arts');
+Route::get('engineering','FrontendController@engineering')->name('engineering');
 
 //Auth Routes
 Auth::routes();

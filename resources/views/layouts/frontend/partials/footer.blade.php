@@ -1,50 +1,30 @@
 <footer class="footer-area p_120">
     <div class="container">
         <div class="row">
-            <div class="col-lg-2  col-md-6 col-sm-6">
+            <div class="col-lg-4  col-md-12 col-sm-12">
                 <div class="single-footer-widget tp_widgets">
-                   <h6 class="footer_title">Top Products</h6>
+                    <h6 class="footer_title">CONTACT INFORMATION</h6>
                     <ul class="list">
-                        <li><a href="#">Managed Website</a></li>
-                        <li><a href="#">Manage Reputation</a></li>
-                        <li><a href="#">Power Tools</a></li>
-                        <li><a href="#">Marketing Service</a></li>
+                        <li><a href="#">EUB Permanent Campus</a></li>
+                        <li><a href="#">2/4 Gabtoli Mirpur Dhaka 1216</a></li>
+                        <li><a href="#">FOLLOW ON FACEBOOK</a></li>
+
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-2  col-md-6 col-sm-6">
+
+            <div class="col-lg-4  col-md-12 col-sm-12">
                 <div class="single-footer-widget tp_widgets">
-                   <h6 class="footer_title">Quick Links</h6>
+                    <h6 class="footer_title">RESEARCH & PUBLICATION</h6>
                     <ul class="list">
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Institutional Repository</a></li>
+                        <li><a href="#">Research Publications</a></li>
+                        <li><a href="#">Research Centers</a></li>
+                        <li><a href="#">EUB Blog</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-2  col-md-6 col-sm-6">
-                <div class="single-footer-widget tp_widgets">
-                   <h6 class="footer_title">Features</h6>
-                    <ul class="list">
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2  col-md-6 col-sm-6">
-                <div class="single-footer-widget tp_widgets">
-                   <h6 class="footer_title">Resources</h6>
-                    <ul class="list">
-                        <li><a href="#">Guides</a></li>
-                        <li><a href="#">Research</a></li>
-                        <li><a href="#">Experts</a></li>
-                        <li><a href="#">Agencies</a></li>
-                    </ul>
-                </div>
-            </div>
+
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <aside class="f_widget news_widget">
                     <div class="f_title">
@@ -52,10 +32,13 @@
                     </div>
                     <p>Stay updated with our latest trends</p>
                     <div id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
+                        <form target="_blank"
+                              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                              method="get" class="subscribe_form relative">
                             <div class="input-group d-flex flex-row">
-                                <!-- <input name="EMAIL" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email"> -->
-                                <!-- <button class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button> -->
+                                <input name="EMAIL" placeholder="Enter email address" onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                <button class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>
                             </div>
                             <div class="mt-10 info"></div>
                         </form>
@@ -64,9 +47,11 @@
             </div>
         </div>
         <div class="row footer-bottom d-flex justify-content-between align-items-center">
-            <p class="col-lg-8 col-md-8 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Developed by <a href="" target="_blank">Sumon-Sonia-Sarwar</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            <p class="col-lg-8 col-md-8 footer-text m-0">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | Developed by <a href="" target="_blank">Sumon-Sonia-Sarwar</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
             <div class="col-lg-4 col-md-4 footer-social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
