@@ -29,6 +29,7 @@
                         $users = [];
                     @endphp
                     @foreach( $programs as $program )
+                    
                         <h4> {{ $program->name}} </h4>
                         <h5> Spring- {{date('Y')}}</h5>
                         <table class="table-bordered table-striped">
@@ -37,26 +38,28 @@
                                 <th>Name</th>
                                 <th>Program</th>
                                 <th>Marks</th>
+                                <th>id</th>
                             </tr>
 
                             
-
+                            
                             @foreach( $springs as $key => $spring )
                                
                                 @if( in_array($spring->id, $users)  )
                                      @continue
                                 @else
 
-
+                                    {!! $count = 1 !!}
                                     @foreach( $spring->programs as $data )
-
+                                        {!!  $count++ !!}
                                         @if( $program->id == $data->id )
                                         
                                         <tr>
-                                            <td>{{ $key +1 }}</td>
+                                            <td>{{ $count }}</td>
                                             <td>  {{ $spring->name}}</td>
                                             <td>  {{ $data->short_name}}</td>
                                             <td>  {{ $spring->result}}</td>
+                                            <td>  {{ $spring->id}}</td>
                                         </tr>
 
                                         <?php $users[] = $spring->id; ?>

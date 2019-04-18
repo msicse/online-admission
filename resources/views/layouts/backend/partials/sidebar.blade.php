@@ -61,6 +61,12 @@
                 </a>
             </li>
             <li class="header">Admission</li>
+            <li class="{{ Request::is('admin/dates*') ? 'active' : '' }}">
+                <a href="{{ route('admin.dates.index') }}">
+                    <i class="material-icons">people</i>
+                    <span>Date</span>
+                </a>
+            </li>
             <li class="{{ Request::is('admin/applications*') ? 'active' : '' }}">
                 <a href="{{ route('admin.applications.index') }}">
                     <i class="material-icons">people</i>
