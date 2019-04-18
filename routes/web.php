@@ -92,10 +92,6 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
     Route::post('choice','AdmissionController@submitChoice')->name('submit.choice');
     Route::get('cv','AdmissionController@getCv')->name('cv');
     Route::get('download-cv','AdmissionController@downloadCV')->name('download.cv');
-
-
-
-
 });
 
 //payment routes
@@ -112,6 +108,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
     Route::resource('users','UserController');
     Route::resource('departments','DepartmentController');
     Route::resource('programs','ProgrameController');
+    Route::resource('dates','ApplicationDateController');
 
     //Admission
     Route::get('applications', 'ApplicationController@index')->name('applications.index');

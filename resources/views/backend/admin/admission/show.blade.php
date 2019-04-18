@@ -25,8 +25,9 @@
                 </div>
                 <div class="body">
                     <div class="row">
-                        <div class="col text-center mt-10 mb-10">
-                            <img src="{{ asset('storage/admission/'. $application->image ) }}" class="" height="150" alt="">
+                        <div class="col-md-9 text-center mt-10 mb-10">
+                            <h3> {{ $application->name}}</h3>
+
                             <div class="mt-10"><strong>Appling For : </strong> {{ ($application->level == 1 ) ? 'Under Graduate' : 'Post Graduate'  }}</div>
                             <div><strong>Semester : </strong>
                                 {{ ($application->semester == 1) ? 'Spring' : '' }}
@@ -39,11 +40,13 @@
 
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <img src="{{ asset('storage/admission/'. $application->image ) }}" class="" height="150" alt="">
+                        </div>
                     </div>
                     <table class="table table-striped table-bordered">
                         <tr>
-                            <th>Name</th>
-                            <td>{{ $application->name }}</td>
+
                             <th>Father's Name</th>
                             <td>{{ $application->fname }}</td>
                             <th>Mother's Name</th>
@@ -58,24 +61,30 @@
                                 {{ ($application->gender == 2 ) ? 'Female' : ''}}
                                 {{ ($application->gender == 3 ) ? 'Others' : ''}}
                             </td>
-                            <th>Phone</th>
-                            <td>{{ $application->phone }}</td>
+
                         </tr>
                         <tr>
+                            <th>Phone</th>
+                            <td>{{ $application->phone }}</td>
                             <th>Email</th>
                             <td>{{ $application->email }}</td>
+                        </tr>
+                        <tr>
                             <th>Guardian Name</th>
                             <td>{{ $application->guardian }}</td>
                             <th>Relation</th>
                             <td>{{ $application->guardian_relation }}</td>
                         </tr>
                         <tr>
-                            <th>Nationality</th>
-                            <td>{{ $application->nationality }}</td>
+
                             <th>Present Address</th>
                             <td>{{ $application->present_address }}</td>
                             <th>Parmanent Address</th>
                             <td>{{ $application->parmanent_address }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nationality</th>
+                            <td>{{ $application->nationality }}</td>
                         </tr>
                     </table>
                     <div class="header">
@@ -148,7 +157,10 @@
                     <div class="col text-center">
                         <a href="{{ route('admin.applications.index') }}" class="btn btn-primary">Back</a>
                         @if( $application->approved == 1 )
-                        <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-success disable">Approved</a>
+                        <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-success ">Approved</a>
+                        @else
+                        <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-lg btn-success ">Approv</a>
+
                         @endif
                     </div>
                 </div>
