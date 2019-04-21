@@ -6,12 +6,17 @@ use Illuminate\Support\Facades\Redirect;
 use Session;
 use Illuminate\Routing\UrlGenerator;
 use App\Http\Controllers;
+use Auth;
+use Toastr;
 session_start();
 
 class PublicSslCommerzPaymentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('application');
+    }
 
-    
     public function index(Request $request)
     {
 
@@ -20,9 +25,9 @@ class PublicSslCommerzPaymentController extends Controller
             # In orders table order uniq identity is "order_id","order_status" field contain status of the transaction, "grand_total" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
             $post_data = array();
-            $post_data['total_amount'] = '10'; # You cant not pay less than 10
+            $post_data['total_amount'] = '10000'; # You cant not pay less than 10
             $post_data['currency'] = "BDT";
-            $post_data['tran_id'] = '76176590'; // tran_id must be unique
+            $post_data['tran_id'] = random_int(100000, 999999); // tran_id must be unique
 
             #Start to save these value  in session to pick in success page.
             $_SESSION['payment_values']['tran_id']=$post_data['tran_id'];
@@ -30,20 +35,20 @@ class PublicSslCommerzPaymentController extends Controller
 
 
             $server_name=$request->root()."/";
-            $post_data['success_url'] = $server_name . "success";
-            $post_data['fail_url'] = $server_name . "fail";
-            $post_data['cancel_url'] = $server_name . "cancel";
+            $post_data['success_url'] = route('success');
+            $post_data['fail_url'] =route('fail');
+            $post_data['cancel_url'] =route('cancel');
 
             # CUSTOMER INFORMATION
-            $post_data['cus_name'] = 'Customer Name';
-            $post_data['cus_email'] = 'customer@mail.com';
-            $post_data['cus_add1'] = 'Customer Address';
-            $post_data['cus_add2'] = "";
+            $post_data['cus_name'] = $request->name;
+            $post_data['cus_email'] = $request->email;
+            $post_data['cus_add1'] = $request->address;
+            $post_data['cus_add2'] = $request->address;
             $post_data['cus_city'] = "";
             $post_data['cus_state'] = "";
             $post_data['cus_postcode'] = "";
             $post_data['cus_country'] = "Bangladesh";
-            $post_data['cus_phone'] = '8801XXXXXXXXX';
+            $post_data['cus_phone'] = $request->phone;
             $post_data['cus_fax'] = "";
 
             # SHIPMENT INFORMATION
@@ -64,9 +69,9 @@ class PublicSslCommerzPaymentController extends Controller
 
 
             #Before  going to initiate the payment order status need to update as Pending.
-            $update_product = DB::table('orders')
-                                    ->where('order_id', $post_data['tran_id'])
-                                    ->update(['order_status' => 'Pending','currency' => $post_data['currency']]);
+            // $update_product = DB::table('orders')
+            //                         ->where('order_id', $post_data['tran_id'])
+            //                         ->update(['order_status' => 'Pending','currency' => $post_data['currency']]);
 
             $sslc = new SSLCommerz();
             # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
@@ -89,13 +94,16 @@ class PublicSslCommerzPaymentController extends Controller
         #End to received these value from session. which was saved in index function.
 
         #Check order status in order tabel against the transaction id or order id.
-        $order_detials = DB::table('orders')
-                            ->where('order_id', $tran_id)
-                            ->select('order_id', 'order_status','currency','grand_total')->first();
-
-        if($order_detials->order_status=='Pending')
+        // $order_detials = DB::table('orders')
+        //                     ->where('order_id', $tran_id)
+        //                     ->select('order_id', 'order_status','currency','grand_total')->first();
+        $order_status = 'Pending';
+        $grand_total    = 100000;
+        $currency = 'BDT';
+        if($order_status=='Pending')
         {
-            $validation = $sslc->orderValidate($tran_id, $order_detials->grand_total, $order_detials->currency, $request->all());
+            //$validation = $sslc->orderValidate($tran_id, $grand_total, $currency, $request->all());
+            $validation = TRUE;
             if($validation == TRUE)
             {
                 /*
@@ -103,11 +111,11 @@ class PublicSslCommerzPaymentController extends Controller
                 in order table as Processing or Complete.
                 Here you can also sent sms or email for successfull transaction to customer
                 */
-                $update_product = DB::table('orders')
-                            ->where('order_id', $tran_id)
-                            ->update(['order_status' => 'Processing']);
-
-                echo "<br >Transaction is successfully Complete";
+                // $update_product = DB::table('orders')
+                //             ->where('order_id', $tran_id)
+                //             ->update(['order_status' => 'Processing']);
+                Toastr::success(' Transaction is successfully Complete ', 'Success');
+                return redirect()->route('application.home');
             }
             else
             {
@@ -115,18 +123,22 @@ class PublicSslCommerzPaymentController extends Controller
                 That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.
                 Here you need to update order status as Failed in order table.
                 */
-                $update_product = DB::table('orders')
-                            ->where('order_id', $tran_id)
-                            ->update(['order_status' => 'Failed']);
+                // $update_product = DB::table('orders')
+                //             ->where('order_id', $tran_id)
+                //             ->update(['order_status' => 'Failed']);
                 echo "validation Fail";
             }
         }
-        else if($order_detials->order_status=='Processing' || $order_detials->order_status=='Complete')
+
+        else if($order_status=='Processing' || $order_status=='Complete')
         {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "Transaction is successfully Complete";
+            //echo "Transaction is successfully Complete";
+            Toastr::success(' Transaction is successfully Complete ', 'Success');
+            return redirect()->route('application.home');
+
         }
         else
         {
@@ -139,53 +151,57 @@ class PublicSslCommerzPaymentController extends Controller
     }
     public function fail(Request $request)
     {
-         $tran_id = $_SESSION['payment_values']['tran_id'];
-         $order_detials = DB::table('orders')
-                            ->where('order_id', $tran_id)
-                            ->select('order_id', 'order_status','currency','grand_total')->first();
+         // $tran_id = $_SESSION['payment_values']['tran_id'];
+         // $order_detials = DB::table('orders')
+         //                    ->where('order_id', $tran_id)
+         //                    ->select('order_id', 'order_status','currency','grand_total')->first();
 
-        if($order_detials->order_status=='Pending')
-        {
-            $update_product = DB::table('orders')
-                            ->where('order_id', $tran_id)
-                            ->update(['order_status' => 'Failed']);
-            echo "Transaction is Falied";
-        }
-         else if($order_detials->order_status=='Processing' || $order_detials->order_status=='Complete')
-        {
-            echo "Transaction is already Successful";
-        }
-        else
-        {
-            echo "Transaction is Invalid";
-        }
 
+
+        // if($order_detials->order_status=='Pending')
+        // {
+        //     $update_product = DB::table('orders')
+        //                     ->where('order_id', $tran_id)
+        //                     ->update(['order_status' => 'Failed']);
+        //     echo "Transaction is Falied";
+        // }
+        //  else if($order_detials->order_status=='Processing' || $order_detials->order_status=='Complete')
+        // {
+        //     echo "Transaction is already Successful";
+        // }
+        // else
+        // {
+        //     echo "Transaction is Invalid";
+        // }
+            Toastr::error(' Transaction is Failed ', 'Error');
+            return redirect()->route('application.payment');
     }
 
      public function cancel(Request $request)
     {
-        $tran_id = $_SESSION['payment_values']['tran_id'];
-
-        $order_detials = DB::table('orders')
-                            ->where('order_id', $tran_id)
-                            ->select('order_id', 'order_status','currency','grand_total')->first();
-
-        if($order_detials->order_status=='Pending')
-        {
-            $update_product = DB::table('orders')
-                            ->where('order_id', $tran_id)
-                            ->update(['order_status' => 'Canceled']);
-            echo "Transaction is Cancel";
-        }
-         else if($order_detials->order_status=='Processing' || $order_detials->order_status=='Complete')
-        {
-            echo "Transaction is already Successful";
-        }
-        else
-        {
-            echo "Transaction is Invalid";
-        }
-
+        // $tran_id = $_SESSION['payment_values']['tran_id'];
+        //
+        // $order_detials = DB::table('orders')
+        //                     ->where('order_id', $tran_id)
+        //                     ->select('order_id', 'order_status','currency','grand_total')->first();
+        //
+        // if($order_detials->order_status=='Pending')
+        // {
+        //     $update_product = DB::table('orders')
+        //                     ->where('order_id', $tran_id)
+        //                     ->update(['order_status' => 'Canceled']);
+        //     echo "Transaction is Cancel";
+        // }
+        //  else if($order_detials->order_status=='Processing' || $order_detials->order_status=='Complete')
+        // {
+        //     echo "Transaction is already Successful";
+        // }
+        // else
+        // {
+        //     echo "Transaction is Invalid";
+        // }
+        Toastr::error('Transaction is Failed ', 'Error');
+        return redirect()->route('application.payment');
 
     }
      public function ipn(Request $request)
@@ -216,7 +232,8 @@ class PublicSslCommerzPaymentController extends Controller
                                     ->where('order_id', $tran_id)
                                     ->update(['order_status' => 'Processing']);
 
-                        echo "Transaction is successfully Complete";
+                                    Toastr::success(' Transaction is successfully Complete ', 'Success');
+                                    return redirect()->route('application.home');
                     }
                     else
                     {

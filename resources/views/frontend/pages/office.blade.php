@@ -10,7 +10,7 @@
             <br>
             <br>
                 <figure class="figure">
-                    <img  style="width: 100%;height: 500px" src="{{asset('/frontend/')}}/img/European-University-Of-Bangladesh.jpg  "
+                    <img  style="width: 100%;height: 400px" src="{{asset('/frontend/')}}/img/European-University-Of-Bangladesh.jpg  "
                          class="figure-img img-fluid rounded"
                          alt="A generic square placeholder image with rounded corners in a figure.">
 

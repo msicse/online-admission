@@ -38,6 +38,23 @@
     </head>
     <body>
         <!--================Admission form Area =================-->
+        @if(auth()->guard('application')->user()->academics()->count() == 0 )
+        <div class="row">
+            <div class="col bg-light">
+
+                <div class="progress bg-light" style="height:25px; border:1px solid #eee;">
+                    <div class="progress-bar" role="progressbar" style="width:50%"aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
+                </div>
+                <p class="bg-light text-danger">Complete Your Profile </p>
+                <div class=" text-center">
+                    <a href="{{ route('application.academic') }}" class="btn btn-primary btn-sm"> Complete Profile to next step</a>
+                </div>
+            </div>
+
+
+        </div>
+        @else
+
         <section class="admission-area padding-tb-50">
             <div class="container">
                 <div class="row">
@@ -225,6 +242,6 @@
             </div> <!--End Container-->
         </section>
         <!--================End Content Area =================-->
-
+@endif
     </body>
 </html>

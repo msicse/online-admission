@@ -18,10 +18,89 @@ use PDF;
 
 class AdmissionController extends Controller
 {
-    public function getAcademic()
+
+
+
+    public function getPersonal()
     {
 
-        //$applicant = Application::find(Auth::guard('application'));
+        return view('frontend.application.personal');
+
+    }
+    public function getAcademicAll()
+    {
+
+        return view('frontend.application.academic');
+
+    }
+    public function getProgram()
+    {
+
+        return view('frontend.application.application');
+
+    }
+    public function getPayment()
+    {
+
+        return view('frontend.application.payment');
+
+    }
+    public function getApplication()
+    {
+
+        $programs = Programe::all();
+        return view('frontend.admission.apply')->withPrograms($programs);
+
+    }
+    public function postApplication(Request $request)
+    {
+
+        $validatedData = $this->validate($request,array(
+           'semester' => 'required|numeric',
+           'year' => 'required|numeric',
+           'shift' => 'required|numeric',
+           'level' => 'required',
+       ));
+       $applicant = Application::find(Auth::guard('application')->user()->id);
+
+       $applicant->Semester     = $request->semester;
+       $applicant->year     = $request->year;
+       $applicant->shift     = $request->shift;
+       $applicant->level     = $request->level;
+       $applicant->save();
+
+        Toastr::success('Process is Completed ', 'Success');
+        return redirect()->route('application.program.select');
+
+
+
+    }
+
+
+    public function getProgramSelect()
+    {
+        $programs = Programe::all();
+        return view('frontend.admission.from.choice')->withPrograms($programs);
+
+    }
+    public function programSelect(Request $request)
+    {
+        //return $request->all();
+        $applicant_id = Auth::guard('application')->user()->id;
+
+        //$applicant = Application::where('id',$applicant_id)->first();
+        $applicant = Application::find(Auth::guard('application')->user()->id);
+        $applicant->programs()->attach($request->to);
+
+        //return $applicant;
+        Toastr::success('Process is Completed ', 'Success');
+        return redirect()->route('application.home');
+
+    }
+
+
+    public function getAcademic()
+    {
 
         return view('frontend.admission.from.academic-info');
 
@@ -38,7 +117,7 @@ class AdmissionController extends Controller
             'passing_year.*' => 'required|numeric|min:4',
             'result.*' => 'required|between:1,99.99',
             'title.*' => 'required|alpha_dash',
-            'institute.*' => 'required|alpha_dash',
+            'institute.*' => 'required',
             'marksheet.*' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
             'certificate.*' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
 
@@ -104,7 +183,7 @@ class AdmissionController extends Controller
         }
 
         Toastr::success(' Succesfully Added Academic Info ', 'Success');
-        return redirect()->route('application.choice');
+        return redirect()->route('application.home');
     }
 
     public function getChoice(Request $request)

@@ -15,15 +15,15 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <h3 class="text-capitalize">Before appling online read the Guidelines carefully </h3>
-                        <a href="#" class="btn btn-info mr-20"> Guidelines </a>
-                        <a href="#" class="btn btn-primary"> How To Apply </a>
+                        <a href="{{ route('admission.guidelines') }}" class="btn btn-info mr-20"> Guidelines </a>
+                        <a href="{{ route('admission.how') }}" class="btn btn-primary"> How To Apply </a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.apply') }}" class="btn btn-success"> Apply </a>
+                                <a href="{{ route('admission.personal') }}" class="btn btn-success"> Registration </a>
                             </div>
                         </div>
                     </div>

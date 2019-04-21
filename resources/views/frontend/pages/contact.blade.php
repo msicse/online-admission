@@ -15,7 +15,7 @@
 
             <div class="row">
 
-                <div class="col-sm-6">
+                <div class="col">
 
 
                     <p style="font-style:normal;color: #0D0A0A; font-size:15px; text-align: justify">The European
@@ -50,166 +50,48 @@
                         is
                         located at Janata Housing, Plot # 211 & 212, Shah Ali-Bag, Mirpur-2, Dhaka-1216, Bangladesh.</p>
 
-
-                    <h4 style="font-style: normal;color: #4a148c">Campus Location</h4>
-                    <p style="font-style:normal;color: #0D0A0A; font-size:15px">Address: 2/4 Gabtoli Mirpur Dhaka
-                        1216<br>
-                        Phone: 01968774927, 01968774933, 01968774928, 01968774930-32<br>
-                        Number of students: 16,000<br>
-                        Founded: 2012<br>
-                        Motto: We Shape your Dream<br>
-                        Admission Office<br>
-                        Address: 2/4 Gabtoli, Dhaka Bangladesh<br>
-                        Phone:01968774927, 01968774933, 01968774928, 01968774930-32<br>
-                        Motto: We Shape your Dream<br></p>
-
-
-                </div>
-
-
-                <div class="col-sm-6">
-
-
-                    <form class="form-horizontal" action="index.html" method="GET">
-
-
-                        <div class="form-group" style="font-style:normal;color: #0D0A0A; font-size:15px; text-align: justify">
-
-                            <label for="full_name" class="col-sm-3">Full Name</label>
-                            <div class="col-sm-12">
-
-
-                                <input id="full_name" required maxlength="10"
-                                       type="text" name="first_name" class="form-control">
-
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="form-group" style="font-style:normal;color: #0D0A0A; font-size:14px; text-align: justify">
-
-                            <label for="email" class="col-sm-3">Email Address</label>
-                            <div class="col-sm-12">
-
-
-                                <input id="email" type="email" required name="email_address" class="form-control">
-
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="form-group" style="font-style:normal;color: #0D0A0A; font-size:14px; text-align: justify">
-
-                            <label for="phone_number" class="col-sm-3">Phone Nuumber</label>
-                            <div class="col-sm-12">
-
-
-                                <input id="phone_number"  required type="number" name="phone_number"  class="form-control">
-
-                            </div>
-
-
-                        </div>
-
-
-
-                        <div class="form-group" style="font-style:normal;color: #0D0A0A; font-size:14px; text-align: justify">
-
-                            <label class="col-sm-12">Gender</label>
-                            <div class="col-sm-9 radio">
-
-
-                                <label> <input type="radio" value="Male" name="gender">Male</label>
-                                <label> <input type="radio" value="Female" name="gender">Female</label>
-
-                            </div>
-
-
-                        </div>
-                        <div class="form-group" style="font-style:normal;color: #0D0A0A; font-size:14px; text-align: justify">
-
-                            <label  for="message" class="col-sm-3">Message</label>
-                            <div class="col-sm-12 ">
-
-
-                                <textarea id="message" required  class="form-control" name="message"  rows="10" style="resize:none;"></textarea>
-
-
-                            </div>
-
-
-                        </div>
-
-
-
-                        <div class="form-group" style="font-style:normal;color: #0D0A0A; font-size:14px; text-align: justify">
-
-                            <label class="col-sm-12">District Name</label>
-                            <div class="col-sm-3">
-
-
-                                <select class="form-control" name="district_name" >
-                                    <option>--Select a District--</option>
-                                    <option>Dhaka</option>
-                                    <option>Rajshahi</option>
-                                    <option>Bogra</option>
-                                    <option>Rangpur</option>
-                                    <option>Notore</option>
-                                    <option>Foridpur</option>
-                                    <option>Jamalpur</option>
-                                    <option>Pabna</option>
-
-
-                                </select>
-
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="form-group" style="font-style:normal;color: #0D0A0A; text-align: justify">
-
-                            <label class="col-sm-3"><input required type="checkbox" name="agree">I Agree ............</label>
-                            <div class="col-sm-9">
-
-
-
-
-                            </div>
-
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-
-                            <div class="col-sm-9 col-sm-offset-3">
-                                <input type="submit" name="btn" class="btn btn-success btn-block" value="Submit">
-
-                            </div>
-                        </div>
-
-
-                    </form>
-
-
                 </div>
             </div>
 
+                <div class="row">
+                    <div class="col">
+                        <h4 style="font-style: normal;color: #4a148c">Campus Location</h4>
+                        <p style="font-style:normal;color: #0D0A0A; font-size:15px">Address: 2/4 Gabtoli Mirpur Dhaka
+                            1216<br>
+                            Phone: 01968774927, 01968774933, 01968774928, 01968774930-32<br>
+                            Number of students: 16,000<br>
+                            Founded: 2012<br>
+                            Motto: We Shape your Dream<br>
+                            Admission Office<br>
+                            Address: 2/4 Gabtoli, Dhaka Bangladesh<br>
+                            Phone:01968774927, 01968774933, 01968774928, 01968774930-32<br>
+                            Motto: We Shape your Dream<br></p>
+                    </div>
+                    <div class="col">
+                        <h4 style="font-style: normal;color: #4a148c">Drop Message</h4>
+                        <form class="" action="index.html" method="post">
+                            <div class="form-group">
+                                <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="" value="Send Message" class="btn btn-primary">
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
 
         </div>
-
     </div>
-
-
-
 
 
 

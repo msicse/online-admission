@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Admission | Application | Form' )
+@section('title', 'Admission | Registration' )
 @push('css')
 <link href="{{ asset('frontend/datepicker/datepicker.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
@@ -70,7 +70,7 @@
             @include('frontend.admission._sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header">Application Form </h5>
+                    <h5 class="card-header bg-success text-light">Registration Form </h5>
 
                     <div class="card-body addmission-form ">
                         <div id="msg" class="alert alert-danger text-center alert-custom display-n">

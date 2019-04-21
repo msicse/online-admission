@@ -3,6 +3,9 @@
 @section('title', 'Admission | Application | Form' )
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/themify/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/student.css') }}">
     <style>
         .display-n { display: none;}
         .display-blk { display: block;}
@@ -15,7 +18,7 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('frontend.admission._sidebar')
+            @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
                     <h5 class="card-header">Application Form </h5>
@@ -29,7 +32,7 @@
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="program-form" class="was-validated" action="{{ route('admission.apply.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="program-form" class="was-validated" action="{{ route('application.apply.submit') }}" enctype="multipart/form-data">
                             @csrf
                             <!-- Program Info -->
 

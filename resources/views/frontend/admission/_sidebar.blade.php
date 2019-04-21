@@ -25,22 +25,26 @@
             <form id="logout-form" action="{{  route('admission.logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
-            
+
             @else
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admission') ? 'active' : '' }}" href="{{ route('admission.home') }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admission/apply*') ? 'active' : '' }}" href="{{ route('admission.apply') }}">Apply</a>
+                <a class="nav-link {{ Request::is('admission/guidelines') ? 'active' : '' }}" href="{{ route('admission.guidelines') }}">Guidelines</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('admission/how*') ? 'active' : '' }}" href="{{ route('admission.how') }}">How to Apply</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('admission/registration*') ? 'active' : '' }}" href="{{ route('admission.personal') }}">Registration</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admission/login') ? 'active' : '' }}" href="{{ route('admission.login') }}">Login</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admission/guidelines') ? 'active' : '' }}" href="{{ route('admission.guidelines') }}">Guidelines</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('admission/complain') ? 'active' : '' }}" href="{{ route('admission.complain') }}">Support</a>
+                <a class="nav-link {{ Request::is('admission/support*') ? 'active' : '' }}" href="{{ route('admission.complain') }}">Support</a>
             </li>
             @endif
         </ul>

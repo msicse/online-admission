@@ -13,7 +13,7 @@
             @include('frontend.admission._sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header">Student Login</h5>
+                    <h5 class="card-header bg-success text-light">Student Login</h5>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('admission.login.post') }}">

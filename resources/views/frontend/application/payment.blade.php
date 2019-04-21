@@ -1,7 +1,7 @@
 {{ auth()->guard('application')->user()->name }}
 @extends('layouts.frontend.app')
 
-@section('title', 'Admission | Login' )
+@section('title', 'Admission | Payment' )
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
@@ -17,12 +17,9 @@
     <div class="container">
         <div class="row">
             @include('frontend.application.sidebar')
-            <div class="col">
-
-
-
+            <div class="col-md-9">
                 <div class="card mt-10">
-                    <h5 class="card-header bg-success text-light">Welcome {{ auth()->guard('application')->user()->name }}</h5>
+                    <h5 class="card-header bg-success text-light">Payment</h5>
 
                     <div class="card-body">
                         @if(auth()->guard('application')->user()->academics()->count() == 0 )
@@ -32,35 +29,36 @@
                                 <div class="progress bg-light" style="height:25px; border:1px solid #eee;">
                                     <div class="progress-bar" role="progressbar" style="width:50%"aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
                                 </div>
-                                <p class="bg-light text-danger">Complete Your Profile to Access </p>
+                                <p class="bg-light text-danger">Complete Your Profile </p>
                                 <div class=" text-center">
-                                    <a href="{{ route('application.academic') }}" class="btn btn-primary btn-sm"> Complete Profile </a>
+                                    <a href="{{ route('application.academic') }}" class="btn btn-primary btn-sm"> Complete Profile to next step</a>
                                 </div>
                             </div>
 
 
                         </div>
                         @else
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <strong>Application Status :</strong> <span class="text-danger">{{ (auth()->guard('application')->user()->approved == true) ? 'Approved' : 'Pending' }}</span>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <strong> Result :</strong> {{ (auth()->guard('application')->user()->approved == true) ? 'Approved' : 'Pending' }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="text-info text-center">
+                            You selected for the program . You Must pay 10000/= BDT as Admission.<br>
+                            @php
+                            $data = Auth::guard('application')->user();
+                            @endphp
+                            <form class="" action="{{ route('pay') }}" method="get" target="_blank">
+                                @csrf
+                                <input type="hidden" name="name" value="{{ $data->name }}">
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <input type="hidden" name="email" value="{{ $data->email }}">
+                                <input type="hidden" name="address" value="{{ $data->present_address }}">
+                                <input type="hidden" name="phone" value="{{ $data->phone }}">
+                                <button type="submit" class="btn btn-success mt-10">Proced Pyment</button>
 
-                        @endif\
+                            </form>
 
+
+                        </p>
+
+                        @endif
                     </div>
                 </div>
             </div>

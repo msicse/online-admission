@@ -16,20 +16,20 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('admin/login', 'HomeController@login')->name('admin.login');
 
 
-Route::get('message', 'FrontendController@message')->name('message');
+Route::get('about-us/message', 'FrontendController@message')->name('message');
 Route::get('contact','FrontendController@contact')->name('contact');
-Route::get('certification','FrontendController@certification')->name('certification');
-Route::get('mission','FrontendController@mission')->name('mission');
-Route::get('rules','FrontendController@rules')->name('rules');
-Route::get('degrees','FrontendController@degrees')->name('degrees');
-Route::get('credit','FrontendController@credit')->name('credit');
-Route::get('guideline','FrontendController@guideline')->name('guideline');
-Route::get('tuition','FrontendController@tuition')->name('tuition');
-Route::get('registration','FrontendController@registration')->name('registration');
-Route::get('office','FrontendController@office')->name('office');
-Route::get('business','FrontendController@business')->name('business');
-Route::get('arts','FrontendController@arts')->name('arts');
-Route::get('engineering','FrontendController@engineering')->name('engineering');
+Route::get('about-us/certification','FrontendController@certification')->name('certification');
+Route::get('about-us/mission','FrontendController@mission')->name('mission');
+Route::get('academics/rules','FrontendController@rules')->name('rules');
+Route::get('academics/degrees','FrontendController@degrees')->name('degrees');
+Route::get('academics/credit','FrontendController@credit')->name('credit');
+Route::get('academics/guideline','FrontendController@guideline')->name('guideline');
+Route::get('admission-info/tuition','FrontendController@tuition')->name('tuition');
+Route::get('admission-info/registration','FrontendController@registration')->name('registration');
+Route::get('admission-info/office','FrontendController@office')->name('office');
+Route::get('faculties/business','FrontendController@business')->name('business');
+Route::get('faculties/arts','FrontendController@arts')->name('arts');
+Route::get('faculties/engineering','FrontendController@engineering')->name('engineering');
 
 //Auth Routes
 Auth::routes();
@@ -48,7 +48,7 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     //multistep check
     Route::get('apply','ApplicationController@apply')->name('apply');
     Route::post('apply','ApplicationController@postApply')->name('apply.submit');
-    Route::get('personal','ApplicationController@getPersonal')->name('personal');
+    Route::get('registration','ApplicationController@getPersonal')->name('personal');
     Route::post('personal','ApplicationController@postPersonal')->name('personal.submit');
 
     // Route::get('academic','AdmissionController@getAcademic')->name('academic');
@@ -80,7 +80,8 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
 
 
     Route::get('guidelines','AdmissionController@guideline')->name('guidelines');
-    Route::get('complain','AdmissionController@complain')->name('complain');
+    Route::get('how-to-apply','AdmissionController@how')->name('how');
+    Route::get('support','AdmissionController@complain')->name('complain');
 
     Route::get('login','Auth\ApplicationLoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\ApplicationLoginController@login')->name('login.post');
@@ -93,7 +94,7 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
 
 Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application','middleware'=>'application'], function() {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('payment', 'HomeController@payment')->name('payment');
+    //Route::get('payment', 'HomeController@payment')->name('payment');
     Route::get('information', 'HomeController@info')->name('info');
     Route::get('change-password', 'HomeController@getPassword')->name('password');
     Route::post('change-password', 'HomeController@postPassword')->name('password.submit');
@@ -101,12 +102,25 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
 
     //admission route
 
+    Route::get('academics','AdmissionController@getAcademicAll')->name('academics');
+    Route::get('personal','AdmissionController@getPersonal')->name('personal');
+    Route::get('programs','AdmissionController@getProgram')->name('programs');
+    Route::get('payment','AdmissionController@getPayment')->name('payment');
+
+
+
     Route::get('academic','AdmissionController@getAcademic')->name('academic');
     Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
     Route::get('choice','AdmissionController@getChoice')->name('choice');
     Route::post('choice','AdmissionController@submitChoice')->name('submit.choice');
     Route::get('cv','AdmissionController@getCv')->name('cv');
     Route::get('download-cv','AdmissionController@downloadCV')->name('download.cv');
+
+    //Application Routes
+    Route::get('apply','AdmissionController@getApplication')->name('apply');
+    Route::post('apply','AdmissionController@postApplication')->name('apply.submit');
+    Route::get('program-select','AdmissionController@getProgramSelect')->name('program.select');
+    Route::post('program-select','AdmissionController@programSelect')->name('apply.submit');
 });
 
 //payment routes

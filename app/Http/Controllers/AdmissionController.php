@@ -67,7 +67,7 @@ class AdmissionController extends Controller
     }
     public function postPersonal(Request $request)
     {
-        return $request()->all();
+        //return $request()->all();
 
         $validatedData = $this->validate($request,array(
            'name' => 'required',
@@ -86,11 +86,7 @@ class AdmissionController extends Controller
            'image' => 'required|image|mimes:jpeg,png,gif,jpg,bmp',
        ));
 
-       $applicant = $request->session()->get('applicant');
-
-       return $applicant;
-       //$request->session()->forget('applicant');
-
+$applicant = new Application;
 
        $applicant->fill($validatedData);
        // $applicant->name     = $request->name;
@@ -152,10 +148,14 @@ class AdmissionController extends Controller
     }
     public function guideline()
     {
-        return view('frontend.admission.login');
+        return view('frontend.admission.guidline');
+    }
+    public function how()
+    {
+        return view('frontend.admission.how');
     }
     public function complain()
     {
-        return view('frontend.admission.login');
+        return view('frontend.admission.support');
     }
 }

@@ -41,7 +41,7 @@
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('application.submit.choice') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('application.program.select.submit') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
