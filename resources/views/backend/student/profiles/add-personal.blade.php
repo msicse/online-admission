@@ -2,8 +2,10 @@
 
 @section('title', 'Admission | Registration' )
 @push('css')
-<link href="{{ asset('frontend/datepicker/datepicker.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/themify/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/pages/student.css') }}">
     <style>
         .display-n { display: none;}
         .display-blk { display: block;}
@@ -67,10 +69,10 @@
 <section class="admission-area padding-tb-50">
     <div class="container">
         <div class="row">
-            @include('frontend.admission._sidebar')
+            @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header bg-success text-light">Registration Form </h5>
+                    <h5 class="card-header bg-success text-light">Personal Information</h5>
 
                     <div class="card-body addmission-form ">
                         <div id="msg" class="alert alert-danger text-center alert-custom display-n">
@@ -89,7 +91,7 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="name" value="{{ old('name') }}" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="name" value="{{ Auth::guard('application')->user()->name }}" required autofocus >
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +263,7 @@
 
                                         <div class="col-md-8 offset-md-2 imgUp">
                                             <div id="imagePreview"></div>
-                                            <label class="btn btn-primary">Select Profile Image
+                                            <label class="btn btn-primary">Upload Profile Picture
                                                 <input type="file" onchange="imgUpload()" class="uploadFile img" name="image" value="{{ old('image') }}" style="width: 0px;height: 0px;overflow: hidden;" required >
 				                            </label>
                                             <span id="btn-cls"></span>
@@ -282,7 +284,7 @@
 
                             <div class="row mt-10">
                                 <div class="col-md-4 offset-md-4 text-center  mt-10">
-                                    <a href="" class="btn btn-info btn-width" >Previous</a>
+                                    <a href="{{ route('application.home')}}" class="btn btn-info btn-width" >Cancel</a>
                                     <button type="submit" onclick="imgUpload()" class="btn btn-success btn-width" id="form-submit"> Submit </button>
                                 </div>
                             </div>

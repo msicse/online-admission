@@ -70,6 +70,8 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
     //Profiles Routes
     Route::get('add-personal', 'ProfileController@addPersonal')->name('add.personal');
     Route::post('add-personal', 'ProfileController@postAddPersonal')->name('add.personal.submit');
+    Route::get('add-academic', 'ProfileController@addAcademic')->name('add.academic');
+    Route::post('add-academic', 'ProfileController@postAddAcademic')->name('add.academic.submit');
 
 
 
@@ -77,7 +79,7 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
     Route::post('change-password', 'HomeController@postPassword')->name('password.submit');
     Route::post('logout', 'HomeController@logout')->name('logout');
 
-    
+
     //admission route
     Route::get('academics','AdmissionController@getAcademicAll')->name('academics');
     Route::get('personal','AdmissionController@getPersonal')->name('personal');

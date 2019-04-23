@@ -25,7 +25,22 @@
                     <h5 class="card-header bg-success text-light">Welcome {{ auth()->guard('application')->user()->name }}</h5>
 
                     <div class="card-body">
-                        @if(auth()->guard('application')->user()->academics()->count() == 0 )
+                        @if(auth()->guard('application')->user()->fname == null)
+                        <div class="row">
+                            <div class="col bg-light">
+
+                                <div class="progress bg-light" style="height:25px; border:1px solid #eee;">
+                                    <div class="progress-bar" role="progressbar" style=""aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                                <p class="bg-light text-danger">Complete Your Profile to Access </p>
+                                <div class=" text-center">
+                                    <a href="{{ route('application.add.personal') }}" class="btn btn-primary btn-sm"> Add Personal Info </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        @elseif(auth()->guard('application')->user()->academics()->count() == 0 )
                         <div class="row">
                             <div class="col bg-light">
 
@@ -34,13 +49,13 @@
                                 </div>
                                 <p class="bg-light text-danger">Complete Your Profile to Access </p>
                                 <div class=" text-center">
-                                    <a href="{{ route('application.academic') }}" class="btn btn-primary btn-sm"> Complete Profile </a>
+                                    <a href="{{ route('application.add.academic') }}" class="btn btn-primary btn-sm"> Complete Profile </a>
                                 </div>
                             </div>
 
 
                         </div>
-                        @else
+                        @endif
                         <div class="row">
                             <div class="col">
                                 <div class="card">
@@ -59,7 +74,6 @@
                             </div>
                         </div>
 
-                        @endif\
 
                     </div>
                 </div>
