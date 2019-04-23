@@ -37,7 +37,7 @@
                 <a class="nav-link {{ Request::is('admission/how*') ? 'active' : '' }}" href="{{ route('admission.how') }}">How to Apply</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admission/registration*') ? 'active' : '' }}" href="{{ route('admission.personal') }}">Registration</a>
+                <a class="nav-link {{ Request::is('admission/register*') ? 'active' : '' }}" href="{{ route('admission.register') }}">Registration</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admission/login') ? 'active' : '' }}" href="{{ route('admission.login') }}">Login</a>

@@ -43,46 +43,16 @@ Route::group(['middleware'=>['auth']], function(){
 //Admission Routes
 
 Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
+
     Route::get('/','ApplicationController@index')->name('home');
-
-    //multistep check
-    Route::get('apply','ApplicationController@apply')->name('apply');
-    Route::post('apply','ApplicationController@postApply')->name('apply.submit');
-    Route::get('registration','ApplicationController@getPersonal')->name('personal');
-    Route::post('personal','ApplicationController@postPersonal')->name('personal.submit');
-
-    // Route::get('academic','AdmissionController@getAcademic')->name('academic');
-    // Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
-    // Route::get('choice','AdmissionController@getChoice')->name('choice');
-    // Route::post('choice','AdmissionController@postChoice')->name('choice.submit');
-
-    //edit routes
-    Route::get('personal/{id}','AdmissionController@editPersonal')->name('personal.edit');
-    Route::put('personal/{id}','AdmissionController@editPersonalSubmit')->name('personal.edit.submit');
-
-    Route::get('academic/{id}','AdmissionController@editAcademic')->name('academic.edit');
-    Route::put('academic/{id}','AdmissionController@editAcademicSubmit')->name('academic.edit.submit');
-
-    Route::get('program/{id}','AdmissionController@editProgram')->name('program.edit');
-    Route::put('program/{id}','AdmissionController@editProgramSubmit')->name('program.edit.submit');
-
-    Route::get('confirm','AdmissionController@getConfirm')->name('confirm');
-    Route::post('confirm','AdmissionController@postConfirm')->name('confirm.submit');
-
-
-
-    Route::post('check-email','AdmissionController@checkEmail')->name('check.mail');
-    Route::get('application/verify/form','AdmissionController@verify')->name('application.verify');
-    Route::post('application/verify','AdmissionController@applicationVerifySubmit')->name('application.verify.submit');
-    Route::get('application/form','AdmissionController@applicationForm')->name('application.form');
-    Route::post('application/form','AdmissionController@applicationSubmit')->name('application.form.submit');
-
-
-
     Route::get('guidelines','AdmissionController@guideline')->name('guidelines');
     Route::get('how-to-apply','AdmissionController@how')->name('how');
     Route::get('support','AdmissionController@complain')->name('complain');
 
+    Route::get('register','AdmissionController@register')->name('register');
+    Route::post('register','AdmissionController@postRegister')->name('register.submit');
+
+// Student login route
     Route::get('login','Auth\ApplicationLoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\ApplicationLoginController@login')->name('login.post');
     Route::post('logout', 'Auth\ApplicationLoginController@logout')->name('logout');
@@ -96,12 +66,19 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
     Route::get('/', 'HomeController@index')->name('home');
     //Route::get('payment', 'HomeController@payment')->name('payment');
     Route::get('information', 'HomeController@info')->name('info');
+
+    //Profiles Routes
+    Route::get('add-personal', 'ProfileController@addPersonal')->name('add.personal');
+    Route::post('add-personal', 'ProfileController@postAddPersonal')->name('add.personal.submit');
+
+
+
     Route::get('change-password', 'HomeController@getPassword')->name('password');
     Route::post('change-password', 'HomeController@postPassword')->name('password.submit');
     Route::post('logout', 'HomeController@logout')->name('logout');
 
+    
     //admission route
-
     Route::get('academics','AdmissionController@getAcademicAll')->name('academics');
     Route::get('personal','AdmissionController@getPersonal')->name('personal');
     Route::get('programs','AdmissionController@getProgram')->name('programs');

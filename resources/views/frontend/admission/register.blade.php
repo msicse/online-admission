@@ -81,7 +81,7 @@
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.personal.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.register.submit') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-8 offset-md-2">
@@ -89,18 +89,18 @@
                                         <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="" type="text" class="form-control form-control-sm" name="name" value="{{ old('name') }}" required autofocus >
+                                            <input id="" type="text" class="form-control form-control-sm" name="name" value="{{ old('name') }}"  autofocus >
                                         </div>
                                     </div>
                                     <div class="form-group row ">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
+                                        <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="email" type="email" class="form-control form-control-sm" name="email" value="{{ old('email') }}" required autofocus>
+                                            <input id="phone" type="phone" class="form-control form-control-sm" name="phone" value="{{ old('phone') }}"  autofocus>
                                             <span id="error_email" class="invalid-feedback" role="alert"></span>
-                                            @if ($errors->has('email'))
+                                            @if ($errors->has('phone'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                    <strong>{{ $errors->first('phone') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -109,7 +109,7 @@
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="email" type="email" class="form-control form-control-sm" name="email" value="{{ old('email') }}" required autofocus>
+                                            <input id="email" type="email" class="form-control form-control-sm" name="email" value="{{ old('email') }}"  autofocus>
                                             <span id="error_email" class="invalid-feedback" role="alert"></span>
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">

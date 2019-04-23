@@ -23,7 +23,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.personal') }}" class="btn btn-success"> Registration </a>
+                                <a href="{{ route('admission.register') }}" class="btn btn-success"> Registration </a>
                             </div>
                         </div>
                     </div>

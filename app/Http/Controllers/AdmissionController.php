@@ -23,6 +23,35 @@ class AdmissionController extends Controller
     {
         return view('frontend.admission.home');
     }
+
+    public function register()
+    {
+        return view('frontend.admission.register');
+    }
+    
+    public function postRegister(Request $request)
+    {
+        $this->validate($request,array(
+            'name' => 'required',   
+            'phone' => 'required',
+            'email' => 'required|email|unique:applications',  
+        ));
+
+        $password = str_random(8);
+
+        $applicant           = new Application();
+        $applicant->name     = $request->name;
+        $applicant->email    = $request->email;
+        $applicant->phone    = $request->phone;
+        $applicant->password = Hash::make($password);
+        $applicant->save();
+
+       Notification::send($applicant, new NewApplication($applicant, $password));
+
+       Toastr::success(' Succesfull created . Login to Complete the profile  ', 'Success');
+       return redirect()->route('admission.login');
+    }
+
     public function apply(Request $request)
     {
         $programs = Programe::all();
