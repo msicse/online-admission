@@ -34,14 +34,14 @@
             @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header">Choose Programs </h5>
+                    <h5 class="card-header bg-success text-light">Choose Programs </h5>
 
                         <!-- <div class="row">
                             <div class="col">
                                 <p id="msg" class="alert alert-danger"></p>
                             </div>
                         </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('application.program.select.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('application.program.submit') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">

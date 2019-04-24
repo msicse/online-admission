@@ -49,9 +49,14 @@ class ApplicationController extends Controller
                                 ->where('shift', 1)
                                 ->where('year', date('Y')+1)
                                 ->orderBy('result', 'desc')
+                                //->distinct('id')
                                 ->get();
-  
-                                //dd ($springs);
+        // $springs = Application::where('approved', true)
+        //                         ->orderBy('result', 'desc')
+        //                         ->distinct('id')
+        //                         ->get();
+
+                                //return ($springs);
 
         $summers = Application::where('approved', true)
                                 ->where('level', 1)

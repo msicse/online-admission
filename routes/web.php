@@ -99,7 +99,7 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
     Route::get('apply','AdmissionController@getApplication')->name('apply');
     Route::post('apply','AdmissionController@postApplication')->name('apply.submit');
     Route::get('program-select','AdmissionController@getProgramSelect')->name('program.select');
-    Route::post('program-select','AdmissionController@programSelect')->name('apply.submit');
+    Route::post('program-select','AdmissionController@programSelect')->name('program.submit');
 });
 
 //payment routes

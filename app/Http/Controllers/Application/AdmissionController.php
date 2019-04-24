@@ -49,6 +49,14 @@ class AdmissionController extends Controller
     {
 
         $programs = Programe::all();
+
+        $applicant = Application::find(Auth::guard('application')->user()->id);
+
+       
+       if ( !empty($applicant->semester)) {
+           Toastr::error('Sorry !! You are already applied ', 'Error');
+            return redirect()->route('application.home');
+       }
         return view('frontend.admission.apply')->withPrograms($programs);
 
     }
@@ -61,7 +69,15 @@ class AdmissionController extends Controller
            'shift' => 'required|numeric',
            'level' => 'required',
        ));
+
        $applicant = Application::find(Auth::guard('application')->user()->id);
+
+       
+       if ( !empty($applicant->semester)) {
+
+            Toastr::error('You are already applied ', 'Error');
+            return redirect()->route('application.home');
+       }
 
        $applicant->Semester     = $request->semester;
        $applicant->year     = $request->year;
@@ -80,6 +96,14 @@ class AdmissionController extends Controller
     public function getProgramSelect()
     {
         $programs = Programe::all();
+        $applicant = Application::find(Auth::guard('application')->user()->id);
+
+        if ( $applicant->semester->programs()->count() != 0) {
+
+            Toastr::error('You are already applied ', 'Error');
+            return redirect()->route('application.home');
+       }
+
         return view('frontend.admission.from.choice')->withPrograms($programs);
 
     }
@@ -90,6 +114,13 @@ class AdmissionController extends Controller
 
         //$applicant = Application::where('id',$applicant_id)->first();
         $applicant = Application::find(Auth::guard('application')->user()->id);
+
+        if ( $applicant->semester->programs()->count() != 0) {
+
+            Toastr::error('You are already applied ', 'Error');
+            return redirect()->route('application.home');
+       }
+       
         $applicant->programs()->attach($request->to);
 
         //return $applicant;

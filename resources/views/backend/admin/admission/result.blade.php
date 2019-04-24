@@ -46,7 +46,7 @@
                             @foreach( $springs as $key => $spring )
                                
                                 @if( in_array($spring->id, $users)  )
-                                     @continue
+                                     @return 'found'
                                 @else
 
                                     {!! $count = 1 !!}
@@ -72,6 +72,8 @@
                         </table> 
                        
                     @endforeach
+
+                
                 </div>
             </div>
         </div>a

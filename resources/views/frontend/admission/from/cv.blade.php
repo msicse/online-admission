@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Admission | Application | Form' )
+@section('title', 'Student | Information' )
 @push('css')
 
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
@@ -33,18 +33,11 @@
             @include('frontend.application.sidebar')
             <div class="col-lg-9 col-md-9 col-sm-12 ">
                 <div class="card">
-                    <h5 class="card-header">Application Form </h5>
+                    <h5 class="card-header bg-success text-light">Information  of {{ $applicant->name }} </h5>
 
                     <div class="card-body addmission-form ">
-                        <div id="msg" class="alert alert-danger text-center alert-custom display-n">
 
-                        </div>
-                        <!-- <div class="row">
-                            <div class="col">
-                                <p id="msg" class="alert alert-danger"></p>
-                            </div>
-                        </div> -->
-                        <form method="POST" id="personal-info-form" class="was-validated" action="{{ route('admission.confirm.submit') }}" enctype="multipart/form-data">
+                        <form method="POST" id="personal-info-form" class="was-validated" action="" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row text-center">
@@ -63,10 +56,10 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="{{ Storage::disk('public')->url('admission/'.$applicant->image) }}"  class="img-thumbnail profile" alt="">
+                                    <img src="{{ asset('storage/admission/'.auth()->guard('application')->user()->image) }} "  class="img-thumbnail profile" alt="">
                                 </div>
                             </div>
-                            <div class="card-header mt-10">Personal Information</div>
+                            <div class="card-header mt-10 bg-info text-light">Personal Information</div>
                             <div class="row mt-10">
 
                                 <div class="col padding-inner">
@@ -149,7 +142,7 @@
 
                             </div>
 
-                            <div class="card-header">Academic Information</div>
+                            <div class="card-header bg-info text-light">Academic Information</div>
                             <div class="row">
                                 <div class="col padding-inner">
                                     <table class="table table-striped table-bordered">
@@ -186,7 +179,7 @@
                                 </div>
                             </div>
 
-                            <div class="card-header"> Choice List</div>
+                            <div class="card-header text-light bg-info"> Choice List</div>
                             <div class="row">
                                 <div class="col padding-inner">
                                     <table class="table table-striped table-bordered">
@@ -214,10 +207,8 @@
                             </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    <a href="{{ route('admission.personal.edit', $applicant->id) }}" class="btn btn-info btn-width "> Edit Personal Info </a>
-                                    <a href="{{ route('admission.academic.edit', $applicant->id) }}" class="btn btn-info btn-width "> Edit Academic Info </a>
+                                   
                                     <a href="{{ route('application.download.cv') }}" class="btn btn-info btn-width "> Download </a>
-                                    <button type="submit" class="btn btn-success btn-width "> Submit </button>
                                 </div>
                             </div>
 

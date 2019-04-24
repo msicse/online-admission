@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-red hover-expand-effect">
+            <div class="info-box  bg-pink hover-expand-effect">
                 <div class="icon">
                     <i class="material-icons">library_books</i>
                 </div>
@@ -40,12 +40,12 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-expand-effect">
+            <div class="info-box bg-red hover-expand-effect">
                 <div class="icon">
                     <i class="material-icons">person_add</i>
                 </div>
                 <div class="content">
-                    <div class="text">Total Views</div>
+                    <div class="text">Incomplete Applications</div>
                     <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
         <!-- Pending Applications -->
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
             <div class="card">
-                <div class="header">
+                <div class="header bg-green">
                     <h2>Pending Applications</h2>
                 </div>
                 <div class="body">
@@ -105,6 +105,7 @@
                             </thead>
                             <tbody>
                                 @foreach($pendings as $key => $pending)
+                                @if( $pending->academics->count() > 0 &&  $pending->programs->count() > 0)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $pending->name }}</td>
@@ -124,6 +125,7 @@
                                     </td>
                                     
                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>

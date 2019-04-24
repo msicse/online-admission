@@ -1,7 +1,7 @@
 {{ auth()->guard('application')->user()->name }}
 @extends('layouts.frontend.app')
 
-@section('title', 'Admission | Login' )
+@section('title', 'EUB | Student | Home' )
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/pages/admission.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/pages/style.css') }}">
@@ -56,9 +56,9 @@
 
                         </div>
                         @endif
-                        <div class="row">
+                        <div class="row mt-10">
                             <div class="col">
-                                <div class="card">
+                                <div class="card bg-info text-light">
                                     <div class="card-body text-center">
                                         <strong>Application Status :</strong> <span class="text-danger">{{ (auth()->guard('application')->user()->approved == true) ? 'Approved' : 'Pending' }}</span>
                                     </div>
@@ -66,13 +66,32 @@
                             </div>
 
                             <div class="col">
-                                <div class="card">
+                                <div class="card bg-primary text-light">
                                     <div class="card-body text-center">
                                         <strong> Result :</strong> {{ (auth()->guard('application')->user()->approved == true) ? 'Approved' : 'Pending' }}
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row " style="margin-top: 40px;">
+                            <div class="col">
+                                <table class="table table-borderd table-striped">
+                                    <tr>
+                                        <th>C.L</th>
+                                        <th>Program Name</th>
+                                        <th>Short Name</th>
+                                    </tr>
+                                    @foreach( auth()->guard('application')->user()->programs as $key => $program )
+                                    <tr>
+                                        <td>{{ $key + 1}}</td>
+                                        <td>{{ $program->name }}</td>
+                                        <td>{{ $program->short_name }}</td>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                        </div>
+
 
 
                     </div>

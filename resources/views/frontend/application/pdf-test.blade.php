@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title> Purchases Invoice</title>
+	<title> Download Information</title>
 	<style>
         *{ margin: 0; padding: 0;}
 		.con{ margin: 20 auto; padding: 20px; }
@@ -16,11 +16,11 @@
         h4 { padding: 10px 0;}
         .border { border-bottom: 2px #eee solid; margin-bottom: 15px;}
 
-        .header-info { height: 200px; font-size: 18px;}
+        .header-info { height: 160px; font-size: 18px;}
         .header-info h3 { font-size: 22px;}
         .info { width: 80%;}
-        .img-info img { height: 180px; width:200px;}
-        .personal-info { height: 25%; padding: 10px; }
+        .img-info img { height: 150px; width:140px;}
+        .personal-info { height: 25%; padding: 10px; margin: 15px 0;}
         .personal-left { width: 50%;}
         .personal-right {  width: 50%;}
         .personal-details { display: block;  height: 20px; clear: left}
@@ -51,7 +51,7 @@
 	<div class="con">
 		<div class="header-info ">
 			<div class="info float-left text-center">
-                <h3>{{ $applicant->name }} </h3>
+                <h3> <strong>{{ $applicant->name }}</strong> </h3>
                 <div><strong>Contact No : </strong> {{ $applicant->phone }}</div>
                 <div><strong>Email : </strong> {{ $applicant->email }}</div>
                 <div>
