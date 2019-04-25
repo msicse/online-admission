@@ -26,7 +26,8 @@ class ApplicationDateController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('backend.admin.add-date');
     }
 
     /**
