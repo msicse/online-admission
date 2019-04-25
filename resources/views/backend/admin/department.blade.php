@@ -13,7 +13,7 @@
         <button type="button" class="btn btn-primary waves-effect " data-toggle="modal" data-target="#craeateDepartment">
             <i class="material-icons">add</i>
 
-            <span>Add New Department</span>
+            <span>Add New Faculty</span>
         </button>
 
     </div>
@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="header bg-green">
                     <h2>
-                        All Departments
+                        All Faculties
                         <span class="badge ">{{ $departments->count() }}</span>
                     </h2>
                 </div>
@@ -76,7 +76,7 @@
                                                 }" >
                                             <i class="material-icons">delete</i>
                                         </button>
-                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.departments.destroy',$data->id) }}" method="post">
+                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.faculties.destroy',$data->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
 
@@ -98,16 +98,16 @@
 <div class="modal fade" id="craeateDepartment" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ route('admin.departments.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.faculties.store')}}" method="post" enctype="multipart/form-data">
                 <div class="modal-header custom-modal">
-                    <h4 class="modal-title" id="defaultModalLabel">Add New Department</h4>
+                    <h4 class="modal-title" id="defaultModalLabel">Add New Faculty</h4>
                 </div>
                 <div class="modal-body">
                     @csrf
                     <div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" id="name" name="name" class="form-control">
-                            <label class="form-label">Department Name</label>
+                            <label class="form-label">Faculty Name</label>
                         </div>
                     </div>
                     <div class="form-group form-float">

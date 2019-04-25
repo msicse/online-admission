@@ -19,20 +19,23 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        All Applications
-                        <span class="badge ">{{ $summers->count() }}</span>
+                        Merit List
+                        
                     </h2>
                 </div>
                 <div class="body">
 
-                    @php 
+                    @php
                         $users = [];
                     @endphp
                     @foreach( $programs as $program )
-                    
-                        <h4> {{ $program->name}} </h4>
-                        <h5> Spring- {{date('Y')}}</h5>
-                        <table class="table-bordered table-striped">
+                        <div class="top" style="margin-bottom:15px;">
+                            <h4 class="text-center"> {{ $program->name}} </h4>
+                            <h5 class="text-center"> Spring- {{date('Y')}}</h5>
+                        </div>
+
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="exampleTest">
+                            <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
@@ -40,20 +43,23 @@
                                 <th>Marks</th>
                                 <th>id</th>
                             </tr>
+                        </thead>
+                        <tbody>
 
-                            
-                            
+                            @php
+                                $count = 1;
+                            @endphp
+
                             @foreach( $springs as $key => $spring )
-                               
+
                                 @if( in_array($spring->id, $users)  )
-                                     @return 'found'
+                                    @continue
                                 @else
 
-                                    {!! $count = 1 !!}
                                     @foreach( $spring->programs as $data )
-                                        {!!  $count++ !!}
+
                                         @if( $program->id == $data->id )
-                                        
+
                                         <tr>
                                             <td>{{ $count }}</td>
                                             <td>  {{ $spring->name}}</td>
@@ -61,19 +67,19 @@
                                             <td>  {{ $spring->result}}</td>
                                             <td>  {{ $spring->id}}</td>
                                         </tr>
-
+                                        @php $count++; @endphp
                                         <?php $users[] = $spring->id; ?>
 
                                         @endif
                                     @endforeach
                                 @endif
                             @endforeach
+                        </tbody>
+                        </table>
 
-                        </table> 
-                       
                     @endforeach
 
-                
+
                 </div>
             </div>
         </div>a

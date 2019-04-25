@@ -20,7 +20,7 @@
     <link href="{{ asset('backend/plugins/animate-css/animate.css') }}" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="plugins/morrisjs/morris.css') }}" rel="stylesheet" />
+    <link href="{{  asset('backend/plugins/morrisjs/morris.css') }}" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">

@@ -36,10 +36,10 @@
                     <span>Home</span>
                 </a>
             </li>
-            <li class=" {{ Request::is('admin/departments*') ? 'active' : '' }} ">
-                <a href="{{ route('admin.departments.index') }}">
+            <li class=" {{ Request::is('admin/faculties*') ? 'active' : '' }} ">
+                <a href="{{ route('admin.faculties.index') }}">
                     <i class="material-icons">library_books</i>
-                    <span>Departments</span>
+                    <span>Faculties</span>
                 </a>
             </li>
             <li class="{{ Request::is('admin/programs*') ? 'active' : '' }}">

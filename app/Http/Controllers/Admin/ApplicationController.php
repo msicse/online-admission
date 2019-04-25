@@ -14,9 +14,10 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        $applications = Application::where('year', date('Y'))
-                                    ->where('approved',false )
-                                    ->get();
+        $applications = Application::all();
+        // $applications = Application::where('year', date('Y'))
+        //                             ->where('approved',false )
+        //                             ->get();
         return view('backend.admin.admission.index')->withApplications($applications);
     }
 
@@ -41,13 +42,13 @@ class ApplicationController extends Controller
 
     public function getResult()
     {
-        
+
         $programs = Programe::all();
         $springs = Application::where('approved', true)
-                                ->where('level', 1)
-                                ->where('semester', 2)
-                                ->where('shift', 1)
-                                ->where('year', date('Y')+1)
+                                //->where('level', 1)
+                                //->where('semester', 2)
+                                //->where('shift', 1)
+                                //->where('year', date('Y')+1)
                                 ->orderBy('result', 'desc')
                                 //->distinct('id')
                                 ->get();

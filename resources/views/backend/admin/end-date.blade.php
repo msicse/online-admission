@@ -30,7 +30,7 @@
                     <h2>
 
                         All Dates
-                        <span class="badge ">{{ $roles->count() }}</span>
+                        <span class="badge ">{{ $dates->count() }}</span>
                     </h2>
                 </div>
                 <div class="body">

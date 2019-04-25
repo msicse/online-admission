@@ -147,7 +147,7 @@
                         </tr>
                         <tr>
                             <td colspan="9" class="text-center marksheet">
-                                <img src="{{ asset('storage/admission/academic/'.$data->marksheet) }}" alt="">
+                                <img src="{{ asset('storage/admission/academic/'.$data->marksheet) }}" alt="" height="400">
                             </td>
                         </tr>
                         @endforeach
@@ -155,13 +155,15 @@
                     </table>
 
                     <div class="col text-center">
-                        <a href="{{ route('admin.applications.index') }}" class="btn btn-primary">Back</a>
+                        <a href="{{ route('admin.applications.index') }}" class="btn btn-primary btn-lg">Back</a>
+
                         @if( $application->approved == 1 )
                         <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-success ">Approved</a>
                         @else
                         <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-lg btn-success ">Approv</a>
 
                         @endif
+                        <a href="{{ route('admin.applications.index') }}" class="btn btn-danger btn-lg">Delete</a>
                     </div>
                 </div>
             </div>
