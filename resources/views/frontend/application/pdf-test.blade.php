@@ -6,7 +6,7 @@
 	<title> Download Information</title>
 	<style>
         *{ margin: 0; padding: 0;}
-		.con{ margin: 20 auto; padding: 20px; }
+		.con{ margin: 20 auto; padding: 50px; }
         .text-right { text-align: right; }
         .text-center { text-align: center; }
         .float-left { float:left; }
@@ -17,16 +17,17 @@
         .border { border-bottom: 2px #eee solid; margin-bottom: 15px;}
 
         .header-info { height: 160px; font-size: 18px;}
-        .header-info h3 { font-size: 22px;}
+        .header-info h3 { font-size: 26px;}
+        .header-info div { font-size: 18px;}
         .info { width: 80%;}
-        .img-info img { height: 150px; width:140px;}
+        .img-info img { height: 150px; width:140px; border: 1px solid #dee2e6;}
         .personal-info { height: 25%; padding: 10px; margin: 15px 0;}
         .personal-left { width: 50%;}
         .personal-right {  width: 50%;}
         .personal-details { display: block;  height: 20px; clear: left}
         .personal-title { width: 120px;}
         .personal-value { width: 240px;}
-        
+
 		.table{
             width: 100%;
         }
@@ -117,12 +118,12 @@
                 </tr>
             </table>
         </div>
-        
+
         <h4 class="border clear-both">Academic Information</h4>
-        
+
         <div class="purchase-item border clear-both">
 
-                
+
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -158,15 +159,15 @@
         </div>
 
         <h4 class="border">Choice List</h4>
-        
+
         <div class="purchase-item border clear-both">
 
-                
+
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>S.L</th>
-                        <th>Programe Name</th>       
+                        <th>Programe Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -181,9 +182,8 @@
             </table>
 
         </div>
-        
-        
+
+
     </div>
 </body>
 </html>
-

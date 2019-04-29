@@ -52,7 +52,7 @@ class AdmissionController extends Controller
 
         $applicant = Application::find(Auth::guard('application')->user()->id);
 
-       
+
        if ( !empty($applicant->semester)) {
            Toastr::error('Sorry !! You are already applied ', 'Error');
             return redirect()->route('application.home');
@@ -72,7 +72,7 @@ class AdmissionController extends Controller
 
        $applicant = Application::find(Auth::guard('application')->user()->id);
 
-       
+
        if ( !empty($applicant->semester)) {
 
             Toastr::error('You are already applied ', 'Error');
@@ -98,7 +98,7 @@ class AdmissionController extends Controller
         $programs = Programe::all();
         $applicant = Application::find(Auth::guard('application')->user()->id);
 
-        if ( $applicant->semester->programs()->count() != 0) {
+        if ( $applicant->programs()->count() != 0) {
 
             Toastr::error('You are already applied ', 'Error');
             return redirect()->route('application.home');
@@ -115,12 +115,12 @@ class AdmissionController extends Controller
         //$applicant = Application::where('id',$applicant_id)->first();
         $applicant = Application::find(Auth::guard('application')->user()->id);
 
-        if ( $applicant->semester->programs()->count() != 0) {
+        if ( $applicant->programs()->count() != 0) {
 
             Toastr::error('You are already applied ', 'Error');
             return redirect()->route('application.home');
        }
-       
+
         $applicant->programs()->attach($request->to);
 
         //return $applicant;
@@ -255,19 +255,19 @@ class AdmissionController extends Controller
 
     public function getCv()
     {
-        //$applicant = Auth::guard('application')->user();
-        $applicant = Application::find(45);
+        $applicant = Auth::guard('application')->user();
+        //$applicant = Application::find(45);
         return view('frontend.admission.from.cv')->withApplicant($applicant);
     }
     public function downloadCV()
     {
-        $applicant = Application::find(45);
-        //$applicant = Auth::guard('application')->user();
+        //$applicant = Application::find(45);
+        $applicant = Auth::guard('application')->user();
         //return view('')->withApplicant($applicant);
         //$pdf = PDF::loadView('frontend.application.download-pdf', compact('applicant') )->save('pdf/specification.pdf');
         //$pdf = PDF::loadView('frontend.application.download-pdf', compact('applicant'))->setPaper('a4');
         //return view('frontend.application.pdf',compact('applicant'));
         $pdf = PDF::loadView('frontend.application.pdf-test',compact('applicant'))->setPaper('a4','portrait');
-        return $pdf->stream('invoice.pdf');
+        return $pdf->stream('cv-of-'.$applicant->name.'.pdf');
     }
 }

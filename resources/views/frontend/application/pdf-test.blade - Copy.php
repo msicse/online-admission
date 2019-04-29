@@ -18,14 +18,14 @@
 
         .header-info { height: 220px;}
         .info { width: 70%;}
-        .img-info img { height: 200px; width:200px;}
+        .img-info img { height: 200px; width:200px; border: 1px solid #eee;}
         .personal-info { height: 15%; padding: 10px; }
         .personal-left { width: 50%;}
         .personal-right {  width: 50%;}
         .personal-details { display: block;  height: 30px;}
         .personal-title { width: 120px;}
         .personal-value { width: 240px;}
-        
+
 		.table{
             width: 100%;
         }
@@ -67,7 +67,7 @@
         </div>
         <h4 class="border">Personal Information</h4>
 		<div class="personal-info  clear-both ">
-            
+
 
             <div class="personal-left float-left ">
                 <div class="personal-details">
@@ -102,7 +102,7 @@
                         <strong>:</strong> {{ $applicant->present_address }}
                     </div>
                 </div>
-               
+
             </div>
             <div class="personal-right float-left ">
                 <div class="personal-details ">
@@ -113,13 +113,13 @@
                         <strong>:</strong> {{ $applicant->mname }}
                     </div>
                 </div>
-               
+
                 <div class="personal-details ">
                     <div class="personal-title float-left">
                         <strong>Gender</strong>
                     </div>
                     <div class="personal-value float-right ">
-                        <strong>:</strong> 
+                        <strong>:</strong>
                         {{ ($applicant->gender == 1 ) ? 'Male' : ''}}
                         {{ ($applicant->gender == 2 ) ? 'Female' : ''}}
                         {{ ($applicant->gender == 3 ) ? 'Others' : ''}}
@@ -144,12 +144,12 @@
             </div>
 
         </div>
-        
+
         <h4 class="border">Academic Information</h4>
-        
+
         <div class="purchase-item border clear-both">
 
-                
+
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -168,7 +168,7 @@
                         @foreach( $applicant->academics as $key => $data )
                         <tr>
                             <th>{{ $key + 1 }}</th>
-                            <td>{{ $data->title }}</td>
+                            <td style="text-transform: uppercase;">{{ strToUpper($data->title) }}</td>
                             <td>{{ $data->roll }}</td>
                             <td>{{ $data->reg }}</td>
                             <td>{{ $data->institute }}</td>
@@ -185,10 +185,10 @@
             </div>
 
             <h4 class="border">Academic Information</h4>
-        
+
         <div class="purchase-item border clear-both">
 
-                
+
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -222,9 +222,8 @@
                 </table>
 
             </div>
-        
-        
+
+
     </div>
 </body>
 </html>
-

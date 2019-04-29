@@ -5,10 +5,9 @@
         <div class="container">
             <div class="float-left">
                 <ul class="list header_social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="https://www.facebook.com/europeanuniversitybangladesh" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/eubofbd" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/european-university-of-bangladesh-eub/about" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
             </div>
             <div class="float-right">

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
+use Toastr;
+
 
 class FrontendController extends Controller
 {
@@ -15,7 +18,39 @@ class FrontendController extends Controller
 
     public function contact()
     {
-    return view('frontend.pages.contact');
+        return view('frontend.pages.contact');
+    }
+
+    public function postContact(Request $request)
+    {
+
+        //return $request->all();
+
+        $this->validate($request, [
+            'name'=>'required|min:3',
+            'phone'=>'required|min:3',
+            'subject'=>'required|min:3',
+            'email'=>'required|email',
+            'msg'=>'required|min:10'
+        ]);
+
+        $data = array(
+            'name'   => $request->name,
+            'email'   => $request->email,
+            'phone'   => $request->phone,
+            'subject' => $request->subject,
+            'bodyMessage' => $request->msg
+        );
+
+
+        Mail::send('emails.contact', $data , function ($message) use ($data){
+
+                $message->from($data['email']);
+                $message->to('7db34073e3-91f7af@inbox.mailtrap.io');
+                $message->subject($data['subject']);
+        });
+        Toastr::success(' Succesfully Send Message ', 'Success');
+        return redirect()->back();
     }
 
 

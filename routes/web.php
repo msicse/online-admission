@@ -18,6 +18,7 @@ Route::get('admin/login', 'HomeController@login')->name('admin.login');
 
 Route::get('about-us/message', 'FrontendController@message')->name('message');
 Route::get('contact','FrontendController@contact')->name('contact');
+Route::post('contact','FrontendController@postContact')->name('submit.contact');
 Route::get('about-us/certification','FrontendController@certification')->name('certification');
 Route::get('about-us/mission','FrontendController@mission')->name('mission');
 Route::get('academics/rules','FrontendController@rules')->name('rules');
@@ -81,9 +82,12 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
 
 
     //admission route
-    Route::get('academics','AdmissionController@getAcademicAll')->name('academics');
-    Route::get('personal','AdmissionController@getPersonal')->name('personal');
-    Route::get('programs','AdmissionController@getProgram')->name('programs');
+    Route::get('info/academics','AdmissionController@getAcademicAll')->name('academics');
+    Route::get('info/personal','AdmissionController@getPersonal')->name('personal');
+    Route::get('info/programs','AdmissionController@getProgram')->name('programs');
+    Route::get('info/cv','AdmissionController@getCv')->name('cv');
+    Route::get('info/download-cv','AdmissionController@downloadCV')->name('download.cv');
+
     Route::get('payment','AdmissionController@getPayment')->name('payment');
 
 
@@ -92,8 +96,6 @@ Route::group(['prefix'=>'student','as'=>'application.','namespace'=>'Application
     Route::post('academic','AdmissionController@postAcademic')->name('academic.submit');
     Route::get('choice','AdmissionController@getChoice')->name('choice');
     Route::post('choice','AdmissionController@submitChoice')->name('submit.choice');
-    Route::get('cv','AdmissionController@getCv')->name('cv');
-    Route::get('download-cv','AdmissionController@downloadCV')->name('download.cv');
 
     //Application Routes
     Route::get('apply','AdmissionController@getApplication')->name('apply');

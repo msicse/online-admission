@@ -69,19 +69,25 @@
                     </div>
                     <div class="col">
                         <h4 style="font-style: normal;color: #4a148c">Drop Message</h4>
-                        <form class="" action="index.html" method="post">
+                        <form  action="{{ route('submit.contact')}}" method="post">
+                            @csrf
                             <div class="form-group">
-                                <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                                <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" />
                             </div>
                             <div class="form-group">
-                                <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                                <input type="text" name="email" class="form-control" placeholder="Your Email *" value="" />
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="phone" class="form-control" placeholder="Your Phone Number *" value="" />
                             </div>
                             <div class="form-group">
-                                <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
+                                <input type="text" name="subject" class="form-control" placeholder="Subject *" value="" />
                             </div>
                             <div class="form-group">
-                                <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                                <textarea name="msg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" name="" value="Send Message" class="btn btn-primary">
                             </div>
