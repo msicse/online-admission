@@ -37,7 +37,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="{{ route('admission.home') }}" class="btn btn-info"> Support </a>
+                                <a href="{{ route('admission.support') }}" class="btn btn-info"> Support </a>
                             </div>
                         </div>
                     </div>

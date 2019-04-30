@@ -44,7 +44,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admission/support*') ? 'active' : '' }}" href="{{ route('admission.complain') }}">Support</a>
+                <a class="nav-link {{ Request::is('admission/support*') ? 'active' : '' }}" href="{{ route('admission.support') }}">Support</a>
             </li>
             @endif
         </ul>

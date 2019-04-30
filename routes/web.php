@@ -48,7 +48,7 @@ Route::group(['prefix'=>'admission','as'=>'admission.'], function(){
     Route::get('/','ApplicationController@index')->name('home');
     Route::get('guidelines','AdmissionController@guideline')->name('guidelines');
     Route::get('how-to-apply','AdmissionController@how')->name('how');
-    Route::get('support','AdmissionController@complain')->name('complain');
+    Route::get('support','AdmissionController@complain')->name('support');
 
     Route::get('register','AdmissionController@register')->name('register');
     Route::post('register','AdmissionController@postRegister')->name('register.submit');

@@ -68,24 +68,25 @@
                             Motto: We Shape your Dream<br></p>
                     </div>
                     <div class="col">
-                        <h4 style="font-style: normal;color: #4a148c">Drop Message</h4>
+                        <h4 style="font-style: normal;color: #4a148c">Drop a Message</h4>
                         <form  action="{{ route('submit.contact')}}" method="post">
                             @csrf
+                            <input type="hidden" name="type" value="1">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" />
+                            <input type="text" name="name" class="form-control" placeholder="Your Name *" value="{{ old('name') }}"  required/>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="email" class="form-control" placeholder="Your Email *" value="" />
+                                <input type="text" name="email" class="form-control" placeholder="Your Email *" value="{{ old('email') }}" required />
                             </div>
 
                             <div class="form-group">
-                                <input type="text" name="phone" class="form-control" placeholder="Your Phone Number *" value="" />
+                                <input type="text" name="phone" class="form-control" placeholder="Your Phone Number *" value="{{ old('phone') }}"  required/>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="subject" class="form-control" placeholder="Subject *" value="" />
+                                <input type="text" name="subject" class="form-control" placeholder="Subject *" value="{{ old('subject') }}" required />
                             </div>
                             <div class="form-group">
-                                <textarea name="msg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                                <textarea name="message" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;" required>{{ old('message') }}</textarea>
                             </div>
 
                             <div class="form-group">

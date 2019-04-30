@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Contact;
 use Mail;
 use Toastr;
 
@@ -31,7 +32,9 @@ class FrontendController extends Controller
             'phone'=>'required|min:3',
             'subject'=>'required|min:3',
             'email'=>'required|email',
-            'msg'=>'required|min:10'
+            'message'=>'required|min:10',
+            'type'=>'required|integer|min:1|max:2',
+
         ]);
 
         $data = array(
@@ -39,7 +42,7 @@ class FrontendController extends Controller
             'email'   => $request->email,
             'phone'   => $request->phone,
             'subject' => $request->subject,
-            'bodyMessage' => $request->msg
+            'bodyMessage' => $request->message
         );
 
 
@@ -49,8 +52,24 @@ class FrontendController extends Controller
                 $message->to('7db34073e3-91f7af@inbox.mailtrap.io');
                 $message->subject($data['subject']);
         });
-        Toastr::success(' Succesfully Send Message ', 'Success');
-        return redirect()->back();
+        
+        if (Mail::failures()) {
+            Toastr::error(' Something  worng ', 'Error');
+            return redirect()->back();
+        }else {
+            $contact = new Contact();
+            $contact->name       = $request->name;
+            $contact->email      = $request->email;
+            $contact->phone      = $request->phone;
+            $contact->subject    = $request->name;
+            $contact->message    = $request->message;
+            $contact->type       = $request->type;
+            $contact->save();
+
+            Toastr::success(' Succesfully Send Message ', 'Success');
+            return redirect()->back();
+        }
+            
     }
 
 
