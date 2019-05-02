@@ -21,6 +21,7 @@ class CreateContactsTable extends Migration
             $table->string('subject');
             $table->text('message');
             $table->tinyInteger('type');
+            $table->boolean('view')->default(false);
             $table->timestamps();
         });
     }

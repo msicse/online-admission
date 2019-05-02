@@ -9,6 +9,8 @@ use App\Application;
 use App\Programe;
 
 use DB;
+use Storage;
+use Toastr;
 
 class ApplicationController extends Controller
 {
@@ -33,12 +35,34 @@ class ApplicationController extends Controller
         foreach($application->academics as $data){
             $result = $result + $data->result;
         }
-        return $result;
+        //return $result;
         $application->approved = 1;
         $application->result = $result;
         $application->save();
         return view('backend.admin.admission.show')->withApplication($application);
     }
+    public function applicationDelete($id)
+    {
+        $application = Application::find($id);
+
+
+        $application->academics()->delete();
+        $application->programs()->detach();
+
+        if (Storage::disk('public')->exists('admission/'.$application->image)){
+
+            Storage::disk('public')->delete('admission/'.$application->image);
+        }
+
+        $application->delete();
+
+        Toastr::success('Succesfully Deleted ', 'Success');
+    
+        return redirect()->route('admin.applications.index');
+
+    }
+
+
 
     public function getResult()
     {

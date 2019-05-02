@@ -124,7 +124,19 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
     Route::get('applications', 'ApplicationController@index')->name('applications.index');
     Route::get('applications/{id}', 'ApplicationController@show')->name('applications.show');
     Route::get('applications/approved/{id}', 'ApplicationController@applicationApproved')->name('applications.approved');
+    Route::delete('applications/{id}', 'ApplicationController@applicationDelete')->name('applications.delete');
     Route::get('admission/result', 'ApplicationController@getResult')->name('applications.result');
+
+    Route::get('contacts-emails', 'ContactController@index')->name('contacts');
+    Route::get('supports-emails', 'ContactController@supports')->name('supports');
+
+    View::composer('layouts.backend.partials.sidebar', function ($view) {
+    $supports = App\Contact::where('type',2)->get();
+    $contacts = App\Contact::where('type',1)->get();
+    $view->with(compact('supports','contacts'));
+
+});
+
 
 
 });

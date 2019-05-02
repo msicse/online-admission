@@ -60,6 +60,12 @@
                     <span>Users</span>
                 </a>
             </li>
+            <li class="{{ Request::is('admin/contacts*') ? 'active' : '' }}">
+                <a href="{{ route('admin.contacts') }}">
+                    <i class="material-icons">email</i>
+                    <span>contact-emails </span><span class="badge" style="color:#fff;">{{ $contacts->count() }}</span>
+                </a>
+            </li>
             <li class="header">Admission</li>
             <li class="{{ Request::is('admin/dates*') ? 'active' : '' }}">
                 <a href="{{ route('admin.dates.index') }}">
@@ -77,6 +83,12 @@
                 <a href="{{ route('admin.applications.result') }}">
                     <i class="material-icons">people</i>
                     <span>Result</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/supports*') ? 'active' : '' }}">
+                <a href="{{ route('admin.supports') }}">
+                    <i class="material-icons">email</i>
+                    <span>support-emails </span><span class="badge" style="color:#fff;">{{ $supports->count() }}</span>
                 </a>
             </li>
 

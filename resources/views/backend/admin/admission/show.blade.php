@@ -155,15 +155,26 @@
                     </table>
 
                     <div class="col text-center">
-                        <a href="{{ route('admin.applications.index') }}" class="btn btn-primary btn-lg">Back</a>
+
 
                         @if( $application->approved == 1 )
-                        <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-success ">Approved</a>
+                        <button type="button" class="btn btn-success btn-lg" disabled>Approved</button>
                         @else
-                        <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-lg btn-success ">Approv</a>
+                        <a href="{{ route('admin.applications.approved', $application->id) }}" class="btn btn-lg btn-success ">Approve</a>
 
                         @endif
-                        <a href="{{ route('admin.applications.index') }}" class="btn btn-danger btn-lg">Delete</a>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="if(confirm('Are You sure want To Delete?')){
+                        event.preventDefault();
+                        document.getElementById('delete-form-{{ $application->id }}').submit();
+                        } else {
+                        event.preventDefault();
+                        }">Delete</button>
+
+                        <form id="delete-form-{{ $application->id }}" style="display: none;" action="{{   route('admin.applications.delete', $application->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+
+                        </form>
                     </div>
                 </div>
             </div>

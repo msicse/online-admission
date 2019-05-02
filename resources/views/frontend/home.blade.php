@@ -20,7 +20,7 @@
 
                     <h3>We Ensure better education <br/>for a better world</h3>
                     <p>WE SHAPE YOUR DREAM </p>
-                    <a class="main_btn" href="#">Get Started</a>
+                    <a class="main_btn" href="{{ route('admission.register') }}">Get Started</a>
                 </div>
             </div>
         </div>
@@ -397,4 +397,3 @@
 
 
 @endsection
-

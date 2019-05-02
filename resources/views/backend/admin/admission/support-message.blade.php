@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Admin | Roles')
+@section('title','Admin | Support Messages')
 
 @push('css')
 	<!-- JQuery DataTable Css -->
@@ -40,7 +40,7 @@
 
                                 <tr>
 
-                                    <th> ID      </th>
+                                    <th> S.l      </th>
                                     <th> Name    </th>
                                     <th> Email   </th>
                                     <th> Phone   </th>
@@ -55,18 +55,19 @@
                             <tfoot>
 
                                 <tr>
-                                    <th>ID</th>
-                                    <th> Semester</th>
-                                    <th> Year</th>
-                                    <th>Start </th>
-                                    <th> End </th>
-                                    <th> Status </th>
-                                    <th>Action</th>
+                                    <th> S.L      </th>
+                                    <th> Name    </th>
+                                    <th> Email   </th>
+                                    <th> Phone   </th>
+                                    <th> Subject </th>
+                                    <th> Status  </th>
+                                    <th> Action  </th>
                                 </tr>
 
                             </tfoot>
-                            
+
                             <tbody>
+                                
                                 <tr>
                                     <td>1</td>
                                     <td>Summer</td>
@@ -89,126 +90,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Spring</td>
-                                    <td>2019</td>
-                                    <td> 01-01-3019</td>
-                                    <td> 25-03-3019</td>
-                                    <td class="text-success">Active</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditRole" data-id="">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger waves-effect"
-                                                onclick="if(confirm('Are You sure want To Delete?')){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-').submit();
-                                                } else {
-                                                event.preventDefault();
-                                                }" >
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Fall</td>
-                                    <td>2019</td>
-                                    <td> 01-03-3019</td>
-                                    <td> 25-07-3019</td>
-                                    <td class="text-success">Active</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditRole" data-id="">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger waves-effect"
-                                                onclick="if(confirm('Are You sure want To Delete?')){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-').submit();
-                                                } else {
-                                                event.preventDefault();
-                                                }" >
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Fall</td>
-                                    <td>2019</td>
-                                    <td> 01-03-3019</td>
-                                    <td> 25-07-3019</td>
-                                    <td class="text-success">Active</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditRole" data-id="">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger waves-effect"
-                                                onclick="if(confirm('Are You sure want To Delete?')){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-').submit();
-                                                } else {
-                                                event.preventDefault();
-                                                }" >
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Fall</td>
-                                    <td>2019</td>
-                                    <td> 01-03-3019</td>
-                                    <td> 25-07-3019</td>
-                                    <td class="text-success">Active</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditRole" data-id="">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger waves-effect"
-                                                onclick="if(confirm('Are You sure want To Delete?')){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-').submit();
-                                                } else {
-                                                event.preventDefault();
-                                                }" >
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                @foreach( $dates as $key => $data)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $data->year }}</td>
-                                    <td>{{ $data->year }}</td>
-                                    <td>{{ $data->year }}</td>
-                                    <td>
-                                        <!-- <button type="button" class="btn btn-success waves-effect " data-toggle="modal" data-target="#">
-                                            <i class="material-icons">visibility</i>
-                                        </button> -->
 
-                                        <button type="button" class="btn btn-primary waves-effect  edit" data-toggle="modal" data-target="#EditRole" data-id="{{ $data->id }}">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger waves-effect"
-                                                onclick="if(confirm('Are You sure want To Delete?')){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-{{ $data->id }}').submit();
-                                                } else {
-                                                event.preventDefault();
-                                                }" >
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                        <form id="delete-form-{{ $data->id }}" style="display: none;" action="{{  route('admin.roles.destroy',$data->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-
-                                        </form>
-
-                                    </td>
-                                </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>

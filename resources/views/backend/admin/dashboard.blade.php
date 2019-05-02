@@ -4,26 +4,36 @@
 
 @section('content')
     <!-- Widgets -->
+
+
+    @php
+        $incomplete = 0;
+        foreach( $applications as $data){
+            if($data->academics->count() == 0){
+                $incomplete++;
+            }
+        }
+    @endphp
     <div class="row clearfix">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box bg-light-green hover-expand-effect">
                 <div class="icon">
-                    <i class="material-icons">playlist_add_check</i>
+                    <i class="material-icons">people_outline</i>
                 </div>
                 <div class="content">
                     <div class="text">Total Applications</div>
                     <div class="number count-to" data-from="0" data-to="{{ $applications->count() }}" data-speed="15" data-fresh-interval="20"></div>
                 </div>
             </div>
-            
+
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box bg-green hover-expand-effect">
                 <div class="icon">
-                    <i class="material-icons">playlist_add_check</i>
+                    <i class="material-icons">verified_user</i>
                 </div>
                 <div class="content">
-                    <div class="text">Approved Applications</div>
+                    <div class="text">Approved </div>
                     <div class="number count-to" data-from="0" data-to="{{ $approved }}" data-speed="15" data-fresh-interval="20"></div>
                 </div>
             </div>
@@ -31,10 +41,10 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box  bg-pink hover-expand-effect">
                 <div class="icon">
-                    <i class="material-icons">library_books</i>
+                    <i class="material-icons">av_timer</i>
                 </div>
                 <div class="content">
-                    <div class="text">Pending Applications</div>
+                    <div class="text">Pending </div>
                     <div class="number count-to" data-from="0" data-to="{{ $pendings->count() }}" data-speed="1000" data-fresh-interval="20"></div>
                 </div>
             </div>
@@ -42,11 +52,11 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box bg-red hover-expand-effect">
                 <div class="icon">
-                    <i class="material-icons">person_add</i>
+                    <i class="material-icons">event_busy</i>
                 </div>
                 <div class="content">
-                    <div class="text">Incomplete Applications</div>
-                    <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                    <div class="text">Incomplete </div>
+                    <div class="number count-to" data-from="0" data-to="{{ $incomplete }}" data-speed="1000" data-fresh-interval="20"></div>
                 </div>
             </div>
         </div>
@@ -71,7 +81,7 @@
                     <div class="number count-to" data-from="0" data-to="{{ $programs }}" data-speed="15" data-fresh-interval="20"></div>
                 </div>
             </div>
-            
+
             <div class="info-box bg-lime hover-expand-effect">
                 <div class="icon">
                     <i class="material-icons">fiber_new</i>
@@ -105,12 +115,12 @@
                             </thead>
                             <tbody>
                                 @foreach($pendings as $key => $pending)
-                                @if( $pending->academics->count() > 0 &&  $pending->programs->count() > 0)
+
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $pending->name }}</td>
                                     <td> {{ ($pending->level == 1 ) ? 'Under Graduate' : 'Post Graduate'  }}</td>
-                                    
+
                                     <td>
                                         {{ ($pending->semester == 1) ? 'Spring' : '' }}
                                         {{ ($pending->semester == 2) ? 'Summer' : '' }}
@@ -123,9 +133,9 @@
                                     <td>
                                         <a href="{{ route('admin.applications.show',$pending->id)}}" class="btn btn-primary">view</a>
                                     </td>
-                                    
+
                                 </tr>
-                                @endif
+
                                 @endforeach
                             </tbody>
                         </table>
